@@ -18,8 +18,9 @@
 .mx-wide { max-width: 60rem; margin-inline: auto; }
 
 /* menu */
-.p-menu { margin: 0; font-family: var(--p-mono); font-size: .78rem; line-height: 1.9; color: var(--p-mute); }
+.p-menu { margin: 0; font-family: var(--p-mono); font-size: .74rem; line-height: 1.9; color: var(--p-mute); }
 .p-menu b { color: var(--p-ink); }
+.p-menu .nw { white-space: nowrap; }
 
 /* rules: the old grooved <hr> */
 .p-hr { height: 0; margin: 14px 0; border: 0; border-top: 1px solid #8c8c8c; border-bottom: 1px solid #e8e8e8; }
