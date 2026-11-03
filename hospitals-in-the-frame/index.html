@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hospitals in the Frame</title>
 <meta name="description" content="Nine hospitals whose names recur in the archive, standing where their footage was filmed.">
-<meta name="theme-color" content="#020704">
+<meta name="theme-color" content="#ffffff">
 <style>
-  html, body { margin: 0; background: #020704; }
-  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  html, body { margin: 0; background: #ffffff; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #f2f2f2 0%, #e6e6e6 50%, #f2f2f2 100%); background-size: 200% 100%; }
   @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
   @keyframes sk { to { background-position: -200% 0; } }
-  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+  noscript p { color: #000; font-family: "Times New Roman", serif; padding: 24px; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>window.DASH_DATASETS = {"hospital": {"url": "data/hospital_slim.csv"}, "hosp_share": {"url": "data/hosp_share.csv"}};</script>
@@ -24,60 +24,76 @@
 <link rel="stylesheet" href="mx.css">
 <script src="mx.js"></script>
 
-<div class="mx">
+<div class="mx" id="top">
   <div class="mx-in">
-    <header class="mx-hero">
-      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
-      <div class="mx-boot">
-        <p class="mx-prompt">search --captions "hospital" --with-location</p>
-        <h1>Hospitals in the frame</h1>
-        <p class="mx-lede">Hospitals are where people run when everything else has failed. In this archive they are also where the cameras keep returning: to the wounded arriving, to the generators going quiet, to the sieges.<span class="mx-cursor" aria-hidden="true"></span></p>
-      </div>
+    <p class="p-menu">[ <a href="../">Home</a> | <a href="../where-the-footage-points/">Footage</a> | <b>Hospitals</b> | <a href="../what-gets-documented/">Words</a> | <a href="../who-keeps-the-record/">Keepers</a> | <a href="../documentation-outlook/">Outlook</a> ]</p>
+    <header class="p-head">
+      <p class="p-series">Paper 2 of 5</p>
+      <h1>Hospitals in the frame</h1>
+      <p class="p-deck">A hospital is where you run when everything else has failed. In this archive, it is also where the cameras keep going back.</p>
+      <p class="p-by">Written from the Archive Genocide records &middot; about five minutes to read</p>
     </header>
-
-    <section class="mx-ch">
-      <h2>One post in every few</h2>
-      <p>Across three years, about one in every <b class="mx-n" data-draw="oneIn" data-source="share_summary" data-field="one_in">—</b> records mentions a hospital. In <b class="mx-n" data-draw="peakM" data-source="share_summary" data-field="peak_month">—</b>, it was one in <b class="mx-n" data-draw="peakIn" data-source="share_summary" data-field="peak_one_in">—</b>.</p>
-      <div class="mx-win">
-        <div class="mx-win-bar"><span>C:\ARCHIVE\PULSE.SCOPE</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
-        <div class="mx-2d dash-skeleton" style="min-height: 200px" data-draw="scope" data-source="share_rows"></div>
-        <div class="mx-hint"><span>Share of each month's posts that mention a hospital</span><span>Hover for a month</span></div>
-      </div>
-      <p>The line jumps when a hospital is under siege. Each spike has a name.</p>
-    </section>
-
-    <section class="mx-ch">
-      <h2>Nine names</h2>
-      <p>Nine hospitals are named again and again. Each tower stands where its footage was placed on the map, and its height is how often its name appears. <b class="mx-n" data-draw="topName" data-source="towers" data-field="facility" data-row="0">—</b> stands tallest.</p>
-      <div class="mx-win">
-        <div class="mx-win-bar"><span>C:\ARCHIVE\HOSPITALS.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
-        <div class="mx-3d dash-skeleton" data-draw="towers3d" data-source="towers hospital"></div>
-        <div class="mx-hint"><span>Drag to turn &middot; hover a tower</span><span>Floor: every hospital post with a location</span></div>
-      </div>
-      <p>Al-Shifa in Gaza City, raided in November 2023 and again in March 2024. Nasser in Khan Younis, besieged in February 2024. Kamal Adwan in the north, the last working hospital there, stormed in December 2024. Their towers are the sieges, counted in posts.</p>
-    </section>
-
-    <section class="mx-ch">
-      <h2>How sure is the map?</h2>
-      <p>Of the hospital posts that can be placed at all, only <b class="mx-n" data-draw="exact" data-source="prec_summary" data-field="exact_share">—</b> are pinned to the exact building. The rest are placed by the town or camp their caption names.</p>
-      <pre class="mx-ascii" data-draw="precision" data-source="prec_dist" aria-label="Records by how precisely they are placed"></pre>
-      <p>So a tower's position is close, not exact. Its height, the number of posts that name it, is the steadier fact.</p>
-    </section>
-
-    <div class="mx-ring">
-      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
-      <nav aria-label="Archive stories">
-        <a href="../where-the-footage-points/">&#9668; Prev</a>
-        <a href="../">The archive</a>
-        <a href="../where-the-footage-points/">Footage</a>
-        <span class="here">[ Hospitals ]</span>
-        <a href="../what-gets-documented/">Words</a>
-        <a href="../who-keeps-the-record/">Keepers</a>
-        <a href="../documentation-outlook/">Outlook</a>
-        <a href="../what-gets-documented/">Next &#9658;</a>
-      </nav>
+    <hr class="p-hr thick">
+    <div class="p-abstract">
+      <span class="p-label">In short</span>
+      <p>People filmed the wounded arriving, the corridors with no power, the families waiting outside. Count how often a hospital is mentioned and you get a pulse that jumps with every siege. Map where those posts were filmed and nine hospitals stand out by name.</p>
     </div>
-    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. The pulse line searches every caption in the archive; the towers and precision use only the hospital posts that carry a location. Hospital names are matched as text in translated captions, so some spellings are missed. A record documents what was posted and when, not a verified finding.</p>
+    <hr class="p-hr">
+    <ol class="p-points">
+      <li>About one post in every <b class="mx-n" data-draw="oneIn" data-source="share_summary" data-field="one_in">—</b> mentions a hospital.</li>
+      <li>In <b class="mx-n" data-draw="peakM" data-source="share_summary" data-field="peak_month">—</b>, it was one in every <b class="mx-n" data-draw="peakIn" data-source="share_summary" data-field="peak_one_in">—</b>.</li>
+      <li>The hospital named most often is <b class="mx-n" data-draw="topName" data-source="towers" data-field="facility" data-row="0">—</b>.</li>
+    </ol>
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">1.</span>A pulse</h2>
+      <p>Here is the share of each month's posts that mention a hospital. Read it like a heartbeat. The quiet stretches are not peace; they are months when other things took over the captions.</p>
+      <figure class="p-fig">
+        <div class="p-frame"><div class="mx-2d dash-skeleton" style="min-height: 200px" data-draw="scope" data-source="share_rows"></div></div>
+        <figcaption><b>Figure 1.</b> Share of each month's posts whose caption mentions a hospital, October 2023 to now. <span class="p-ctl">Point at the line for a month.</span></figcaption>
+      </figure>
+      <p>Every spike has a name. The tallest is the end of 2024, when the hospitals of the north were under siege.</p>
+    </section>
+
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">2.</span>Nine names</h2>
+      <p>Some hospitals are named again and again. In this figure each one stands where its footage was filmed, and the taller it is, the more posts name it.<span class="p-fn"><a href="#n1">[1]</a></span></p>
+      <figure class="p-fig">
+        <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="towers3d" data-source="towers hospital"></div></div>
+        <figcaption><b>Figure 2.</b> Nine named hospitals, standing on a floor of every hospital post that carries a location. The tallest is drawn in red. <span class="p-ctl">Drag to turn it. Point at a tower for its name and busiest month.</span></figcaption>
+      </figure>
+      <p>Al-Shifa in Gaza City, raided in November 2023 and again in March 2024. Nasser in Khan Younis, besieged in February 2024. Kamal Adwan in the north, the last working hospital there, stormed in December 2024. Each tower is a siege, counted in the posts of the people who were there.</p>
+    </section>
+
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">3.</span>How sure is the map?</h2>
+      <p>Of the hospital posts that can be placed at all, only <b class="mx-n" data-draw="exact" data-source="prec_summary" data-field="exact_share">—</b> are pinned to the exact building. The rest are placed by the town or camp the caption names.</p>
+      <figure class="p-fig">
+        <div class="p-frame"><pre class="p-pre" data-draw="precision" data-source="prec_dist" aria-label="How precisely hospital posts are placed"></pre></div>
+        <figcaption><b>Table 1.</b> Hospital posts with a location, by how precisely they are placed.</figcaption>
+      </figure>
+      <p>So trust a tower's height more than its exact spot. The count of people who named a hospital is the steadier fact.</p>
+    </section>
+
+    <div class="p-box">
+      <span class="p-label">What this can't tell you</span>
+      <ul>
+        <li>A mention is not an attack. A caption can name a hospital because someone was taken there, or born there.</li>
+        <li>Names are matched as text in translated captions, so some spellings slip through.</li>
+        <li>The pulse counts the whole archive; the towers and the table use only posts with a location.</li>
+      </ul>
+    </div>
+    <div class="p-notes">
+      <span class="p-label">Notes</span>
+      <ol><li id="n1">A tower stands at the average position of the posts that name it. Where two hospitals sit close together, the towers are nudged apart so both can be seen.</li></ol>
+    </div>
+    <hr class="p-hr">
+    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../where-the-footage-points/">1. Where the footage points</a>. Next: <a href="../what-gets-documented/">3. What gets documented</a>. <a href="#top">Back to top</a></p>
   </div>
 </div>
 
@@ -135,7 +151,7 @@
   dash.calc('prec_dist', {
     inputs: ['hospital'],
     fn: (hospital) => {
-      const labels = { 1: 'Town or city named', 2: 'Neighbourhood or camp', 3: 'Building named, unverified', 4: 'Exact site, verified' };
+      const labels = { 1: 'Town or city named', 2: 'Neighbourhood or camp', 3: 'Building named, unchecked', 4: 'Exact site, checked' };
       const m = {};
       for (const r of hospital) { const p = Math.min(Math.max(Number(r.precision_level) || 1, 1), 4); m[p] = (m[p] || 0) + 1; }
       return [4, 3, 2, 1].map((p) => ({ level: p, label: labels[p], n: m[p] || 0 }));
@@ -154,14 +170,15 @@
 <script>
   dash.draw('oneIn', MX.text('share_summary', (d) => d.one_in, MX.fmt.n));
   dash.draw('peakIn', MX.text('share_summary', (d) => d.peak_one_in, MX.fmt.n));
-  dash.draw('peakM', MX.text('share_summary', (d) => d.peak_month, MX.fmt.month));
+  dash.draw('peakM', MX.text('share_summary', (d) => d.peak_month, (m) => d3.utcFormat('%B %Y')(new Date(m + '-01T00:00:00Z'))));
   dash.draw('topName', MX.text('towers', (d) => d[0] && d[0].facility));
   dash.draw('exact', MX.text('prec_summary', (d) => d.exact_share, MX.fmt.pct));
   dash.draw('precision', (el) => {
     const g = dash.data('prec_dist');
     if (g.status !== 'ok') { el.textContent = ''; return; }
     const tot = d3.sum(g.data, (r) => r.n) || 1;
-    el.textContent = g.data.map((r) => MX.pad(r.label.toUpperCase(), 28) + MX.bar(r.n / tot, 20) + ' ' + MX.lpad(MX.fmt.pct0(r.n / tot), 4)).join('\n');
+    el.textContent = [MX.pad('placed by', 28) + MX.lpad('posts', 7) + MX.lpad('share', 8), '-'.repeat(43)]
+      .concat(g.data.map((r) => MX.pad(r.label, 28) + MX.lpad(MX.fmt.n(r.n), 7) + MX.lpad(MX.fmt.pct0(r.n / tot), 8))).join('\n');
   });
 </script>
 
@@ -172,35 +189,32 @@
     el.replaceChildren();
     if (g.status !== 'ok') { if (g.status === 'error') MX.err(el); return; }
     const rows = g.data;
-    const C = MX.C;
-    const W = Math.max(el.clientWidth - 16, 260), H = 200, mt = 14, mb = 26, ml = 40, mr = 8;
+    const W = Math.max(el.clientWidth - 20, 260), H = 200, mt = 12, mb = 26, ml = 38, mr = 6;
     const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
     const x = d3.scaleLinear([0, rows.length - 1], [ml, W - mr]);
     const yMax = d3.max(rows, (r) => r.share) || 0.01;
     const y = d3.scaleLinear([0, yMax * 1.1], [H - mb, mt]);
-    const gr = svg.append('g');
-    for (let i = 0; i <= 8; i++) gr.append('line').attr('x1', ml + (W - ml - mr) * i / 8).attr('x2', ml + (W - ml - mr) * i / 8).attr('y1', mt).attr('y2', H - mb).attr('stroke', C.line);
+    const mono = '"Courier New", Courier, monospace';
     for (const t of y.ticks(3)) {
-      gr.append('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y(t)).attr('y2', y(t)).attr('stroke', C.line);
-      gr.append('text').attr('x', ml - 6).attr('y', y(t) + 3).attr('text-anchor', 'end').attr('font-size', 10).attr('fill', C.dim).attr('font-family', 'Courier New, monospace').text(MX.fmt.pct0(t));
+      svg.append('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y(t)).attr('y2', y(t)).style('stroke', t === 0 ? '#000' : '#d4d4d4');
+      svg.append('text').attr('x', ml - 6).attr('y', y(t) + 3).attr('text-anchor', 'end').attr('font-size', 10).attr('font-family', mono).style('fill', '#666').text(MX.fmt.pct0(t));
     }
-    const area = d3.area((r, i) => x(i), y(0), (r) => y(r.share));
-    svg.append('path').attr('d', area(rows)).attr('fill', C.bright).attr('opacity', 0.08);
     const line = d3.line((r, i) => x(i), (r) => y(r.share));
-    svg.append('path').attr('d', line(rows)).attr('fill', 'none').attr('stroke', C.bright).attr('stroke-width', 4).attr('opacity', 0.18).attr('stroke-linejoin', 'round');
-    svg.append('path').attr('d', line(rows)).attr('fill', 'none').attr('stroke', C.bright).attr('stroke-width', 1.6).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+    svg.append('path').attr('d', line(rows)).style('fill', 'none').style('stroke', '#000').attr('stroke-width', 1.4).attr('stroke-linejoin', 'round');
+    const pi = rows.reduce((b, r, i) => (r.share > rows[b].share ? i : b), 0);
+    svg.append('circle').attr('cx', x(pi)).attr('cy', y(rows[pi].share)).attr('r', 3.5).style('fill', '#cc0000');
     rows.forEach((r, i) => {
-      if (r.month.slice(5) === '01') svg.append('text').attr('x', x(i)).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 10).attr('fill', C.dim).attr('font-family', 'Courier New, monospace').text(r.month.slice(0, 4));
+      if (r.month.slice(5) === '01') svg.append('text').attr('x', x(i)).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 10).attr('font-family', mono).style('fill', '#666').text(r.month.slice(0, 4));
     });
-    const dot = svg.append('circle').attr('r', 3.5).attr('fill', C.hot).attr('opacity', 0);
+    const dot = svg.append('circle').attr('r', 3).style('fill', '#000').attr('opacity', 0);
     const tip = MX.tip(el);
     svg.on('pointermove', (ev) => {
       const [px] = d3.pointer(ev, svg.node());
       const i = Math.max(0, Math.min(rows.length - 1, Math.round(x.invert(px))));
       const r = rows[i];
       dot.attr('cx', x(i)).attr('cy', y(r.share)).attr('opacity', 1);
-      const k = el.clientWidth / W;
-      tip.show([MX.MONTH(r.month), MX.fmt.n(r.hospital) + ' hospital posts', MX.fmt.pct(r.share) + ' of the month'], x(i) * k, y(r.share) * k);
+      const k = (el.clientWidth - 20) / W;
+      tip.show([MX.fmt.month(r.month), MX.fmt.n(r.hospital) + ' hospital posts', MX.fmt.pct(r.share) + ' of the month'], 10 + x(i) * k, 10 + y(r.share) * k);
     });
     svg.on('pointerleave', () => { tip.hide(); dot.attr('opacity', 0); });
   });
@@ -211,8 +225,7 @@
     mount() { return { view: null, key: null }; },
     update(el, m) {
       const gt = dash.data('towers'), gh = dash.data('hospital');
-      const loading = gt.status === 'loading' || gh.status === 'loading';
-      el.classList.toggle('dash-skeleton', loading);
+      el.classList.toggle('dash-skeleton', gt.status === 'loading' || gh.status === 'loading');
       if (gt.status !== 'ok' || gh.status !== 'ok') { if (m.view) { m.view.destroy(); m.view = null; } m.key = null; el.replaceChildren(); if (gt.status === 'error' || gh.status === 'error') MX.err(el); return; }
       if (m.view && m.key === gt.data) { m.view.resize(); return; }
       if (m.view) m.view.destroy();
@@ -235,22 +248,18 @@
       const fw = 0.055;
       m.view = MX.view3d(el, {
         label: 'Towers for nine named hospitals, standing on a map of hospital footage',
-        yaw: 0.55, pitch: 0.72, sway: 0.6, dist: 4.4, scale: 1.0, cy: 0.62,
-        height: (w) => Math.max(300, Math.min(500, w * 0.62)),
+        yaw: 0.55, pitch: 0.72, sway: 0.5, dist: 4.4, scale: 1.0, cy: 0.62,
+        height: (w) => Math.max(300, Math.min(480, w * 0.66)),
         render(ctx, P, st) {
-          MX.grid(ctx, P, -1.3, 1.3, -1.3, 1.3, 13, C.line);
-          ctx.globalAlpha = 0.32; ctx.fillStyle = C.mid;
-          for (const f of floor) { const p = P(f[0], 0, f[1]); ctx.fillRect(p[0], p[1], 1.5, 1.5); }
+          MX.grid(ctx, P, -1.3, 1.3, -1.3, 1.3, 13, '#e6e6e6');
+          ctx.globalAlpha = 0.45; ctx.fillStyle = C.faint;
+          for (const f of floor) { const p = P(f[0], 0, f[1]); ctx.fillRect(p[0], p[1], 1.4, 1.4); }
           ctx.globalAlpha = 1;
           const order = T.map((t) => ({ t, d: P(t.x, t.h / 2, t.z)[2] })).sort((a, b) => b.d - a.d);
           for (const { t } of order) {
             const hot = st.hover === t || t === T[0];
-            t.v = MX.box(ctx, P, t.x - fw, t.x + fw, 0, t.h, t.z - fw, t.z + fw, {
-              side: hot ? 'rgba(236,255,241,.3)' : 'rgba(49,194,94,.22)',
-              top: hot ? C.hot : C.bright,
-              edge: hot ? C.hot : 'rgba(67,255,120,.85)',
-            });
-            const p = MX.label(ctx, P, t.x, t.h + 0.09, t.z, t.facility.toUpperCase(), hot ? C.hot : C.bright, 'center', 10);
+            t.v = MX.box(ctx, P, t.x - fw, t.x + fw, 0, t.h, t.z - fw, t.z + fw, hot ? MX.S.hot : MX.S.base);
+            const p = MX.label(ctx, P, t.x, t.h + 0.09, t.z, t.facility, hot ? C.red : C.ink, 'center', 11);
             t.lx = p[0]; t.ly = p[1];
           }
         },

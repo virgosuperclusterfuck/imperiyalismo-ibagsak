@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Gaza Documentation Archive</title>
-<meta name="description" content="Every post, kept: an archive of footage from Gaza, and the way in.">
-<meta name="theme-color" content="#020704">
+<title>What Was Kept</title>
+<meta name="description" content="Footage from Gaza, saved before it disappeared: an introduction and five short papers.">
+<meta name="theme-color" content="#ffffff">
 <style>
-  html, body { margin: 0; background: #020704; }
-  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  html, body { margin: 0; background: #ffffff; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #f2f2f2 0%, #e6e6e6 50%, #f2f2f2 100%); background-size: 200% 100%; }
   @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
   @keyframes sk { to { background-position: -200% 0; } }
-  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+  noscript p { color: #000; font-family: "Times New Roman", serif; padding: 24px; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>window.DASH_DATASETS = {"overview": {"url": "data/overview.json"}, "monthly": {"url": "data/monthly.csv"}, "keywords": {"url": "data/keywords.csv"}};</script>
@@ -24,71 +24,103 @@
 <link rel="stylesheet" href="mx.css">
 <script src="mx.js"></script>
 
-<div class="mx">
+<div class="mx" id="top">
   <div class="mx-in">
-    <header class="mx-hero" id="top">
-      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
-      <div class="mx-boot">
-        <p class="mx-prompt">open --archive gaza --mode read</p>
-        <h1>Every post, kept</h1>
-        <p class="mx-lede">Since October 2023, people in Gaza have filmed what was happening around them and posted it — to Telegram, to TikTok, to anyone watching. Many of those posts were later deleted, banned or lost. Volunteers saved what they could. This is the archive they built, and the way in.<span class="mx-cursor" aria-hidden="true"></span></p>
-      </div>
+    <p class="p-menu">[ <b>Home</b> | <a href="where-the-footage-points/">Footage</a> | <a href="hospitals-in-the-frame/">Hospitals</a> | <a href="what-gets-documented/">Words</a> | <a href="who-keeps-the-record/">Keepers</a> | <a href="documentation-outlook/">Outlook</a> ]</p>
+
+    <header class="p-head">
+      <p class="p-series">An introduction, and five short papers</p>
+      <h1>What was kept</h1>
+      <p class="p-deck">Since October 2023, people in Gaza have held up their phones and filmed what was happening to them. Many of those posts are gone now. Some were saved.</p>
+      <p class="p-by">Written from the Archive Genocide records &middot; about five minutes to read</p>
     </header>
 
-    <section class="mx-ch" id="kept">
-      <h2>Records preserved</h2>
-      <div class="mx-odo" data-draw="odo" data-source="overview" data-field="clips" data-row="0" aria-label="Records preserved">—</div>
-      <p>Each record is one video or photograph, the words its poster wrote beside it, the moment it went up, and the channel it came from. <b class="mx-n" data-draw="vidShare" data-source="video_share" data-field="share">—</b> of them are video.</p>
-      <p>A record is a testimony of what someone saw and chose to share. It is not, on its own, a verified finding — and the archive is careful to say so.</p>
+    <hr class="p-hr thick">
+
+    <div class="p-abstract">
+      <span class="p-label">In short</span>
+      <p>People in Gaza filmed their streets, their hospitals, their children, and posted what they filmed so that someone, somewhere, would see it. Channels were banned. Accounts went quiet. Volunteers copied what they could before it vanished. This page introduces what they saved and five ways of reading it.</p>
+    </div>
+
+    <hr class="p-hr">
+
+    <ol class="p-points">
+      <li>The archive holds <b class="mx-n" data-draw="kClips" data-source="overview" data-field="clips" data-row="0">—</b> videos and photographs, each with the words its poster wrote.</li>
+      <li>The busiest month was <b class="mx-n" data-draw="kPeakM" data-source="month_peak" data-field="month">—</b>: <b class="mx-n" data-draw="kPeakN" data-source="month_peak" data-field="total">—</b> posts, as the north was besieged.</li>
+      <li>Only <b class="mx-n" data-draw="kGeo" data-source="geo_share" data-field="share">—</b> of the records can be placed on a map at all.</li>
+    </ol>
+
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">1.</span>One post at a time</h2>
+      <p>Every record began as a person deciding to film. Some were journalists. Most were not. A father outside a hospital. A teenager on a rooftop. A woman walking through what used to be her street, narrating so she would not forget.</p>
+      <p>What the archive keeps is the post itself: the video or photograph, the caption its poster wrote, the moment it went up, and the channel it came from. <b class="mx-n" data-draw="vid" data-source="video_share" data-field="share">—</b> of them are video. None of it is a verdict. It is testimony, kept so that it can be looked at again.<span class="p-fn"><a href="#n1">[1]</a></span></p>
     </section>
 
-    <section class="mx-ch" id="months">
-      <h2>Every month, someone pressed record</h2>
-      <p>Here is the archive as a skyline: one tower for each month, as tall as the number of posts saved from it. The tallest is <b class="mx-n" data-draw="peakM" data-source="month_peak" data-field="month">—</b>, when <b class="mx-n" data-draw="peakN" data-source="month_peak" data-field="total">—</b> posts went up in a single month — the season the north was besieged.</p>
-      <div class="mx-win">
-        <div class="mx-win-bar"><span>C:\ARCHIVE\SKYLINE.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
-        <div class="mx-3d dash-skeleton" data-draw="skyline" data-source="monthly"></div>
-        <div class="mx-hint"><span>Drag to turn &middot; hover a tower</span><span>Oct 2023 &rarr; now</span></div>
-      </div>
-      <p>The towers rise and fall with the war — and also with the work of saving it. When a big channel goes dark, its month shrinks here too. <a href="who-keeps-the-record/">Who keeps the record</a> explains why.</p>
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">2.</span>Month by month</h2>
+      <p>Stand the months side by side and you get a skyline. Each tower is one month; its height is how many posts were saved from it.</p>
+      <figure class="p-fig">
+        <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="skyline" data-source="monthly"></div></div>
+        <figcaption><b>Figure 1.</b> Posts saved per month, October 2023 to now. The tallest tower, drawn in red, is the busiest month. <span class="p-ctl">Drag to turn it. Point at a tower for its number.</span></figcaption>
+      </figure>
+      <p>The skyline rises and falls with the war, and also with the work of keeping it. When a big channel went dark, its months shrink here too. The fourth paper, <a href="who-keeps-the-record/">Who keeps the record</a>, is about exactly that.</p>
     </section>
 
-    <section class="mx-ch" id="words">
-      <h2>What they saw</h2>
-      <p>The captions were written in the moment, by the people filming. Search them, and a few words keep coming back:</p>
-      <pre class="mx-ascii" data-draw="words" data-source="keywords" aria-label="Most frequent caption words"></pre>
-      <p>More children than airstrikes. More camps than mosques. The words people chose say what they needed others to see.</p>
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">3.</span>The words people chose</h2>
+      <p>The captions were written fast, in the moment, by the people holding the camera. Read enough of them and the same words keep coming back.</p>
+      <figure class="p-fig">
+        <div class="p-frame"><pre class="p-pre" data-draw="words" data-source="keywords" aria-label="The words that recur most in captions"></pre></div>
+        <figcaption><b>Table 1.</b> How many records mention each word in their caption. Captions in Arabic are matched through their English translation.</figcaption>
+      </figure>
+      <p>More children than airstrikes. More camps than mosques. You can read the war in what people felt they had to name.</p>
     </section>
 
-    <section class="mx-ch" id="where">
-      <h2>Where they stood</h2>
-      <p>Only <b class="mx-n" data-draw="geoN" data-source="overview" data-field="geolocated" data-row="0">—</b> records — <b class="mx-n" data-draw="geoS" data-source="geo_share" data-field="share">—</b> of the archive — can be placed on a map at all. Most of those can only be placed in a town or camp. Pinning a video to an exact building takes hours of careful work, matching skylines and street corners frame by frame.</p>
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">4.</span>Where they stood</h2>
+      <p><b class="mx-n" data-draw="geoN" data-source="overview" data-field="geolocated" data-row="0">—</b> records can be placed on a map. Most of those only to a town or a camp. Pinning a video to one building takes hours of patient work: matching a broken minaret, a water tower, the line of a street, frame by frame.<span class="p-fn"><a href="#n2">[2]</a></span></p>
     </section>
 
-    <section class="mx-ch" id="ways-in">
-      <h2>Five ways in</h2>
-      <ol class="mx-dir">
-        <li><span class="k">[1]</span><div><a href="where-the-footage-points/">Where the footage points</a><p>Three years of footage as a column of time over the map: north, then south, then north again.</p></div></li>
-        <li><span class="k">[2]</span><div><a href="hospitals-in-the-frame/">Hospitals in the frame</a><p>Nine hospitals whose names recur, standing where their footage was filmed.</p></div></li>
-        <li><span class="k">[3]</span><div><a href="what-gets-documented/">What gets documented</a><p>How the words in captions changed: children, aid, famine.</p></div></li>
-        <li><span class="k">[4]</span><div><a href="who-keeps-the-record/">Who keeps the record</a><p>The channels and volunteers behind the archive, and why that shapes everything you see.</p></div></li>
-        <li><span class="k">[5]</span><div><a href="documentation-outlook/">Documentation outlook</a><p>What the trend suggests about the record's future, and what no trend can tell you.</p></div></li>
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <span class="p-label">The five papers</span>
+      <ol class="p-list">
+        <li><a href="where-the-footage-points/">1. Where the footage points</a><p>Three years of footage stacked over the map: north, then south, then north again.</p></li>
+        <li><a href="hospitals-in-the-frame/">2. Hospitals in the frame</a><p>Nine hospitals whose names keep returning, and the sieges their names trace.</p></li>
+        <li><a href="what-gets-documented/">3. What gets documented</a><p>How the words in captions changed: children, aid, famine.</p></li>
+        <li><a href="who-keeps-the-record/">4. Who keeps the record</a><p>The channels and volunteers behind the archive, and why that matters for everything else.</p></li>
+        <li><a href="documentation-outlook/">5. Documentation outlook</a><p>A plain guess at what comes next, and everything a guess can't see.</p></li>
       </ol>
     </section>
 
-    <div class="mx-ring">
-      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
-      <nav aria-label="Archive stories">
-        <span class="here">[ The archive ]</span>
-        <a href="where-the-footage-points/">Footage</a>
-        <a href="hospitals-in-the-frame/">Hospitals</a>
-        <a href="what-gets-documented/">Words</a>
-        <a href="who-keeps-the-record/">Keepers</a>
-        <a href="documentation-outlook/">Outlook</a>
-        <a href="where-the-footage-points/">Next &#9658;</a>
-      </nav>
+    <div class="p-box">
+      <span class="p-label">What this can't tell you</span>
+      <ul>
+        <li>A post is not a casualty count. Many terrible days were never filmed, or the film was lost.</li>
+        <li>The archive only holds what someone managed to save. Its gaps are part of the story.</li>
+        <li>Captions are the posters' own words. They are testimony, not verified findings.</li>
+      </ul>
     </div>
-    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>, a public read-only archive of footage posted from Gaza and the West Bank. Captions come from the channels and journalists who posted the footage; a record documents what was posted and when, not a finding. Withdrawn records are excluded. Snapshot built <b data-draw="built" data-source="overview" data-field="built" data-row="0">—</b>.</p>
+
+    <div class="p-notes">
+      <span class="p-label">Notes</span>
+      <ol>
+        <li id="n1">The archive marks each record's review status internally and says plainly that a record documents what was posted and when. Records later withdrawn from the archive are left out of every page here.</li>
+        <li id="n2">The archive places records at four levels: the town named in a caption, the neighbourhood or camp, a named building, or an exact site worked out from the footage itself.</li>
+      </ol>
+    </div>
+
+    <hr class="p-hr">
+    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>, a public archive of footage posted from Gaza and the West Bank. Snapshot built <span data-draw="built" data-source="overview" data-field="built" data-row="0">—</span>. <a href="#top">Back to top</a></p>
   </div>
 </div>
 
@@ -118,25 +150,21 @@
 </script>
 
 <script>
-  dash.draw('odo', (el) => {
-    const g = dash.data('overview');
-    if (g.status !== 'ok') { el.textContent = '\u2014'; return; }
-    const s = MX.fmt.n(Number(g.data[0].clips));
-    el.replaceChildren(...Array.from(s).map((c) => { const sp = document.createElement('span'); sp.textContent = c; if (c === ',') sp.className = 'mx-sep'; return sp; }));
-  });
-  dash.draw('vidShare', MX.text('video_share', (d) => d.share, MX.fmt.pct0));
-  dash.draw('geoS', MX.text('geo_share', (d) => d.share, MX.fmt.pct));
+  dash.draw('kClips', MX.text('overview', (d) => Number(d[0].clips), MX.fmt.n));
+  dash.draw('kPeakM', MX.text('month_peak', (d) => d.month, (m) => d3.utcFormat('%B %Y')(new Date(m + '-01T00:00:00Z'))));
+  dash.draw('kPeakN', MX.text('month_peak', (d) => d.total, MX.fmt.n));
+  dash.draw('kGeo', MX.text('geo_share', (d) => d.share, MX.fmt.pct));
+  dash.draw('vid', MX.text('video_share', (d) => d.share, MX.fmt.pct0));
   dash.draw('geoN', MX.text('overview', (d) => Number(d[0].geolocated), MX.fmt.n));
-  dash.draw('peakM', MX.text('month_peak', (d) => d.month, MX.fmt.month));
-  dash.draw('peakN', MX.text('month_peak', (d) => d.total, MX.fmt.n));
   dash.draw('built', MX.text('overview', (d) => String(d[0].built).slice(0, 10)));
-
   dash.draw('words', (el) => {
     const g = dash.data('keywords');
     if (g.status !== 'ok') { el.textContent = ''; return; }
-    const rows = g.data.map((r) => ({ k: String(r.keyword), n: Number(r.count) })).sort((a, b) => b.n - a.n).slice(0, 7);
+    const rows = g.data.map((r) => ({ k: String(r.keyword), n: Number(r.count) })).sort((a, b) => b.n - a.n).slice(0, 8);
     const max = rows[0] ? rows[0].n : 1;
-    el.textContent = rows.map((r) => MX.pad(r.k.toUpperCase(), 11) + MX.bar(r.n / max, 22) + ' ' + MX.lpad(MX.fmt.n(r.n), 7)).join('\n');
+    const bar = (f) => '#'.repeat(Math.max(1, Math.round(f * 24)));
+    el.textContent = [MX.pad('word', 12) + MX.lpad('records', 8) + '   ', '-'.repeat(46)]
+      .concat(rows.map((r) => MX.pad(r.k, 12) + MX.lpad(MX.fmt.n(r.n), 8) + '   ' + bar(r.n / max))).join('\n');
   });
 </script>
 
@@ -157,34 +185,26 @@
       const bars = rows.map((r, i) => ({ ...r, x: -span / 2 + step * i + step / 2, h: 1.25 * r.n / max, peak: r.n === max }));
       const C = MX.C;
       m.view = MX.view3d(el, {
-        label: 'Three-dimensional skyline of records saved per month',
-        yaw: -0.42, pitch: 0.34, sway: 0.55, dist: 4.4, scale: 1.05, cy: 0.66,
-        height: (w) => Math.max(280, Math.min(460, w * 0.52)),
+        label: 'Skyline of posts saved per month',
+        yaw: -0.42, pitch: 0.34, sway: 0.45, dist: 4.4, scale: 1.05, cy: 0.66,
+        height: (w) => Math.max(260, Math.min(420, w * 0.56)),
         render(ctx, P, st) {
-          MX.grid(ctx, P, -span / 2 - 0.1, span / 2 + 0.1, -0.5, 0.5, 12, C.line);
+          MX.grid(ctx, P, -span / 2 - 0.1, span / 2 + 0.1, -0.5, 0.5, 12, C.hair);
           const order = bars.map((b) => ({ b, d: P(b.x, b.h / 2, 0)[2] })).sort((a, b) => b.d - a.d);
-          for (const { b } of order) {
-            const hot = b.peak || st.hover === b;
-            b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, b.h, -bw / 2, bw / 2, {
-              side: hot ? 'rgba(236,255,241,.28)' : 'rgba(49,194,94,.16)',
-              top: hot ? C.hot : 'rgba(67,255,120,.55)',
-              edge: hot ? C.hot : 'rgba(67,255,120,.65)',
-            });
-          }
-          for (const b of bars) if (b.month.slice(5) === '01') MX.label(ctx, P, b.x, 0, -0.66, b.month.slice(0, 4), C.mid, 'center', 11);
+          for (const { b } of order) b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, b.h, -bw / 2, bw / 2, b.peak || st.hover === b ? MX.S.hot : MX.S.base);
+          for (const b of bars) if (b.month.slice(5) === '01') MX.label(ctx, P, b.x, 0, -0.66, b.month.slice(0, 4), C.ink, 'center', 11);
         },
         pick(px, py, st) {
           let best = null, bd = 16;
           for (const b of bars) {
             if (!b.v) continue;
-            const tx = (b.v[4][0] + b.v[6][0]) / 2, ty = Math.min(b.v[4][1], b.v[6][1]);
-            const bx = (b.v[0][0] + b.v[2][0]) / 2, by = Math.max(b.v[0][1], b.v[2][1]);
-            const inside = Math.abs(px - (tx + bx) / 2) < Math.max(6, Math.abs(b.v[1][0] - b.v[0][0]) / 2 + 3) && py >= ty - 4 && py <= by + 4;
-            const d = inside ? 0 : Math.hypot(px - tx, py - ty);
+            const tx = (b.v[4][0] + b.v[6][0]) / 2, ty = (b.v[4][1] + b.v[6][1]) / 2, bx = (b.v[0][0] + b.v[2][0]) / 2, by = (b.v[0][1] + b.v[2][1]) / 2;
+            const t = Math.max(0, Math.min(1, ((px - bx) * (tx - bx) + (py - by) * (ty - by)) / (((tx - bx) ** 2 + (ty - by) ** 2) || 1)));
+            const d = Math.hypot(px - (bx + t * (tx - bx)), py - (by + t * (ty - by)));
             if (d < bd) { bd = d; best = b; }
           }
           if (st.hover !== best) { st.hover = best; if (m.view) m.view.redraw(); }
-          return best ? [MX.MONTH(best.month), MX.fmt.n(best.n) + ' records saved'] : null;
+          return best ? [MX.fmt.month(best.month), MX.fmt.n(best.n) + ' posts saved'] : null;
         },
       });
     },

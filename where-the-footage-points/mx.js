@@ -1,8 +1,14 @@
-/* MX: shared terminal kit — formats, tooltip, coordinate rain, and a small canvas 3D engine. */
+/* MX: shared kit — formats, tooltip, and a small canvas 3D engine drawn as black line art on white. */
 (function () {
   if (window.MX) return;
   const MX = (window.MX = {});
-  MX.C = { bg: '#020704', panel: '#051109', line: '#0e3d1e', dim: '#2a7a43', mid: '#31c25e', text: '#bff5cc', bright: '#43ff78', hot: '#ecfff1', amber: '#ffb347' };
+  MX.C = { bg: '#ffffff', paper: '#ffffff', ink: '#000000', body: '#1a1a1a', mute: '#666666', hair: '#d4d4d4', faint: '#9a9a9a', shade: '#ededed', red: '#cc0000', redShade: '#f7dede' };
+  /* box styles: plain line art, red for the thing the sentence is about */
+  MX.S = {
+    base: { side: '#ffffff', top: '#e9e9e9', edge: '#000000' },
+    soft: { side: '#ffffff', top: '#f4f4f4', edge: '#9a9a9a' },
+    hot: { side: '#fbecec', top: '#cc0000', edge: '#cc0000', lw: 1.4 },
+  };
   MX.reduced = () => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
   const mf = d3.utcFormat('%b %Y');
   MX.fmt = {
@@ -16,7 +22,7 @@
   MX.bar = (frac, w) => { const k = Math.max(0, Math.min(w, Math.round(frac * w))); return '█'.repeat(k) + '░'.repeat(w - k); };
   MX.pad = (s, n) => { s = String(s); return s.length >= n ? s.slice(0, n) : s + ' '.repeat(n - s.length); };
   MX.lpad = (s, n) => { s = String(s); return s.length >= n ? s : ' '.repeat(n - s.length) + s; };
-  MX.err = (el) => { el.replaceChildren(); const d = document.createElement('div'); d.className = 'mx-err'; d.textContent = 'FAILED TO LOAD'; el.append(d); };
+  MX.err = (el) => { el.replaceChildren(); const d = document.createElement('div'); d.className = 'mx-err'; d.textContent = 'This figure could not be loaded.'; el.append(d); };
   MX.text = (id, get, fmt) => (el) => {
     const g = dash.data(id);
     if (g.status !== 'ok') { el.textContent = '—'; return; }
@@ -229,7 +235,7 @@
 
   /* A floor grid in the y=0 plane. */
   MX.grid = function (ctx, P, x0, x1, z0, z1, n, color) {
-    ctx.strokeStyle = color || MX.C.line; ctx.lineWidth = 1; ctx.beginPath();
+    ctx.strokeStyle = color || MX.C.hair; ctx.lineWidth = 1; ctx.beginPath();
     for (let i = 0; i <= n; i++) {
       const x = x0 + (x1 - x0) * i / n, z = z0 + (z1 - z0) * i / n;
       MX.seg(ctx, P, [x, 0, z0], [x, 0, z1]);
@@ -240,8 +246,8 @@
 
   MX.label = function (ctx, P, x, y, z, s, color, align, size) {
     const p = P(x, y, z);
-    ctx.font = (size || 11) + 'px "Courier New", ui-monospace, monospace';
-    ctx.fillStyle = color || MX.C.mid;
+    ctx.font = (size || 11) + 'px "Courier New", Courier, monospace';
+    ctx.fillStyle = color || MX.C.mute;
     ctx.textAlign = align || 'left';
     ctx.textBaseline = 'middle';
     ctx.fillText(s, p[0], p[1]);
@@ -264,7 +270,4 @@
     return io;
   };
 
-  if (window.dash && dash.draw) {
-    dash.draw('rain', { mount: (el) => MX.rain(el), update: (el, r) => r.resize(), unmount: (el, r) => r.stop() });
-  }
 })();

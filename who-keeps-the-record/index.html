@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Who Keeps the Record</title>
 <meta name="description" content="The channels and volunteers behind the archive, and why that shapes what you see.">
-<meta name="theme-color" content="#020704">
+<meta name="theme-color" content="#ffffff">
 <style>
-  html, body { margin: 0; background: #020704; }
-  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  html, body { margin: 0; background: #ffffff; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #f2f2f2 0%, #e6e6e6 50%, #f2f2f2 100%); background-size: 200% 100%; }
   @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
   @keyframes sk { to { background-position: -200% 0; } }
-  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+  noscript p { color: #000; font-family: "Times New Roman", serif; padding: 24px; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>window.DASH_DATASETS = {"archives": {"url": "data/archives.csv"}, "coll_windows": {"url": "data/coll_windows.csv"}, "coll_monthly": {"url": "data/coll_monthly.csv"}, "monthly": {"url": "data/monthly.csv"}};</script>
@@ -24,55 +24,67 @@
 <link rel="stylesheet" href="mx.css">
 <script src="mx.js"></script>
 
-<div class="mx">
+<div class="mx" id="top">
   <div class="mx-in">
-    <header class="mx-hero">
-      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
-      <div class="mx-boot">
-        <p class="mx-prompt">ls --collections --sort size</p>
-        <h1>Who keeps the record</h1>
-        <p class="mx-lede">An archive like this does not collect itself. Every record here was rescued, channel by channel, by people who noticed that posts were vanishing and decided to keep them.<span class="mx-cursor" aria-hidden="true"></span></p>
-      </div>
+    <p class="p-menu">[ <a href="../">Home</a> | <a href="../where-the-footage-points/">Footage</a> | <a href="../hospitals-in-the-frame/">Hospitals</a> | <a href="../what-gets-documented/">Words</a> | <b>Keepers</b> | <a href="../documentation-outlook/">Outlook</a> ]</p>
+    <header class="p-head">
+      <p class="p-series">Paper 4 of 5</p>
+      <h1>Who keeps the record</h1>
+      <p class="p-deck">An archive does not collect itself. Somebody noticed the posts were disappearing, and stayed up copying them.</p>
+      <p class="p-by">Written from the Archive Genocide records &middot; about four minutes to read</p>
     </header>
-
-    <section class="mx-ch">
-      <h2>Not one feed but many rescues</h2>
-      <p>The archive is made of <b class="mx-n" data-draw="nColl" data-source="platform_split" data-field="collections" data-row="0">—</b> separate collections: Telegram channels, TikTok accounts, a Discord server, each copied out and preserved on its own before it could disappear.</p>
-      <p>Telegram alone carries <b class="mx-n" data-draw="tg" data-source="platform_split" data-field="telegram_share" data-row="0">—</b> of everything. It was where Gaza's journalists and local channels posted first, and fastest.</p>
-    </section>
-
-    <section class="mx-ch">
-      <h2>A city of rescues</h2>
-      <p>Here every row is one collection, and every tower one month of it. The back row gathers all the smaller collections together. A row that suddenly stops is a channel that went quiet, was banned, or whose rescue covered a fixed window of time.</p>
-      <div class="mx-win">
-        <div class="mx-win-bar"><span>C:\ARCHIVE\COLLECTIONS.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
-        <div class="mx-3d dash-skeleton" data-draw="city" data-source="city"></div>
-        <div class="mx-hint"><span>Drag to turn &middot; hover a tower</span><span>Six largest collections &middot; all others at the back</span></div>
-      </div>
-      <p>The largest single collection holds <b class="mx-n" data-draw="top" data-source="top_coll" data-field="share">—</b> of the whole archive. When its row ends, a big part of the record ends with it.</p>
-    </section>
-
-    <section class="mx-ch">
-      <h2>Why it matters</h2>
-      <p>Today only <b class="mx-n" data-draw="act" data-source="active" data-field="active">—</b> of the <b class="mx-n" data-draw="actT" data-source="active" data-field="total">—</b> collections are still growing.</p>
-      <p>So when the record thins, ask first: did events thin, or did a channel go dark? Every chart in this archive carries that question, and the honest answer is often both.</p>
-      <div class="mx-warn"><strong>!! NOTICE !!</strong> Some records have been withdrawn from the archive since they were saved. Withdrawn records do not appear anywhere in these pages.</div>
-    </section>
-
-    <div class="mx-ring">
-      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
-      <nav aria-label="Archive stories">
-        <a href="../what-gets-documented/">&#9668; Prev</a>
-        <a href="../">The archive</a>
-        <a href="../where-the-footage-points/">Footage</a>
-        <a href="../hospitals-in-the-frame/">Hospitals</a>
-        <a href="../what-gets-documented/">Words</a>
-        <span class="here">[ Keepers ]</span>
-        <a href="../documentation-outlook/">Outlook</a>
-        <a href="../documentation-outlook/">Next &#9658;</a>
-      </nav>
+    <hr class="p-hr thick">
+    <div class="p-abstract">
+      <span class="p-label">In short</span>
+      <p>The archive is not one feed. It is dozens of separate rescues of Telegram channels, TikTok accounts and a Discord server, each copied out before it could vanish. Most of those rescues have now stopped. That matters, because when a big one stops, the record thins whether or not anything changed on the ground.</p>
     </div>
-    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Platforms are read from each collection's name. A collection counts as still growing when its newest record is within 60 days of the newest record in the archive. Dates are posting dates as preserved from each source. A record documents what was posted and when, not a verified finding.</p>
+    <hr class="p-hr">
+    <ol class="p-points">
+      <li>The archive is made of <b class="mx-n" data-draw="nColl" data-source="platform_split" data-field="collections" data-row="0">—</b> separate collections.</li>
+      <li>Telegram channels alone account for <b class="mx-n" data-draw="tg" data-source="platform_split" data-field="telegram_share" data-row="0">—</b> of everything.</li>
+      <li>Only <b class="mx-n" data-draw="act" data-source="active" data-field="active">—</b> of them are still growing today.</li>
+    </ol>
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">1.</span>Many rescues, not one feed</h2>
+      <p>Gaza's journalists and local channels posted first, and fastest, on Telegram. Later, ordinary people posted on TikTok. When channels were banned or accounts fell silent, volunteers copied what was left. Each copy became a collection of its own, with its own beginning and its own end.</p>
+    </section>
+
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">2.</span>A city of rescues</h2>
+      <p>In this figure every row is one collection and every tower is one month of it. The back row gathers the smaller collections together. A row that suddenly stops is a channel that went quiet, was banned, or whose rescue only covered a fixed stretch of time.</p>
+      <figure class="p-fig">
+        <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="city" data-source="city"></div></div>
+        <figcaption><b>Figure 1.</b> Posts per month for the six largest collections, with all others in the back row. <span class="p-ctl">Drag to turn it. Point at a tower for its collection and month.</span></figcaption>
+      </figure>
+      <p>The largest single collection holds <b class="mx-n" data-draw="top" data-source="top_coll" data-field="share">—</b> of the whole archive. When its row ends, a large part of the record ends with it.</p>
+    </section>
+
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">3.</span>Why it matters</h2>
+      <p>Of the <b class="mx-n" data-draw="actT" data-source="active" data-field="total">—</b> collections, most have stopped growing.<span class="p-fn"><a href="#n1">[1]</a></span> So before you read anything into a quiet month in the other papers, ask the plain question first: did less happen, or did a channel go dark?</p>
+      <p class="p-quote">The honest answer is often both.</p>
+    </section>
+
+    <div class="p-box">
+      <span class="p-label">What this can't tell you</span>
+      <ul>
+        <li>Platforms are read from each collection's name, so a mixed collection counts under one platform.</li>
+        <li>Dates are posting dates, as preserved from each source. They are not always the date something happened.</li>
+        <li>Records withdrawn from the archive since they were saved appear nowhere in these pages.</li>
+      </ul>
+    </div>
+    <div class="p-notes">
+      <span class="p-label">Notes</span>
+      <ol><li id="n1">A collection counts as still growing if its newest post is within 60 days of the newest post anywhere in the archive.</li></ol>
+    </div>
+    <hr class="p-hr">
+    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../what-gets-documented/">3. What gets documented</a>. Next: <a href="../documentation-outlook/">5. Documentation outlook</a>. <a href="#top">Back to top</a></p>
   </div>
 </div>
 
@@ -157,47 +169,39 @@
       const X0 = -1.7, X1 = 1.7, step = (X1 - X0) / months.length, bw = step * 0.34;
       const Zf = -0.9, Zb = 0.9, zstep = (Zb - Zf) / Math.max(1, names.length - 1), bd = Math.min(bw * 1.4, zstep * 0.32);
       const bars = g.data.filter((r) => r.n > 0).map((r) => ({ ...r, x: X0 + step * (months.indexOf(r.month) + 0.5), z: Zf + zstep * r.rank, h: 1.15 * r.n / max }));
-      const short = (s) => { s = String(s); const m = s.match(/^(.*?)\s*\((.*)\)\s*$/); let t = m ? m[1] + ' \u00B7 ' + m[2].split(',')[0] : s; t = t.trim(); return t.length > 30 ? t.slice(0, 29) + '\u2026' : t; };
+      const short = (s) => { s = String(s); const mm = s.match(/^(.*?)\s*\((.*)\)\s*$/); let t = mm ? mm[1] + ', ' + mm[2].split(',')[0] : s; t = t.trim(); return t.length > 30 ? t.slice(0, 29) + '…' : t; };
       m.view = MX.view3d(el, {
-        label: 'Three-dimensional city of monthly records for each collection',
-        yaw: -0.38, pitch: 0.55, sway: 0.4, dist: 4.8, scale: 0.92, cy: 0.6,
-        height: (w) => Math.max(300, Math.min(500, w * 0.6)),
+        label: 'Posts per month for each collection, drawn as rows of towers',
+        yaw: -0.38, pitch: 0.55, sway: 0.35, dist: 4.8, scale: 0.92, cy: 0.6,
+        height: (w) => Math.max(300, Math.min(480, w * 0.66)),
         render(ctx, P, st) {
-          MX.grid(ctx, P, X0, X1, Zf - 0.15, Zb + 0.15, 14, C.line);
+          MX.grid(ctx, P, X0, X1, Zf - 0.15, Zb + 0.15, 14, '#e6e6e6');
           const order = bars.map((b) => ({ b, d: P(b.x, b.h / 2, b.z)[2] })).sort((a, c) => c.d - a.d);
-          for (const { b } of order) {
-            const other = b.rank === 6, hot = st.hover === b;
-            b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, b.h, b.z - bd / 2, b.z + bd / 2, {
-              side: hot ? 'rgba(236,255,241,.35)' : other ? 'rgba(42,122,67,.14)' : 'rgba(49,194,94,.2)',
-              top: hot ? C.hot : other ? 'rgba(42,122,67,.6)' : 'rgba(67,255,120,.7)',
-              edge: hot ? C.hot : other ? 'rgba(42,122,67,.55)' : 'rgba(67,255,120,.6)',
-            });
-          }
+          for (const { b } of order) b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, b.h, b.z - bd / 2, b.z + bd / 2, st.hover === b ? MX.S.hot : b.rank === 6 ? MX.S.soft : MX.S.base);
           names.forEach((nm, i) => {
             const p = P(X1 + 0.08, 0, Zf + zstep * i);
-            const s = short(nm).toUpperCase();
-            ctx.font = '9px "Courier New", ui-monospace, monospace';
+            const s = short(nm);
+            ctx.font = '11px "Times New Roman", Times, serif';
             const w = ctx.measureText(s).width;
-            ctx.fillStyle = i === 6 ? C.dim : C.mid; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+            ctx.fillStyle = i === 6 ? C.mute : C.ink; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
             ctx.fillText(s, Math.min(p[0], st.w - w - 4), p[1]);
           });
           for (const yr of ['2024', '2025', '2026']) {
             const j = months.indexOf(yr + '-01');
-            if (j >= 0) MX.label(ctx, P, X0 + step * (j + 0.5), 0, Zf - 0.3, yr, C.dim, 'center', 10);
+            if (j >= 0) MX.label(ctx, P, X0 + step * (j + 0.5), 0, Zf - 0.3, yr, C.mute, 'center', 10);
           }
         },
         pick(px, py, st) {
           let best = null, bdist = 14;
           for (const b of bars) {
             if (!b.v) continue;
-            const tx = (b.v[4][0] + b.v[6][0]) / 2, ty = (b.v[4][1] + b.v[6][1]) / 2;
-            const bx = (b.v[0][0] + b.v[2][0]) / 2, by = (b.v[0][1] + b.v[2][1]) / 2;
+            const tx = (b.v[4][0] + b.v[6][0]) / 2, ty = (b.v[4][1] + b.v[6][1]) / 2, bx = (b.v[0][0] + b.v[2][0]) / 2, by = (b.v[0][1] + b.v[2][1]) / 2;
             const t = Math.max(0, Math.min(1, ((px - bx) * (tx - bx) + (py - by) * (ty - by)) / (((tx - bx) ** 2 + (ty - by) ** 2) || 1)));
             const d = Math.hypot(px - (bx + t * (tx - bx)), py - (by + t * (ty - by)));
             if (d < bdist) { bdist = d; best = b; }
           }
           if (st.hover !== best) { st.hover = best; if (m.view) m.view.redraw(); }
-          return best ? [short(best.collection), MX.fmt.month(best.month), MX.fmt.n(best.n) + ' records'] : null;
+          return best ? [short(best.collection), MX.fmt.month(best.month), MX.fmt.n(best.n) + ' posts'] : null;
         },
       });
     },

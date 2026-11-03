@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Documentation Outlook</title>
 <meta name="description" content="A plain six-month guess at the record's future, and what no trend can see.">
-<meta name="theme-color" content="#020704">
+<meta name="theme-color" content="#ffffff">
 <style>
-  html, body { margin: 0; background: #020704; }
-  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  html, body { margin: 0; background: #ffffff; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #f2f2f2 0%, #e6e6e6 50%, #f2f2f2 100%); background-size: 200% 100%; }
   @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
   @keyframes sk { to { background-position: -200% 0; } }
-  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+  noscript p { color: #000; font-family: "Times New Roman", serif; padding: 24px; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>window.DASH_DATASETS = {"monthly": {"url": "data/monthly.csv"}, "kw_monthly": {"url": "data/kw_monthly.csv"}};</script>
@@ -24,56 +24,57 @@
 <link rel="stylesheet" href="mx.css">
 <script src="mx.js"></script>
 
-<div class="mx">
+<div class="mx" id="top">
   <div class="mx-in">
-    <header class="mx-hero">
-      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
-      <div class="mx-boot">
-        <p class="mx-prompt">forecast --record --months 6 --method straight-line</p>
-        <h1>Documentation outlook</h1>
-        <p class="mx-lede">Can the past year tell us what the record will look like next? A little. Here is the plainest possible guess, and everything it leaves out.<span class="mx-cursor" aria-hidden="true"></span></p>
-      </div>
+    <p class="p-menu">[ <a href="../">Home</a> | <a href="../where-the-footage-points/">Footage</a> | <a href="../hospitals-in-the-frame/">Hospitals</a> | <a href="../what-gets-documented/">Words</a> | <a href="../who-keeps-the-record/">Keepers</a> | <b>Outlook</b> ]</p>
+    <header class="p-head">
+      <p class="p-series">Paper 5 of 5</p>
+      <h1>Documentation outlook</h1>
+      <p class="p-deck">Can the past year tell us what the record will look like next? A little. Here is the plainest possible guess, and everything it leaves out.</p>
+      <p class="p-by">Written from the Archive Genocide records &middot; about three minutes to read</p>
     </header>
+    <hr class="p-hr thick">
 
-    <div class="mx-warn"><strong>!! READ FIRST !!</strong> This page forecasts archiving, not events. It guesses how many posts the archive will take in, a number shaped by which channels are being saved, platform bans and news cycles as much as by what happens on the ground. It predicts nothing about the war, its victims, or its end.</div>
-
-    <section class="mx-ch">
-      <h2>If the last year simply continues</h2>
-      <p>Draw a straight line through the past twelve months and carry it forward. The archive would take in about <b class="mx-n" data-draw="proj" data-source="vol_forecast_summary" data-field="proj_avg">—</b> posts a month over the next six months, against about <b class="mx-n" data-draw="trail" data-source="vol_forecast_summary" data-field="trail_avg">—</b> a month this past year.</p>
-      <div class="mx-win">
-        <div class="mx-win-bar"><span>C:\ARCHIVE\TOMORROW.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
-        <div class="mx-3d dash-skeleton" data-draw="future" data-source="vol_forecast"></div>
-        <div class="mx-hint"><span>Drag to turn &middot; hover a month</span><span>Green: saved &middot; amber: the guess</span></div>
-      </div>
-      <p>The green towers are what was saved. The amber frames are the guess, and the amber haze around each one is how far off it could reasonably be. The haze is wide on purpose.</p>
-    </section>
-
-    <section class="mx-ch">
-      <h2>Four words, six months on</h2>
-      <p>The same straight line, drawn through the share of posts that carry four words. Read the range, not the arrow.</p>
-      <pre class="mx-ascii" data-draw="words" data-source="theme_forecast" aria-label="Six-month outlook for four caption words"></pre>
-    </section>
-
-    <section class="mx-ch">
-      <h2>What a trend can't see</h2>
-      <p>A ceasefire. A new channel saved, or an old one banned. A siege. Any one of them would bend these lines more than the trend ever could.</p>
-      <p>The record's future is not written by its past. It depends on what happens next, and on whether anyone is still there to film it.</p>
-    </section>
-
-    <div class="mx-ring">
-      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
-      <nav aria-label="Archive stories">
-        <a href="../who-keeps-the-record/">&#9668; Prev</a>
-        <a href="../">The archive</a>
-        <a href="../where-the-footage-points/">Footage</a>
-        <a href="../hospitals-in-the-frame/">Hospitals</a>
-        <a href="../what-gets-documented/">Words</a>
-        <a href="../who-keeps-the-record/">Keepers</a>
-        <span class="here">[ Outlook ]</span>
-        <a href="../">Back to start &#9658;</a>
-      </nav>
+    <div class="p-box">
+      <span class="p-label">Read this first</span>
+      <p>This page guesses how many posts the archive will take in. That number depends on which channels people are saving, on platform bans and on news cycles as much as on events in Gaza. It predicts nothing about the war, the people in it, or when it ends.</p>
     </div>
-    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Method: a least-squares straight line through the last 12 complete months, carried 6 months forward; the range is the line &plusmn;1.96 times the spread of the past year's misses. The current month is left out as still in progress. A record documents what was posted and when, not a verified finding.</p>
+
+    <section class="mx-ch">
+      <h2><span class="no">1.</span>If the last year simply continues</h2>
+      <p>Lay a ruler along the past twelve months and extend the line. The archive would take in about <b class="mx-n" data-draw="proj" data-source="vol_forecast_summary" data-field="proj_avg">—</b> posts a month over the next six months, against about <b class="mx-n" data-draw="trail" data-source="vol_forecast_summary" data-field="trail_avg">—</b> a month this past year.<span class="p-fn"><a href="#n1">[1]</a></span></p>
+      <figure class="p-fig">
+        <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="future" data-source="vol_forecast"></div></div>
+        <figcaption><b>Figure 1.</b> Posts saved per month (black outlines), and the guess for the next six months (red outlines), each with a pale red band for how far off it could reasonably be. <span class="p-ctl">Drag to turn it. Point at a month for its number.</span></figcaption>
+      </figure>
+      <p>The bands are wide on purpose. A straight line is the humblest model there is, and it should look humble.</p>
+    </section>
+
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">2.</span>Four words, six months on</h2>
+      <p>The same ruler, laid along the share of posts that carry four words. Read the range, not the arrow.</p>
+      <figure class="p-fig">
+        <div class="p-frame"><pre class="p-pre" data-draw="words" data-source="theme_forecast" aria-label="Six-month guess for four caption words"></pre></div>
+        <figcaption><b>Table 1.</b> Each word's share of posts now (the last three months) and the straight-line guess six months out, with its range.</figcaption>
+      </figure>
+    </section>
+
+    <hr class="p-hr">
+
+    <section class="mx-ch">
+      <h2><span class="no">3.</span>What a ruler can't see</h2>
+      <p>A ceasefire. A new channel saved, or an old one banned. A siege. Any one of them would bend these lines more than the trend ever could.</p>
+      <p class="p-quote">The record's future is not written in its past. It depends on what happens next, and on whether anyone is still there to film it.</p>
+    </section>
+
+    <div class="p-notes">
+      <span class="p-label">Notes</span>
+      <ol><li id="n1">Method: a least-squares straight line through the last twelve complete months, carried six months forward. The range is the line plus or minus 1.96 times the spread of the past year's misses. The current month is left out because it is still in progress.</li></ol>
+    </div>
+    <hr class="p-hr">
+    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../who-keeps-the-record/">4. Who keeps the record</a>. Start again: <a href="../">What was kept</a>. <a href="#top">Back to top</a></p>
   </div>
 </div>
 
@@ -98,7 +99,7 @@
       return out;
     },
     title: 'Six-month straight-line guess',
-    description: 'Least-squares line through the last 12 complete months, carried 6 months forward with a \u00B11.96-SD range of its misses.',
+    description: 'Least-squares line through the last 12 complete months, carried 6 months forward with a ±1.96-SD range of its misses.',
   });
   dash.calc('vol_forecast_summary', {
     inputs: ['vol_forecast'],
@@ -132,20 +133,20 @@
       return out;
     },
     title: 'Word-share guesses',
-    description: 'For four words: the last three months\u2019 average share, and the same straight-line guess six months out with its range.',
+    description: 'For four words: the last three months’ average share, and the same straight-line guess six months out with its range.',
   });
 </script>
 
 <script>
-  const rnd = (v) => MX.fmt.compact(Math.round(v / 100) * 100);
+  const rnd = (v) => MX.fmt.n(Math.round(v / 100) * 100);
   dash.draw('proj', MX.text('vol_forecast_summary', (d) => d.proj_avg, rnd));
   dash.draw('trail', MX.text('vol_forecast_summary', (d) => d.trail_avg, rnd));
   dash.draw('words', (el) => {
     const g = dash.data('theme_forecast');
     if (g.status !== 'ok') { el.textContent = ''; return; }
-    const head = MX.pad('WORD', 10) + MX.pad('NOW', 7) + '     ' + MX.pad('IN 6 MO', 8) + 'COULD BE';
-    el.textContent = [head, '-'.repeat(head.length + 12)].concat(g.data.map((r) =>
-      MX.pad(r.keyword.toUpperCase(), 10) + MX.pad(MX.fmt.pct(r.now), 7) + ' \u2500\u2500\u25BA ' + MX.pad(MX.fmt.pct(r.projected), 8) + MX.fmt.pct(r.lo) + ' \u2013 ' + MX.fmt.pct(r.hi))).join('\n');
+    const head = MX.pad('word', 10) + MX.lpad('now', 7) + '      ' + MX.pad('in 6 months', 13) + 'could be';
+    el.textContent = [head, '-'.repeat(head.length + 6)].concat(g.data.map((r) =>
+      MX.pad(r.keyword, 10) + MX.lpad(MX.fmt.pct(r.now), 7) + '  -->  ' + MX.pad(MX.fmt.pct(r.projected), 12) + MX.fmt.pct(r.lo) + ' to ' + MX.fmt.pct(r.hi))).join('\n');
   });
 </script>
 
@@ -167,26 +168,24 @@
       const H = (v) => 1.2 * v / max;
       const bars = rows.map((r, i) => ({ ...r, x: X0 + step * (i + 0.5) }));
       m.view = MX.view3d(el, {
-        label: 'Saved posts per month as green towers, and a six-month guess as amber frames',
-        yaw: -0.5, pitch: 0.36, sway: 0.5, dist: 4.4, scale: 1.04, cy: 0.66,
-        height: (w) => Math.max(280, Math.min(460, w * 0.52)),
+        label: 'Posts saved per month, and a six-month guess drawn in red',
+        yaw: -0.5, pitch: 0.36, sway: 0.4, dist: 4.4, scale: 1.04, cy: 0.66,
+        height: (w) => Math.max(260, Math.min(420, w * 0.56)),
         render(ctx, P, st) {
-          MX.grid(ctx, P, X0 - 0.1, X1 + 0.1, -0.5, 0.5, 12, C.line);
+          MX.grid(ctx, P, X0 - 0.1, X1 + 0.1, -0.5, 0.5, 12, '#e6e6e6');
           const order = bars.map((b) => ({ b, d: P(b.x, 0.3, 0)[2] })).sort((a, c) => c.d - a.d);
           for (const { b } of order) {
             const hot = st.hover === b;
             if (b.kind === 'actual') {
-              b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, H(b.value), -bw / 2, bw / 2, {
-                side: hot ? 'rgba(236,255,241,.3)' : 'rgba(49,194,94,.16)', top: hot ? C.hot : 'rgba(67,255,120,.55)', edge: hot ? C.hot : 'rgba(67,255,120,.6)',
-              });
+              b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, H(b.value), -bw / 2, bw / 2, hot ? MX.S.hot : MX.S.base);
             } else {
-              MX.box(ctx, P, b.x - bw / 2 - 0.01, b.x + bw / 2 + 0.01, H(b.lo), Math.max(H(b.hi), H(b.lo) + 0.005), -bw / 2 - 0.01, bw / 2 + 0.01, { side: 'rgba(255,179,71,.06)', top: 'rgba(255,179,71,.16)', edge: 'rgba(255,179,71,.22)' });
-              b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, H(b.value), -bw / 2, bw / 2, { edge: hot ? C.hot : C.amber, lw: hot ? 1.6 : 1 });
+              MX.box(ctx, P, b.x - bw / 2 - 0.01, b.x + bw / 2 + 0.01, H(b.lo), Math.max(H(b.hi), H(b.lo) + 0.005), -bw / 2 - 0.01, bw / 2 + 0.01, { side: 'rgba(204,0,0,.05)', top: 'rgba(204,0,0,.12)', edge: 'rgba(204,0,0,.25)' });
+              b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, H(b.value), -bw / 2, bw / 2, { edge: hot ? C.ink : C.red, lw: hot ? 1.8 : 1.2 });
             }
           }
-          for (const b of bars) if (b.month.slice(5) === '01') MX.label(ctx, P, b.x, 0, -0.66, b.month.slice(0, 4), C.mid, 'center', 10);
+          for (const b of bars) if (b.month.slice(5) === '01') MX.label(ctx, P, b.x, 0, -0.66, b.month.slice(0, 4), C.ink, 'center', 11);
           const f0 = bars.find((b) => b.kind === 'forecast');
-          if (f0) MX.label(ctx, P, f0.x, 0, -0.95, 'GUESS \u25BA', C.amber, 'left', 10);
+          if (f0) MX.label(ctx, P, f0.x, 0, -0.95, 'the guess', C.red, 'left', 11);
         },
         pick(px, py, st) {
           let best = null, bd = 16;
@@ -200,8 +199,8 @@
           if (st.hover !== best) { st.hover = best; if (m.view) m.view.redraw(); }
           if (!best) return null;
           return best.kind === 'actual'
-            ? [MX.MONTH(best.month), MX.fmt.n(Math.round(best.value)) + ' posts saved']
-            : [MX.MONTH(best.month) + ' \u00B7 guess', 'About ' + MX.fmt.n(Math.round(best.value)), 'Could be ' + MX.fmt.n(Math.round(best.lo)) + ' \u2013 ' + MX.fmt.n(Math.round(best.hi))];
+            ? [MX.fmt.month(best.month), MX.fmt.n(Math.round(best.value)) + ' posts saved']
+            : [MX.fmt.month(best.month) + ' (guess)', 'About ' + MX.fmt.n(Math.round(best.value)), 'Could be ' + MX.fmt.n(Math.round(best.lo)) + ' to ' + MX.fmt.n(Math.round(best.hi))];
         },
       });
     },
