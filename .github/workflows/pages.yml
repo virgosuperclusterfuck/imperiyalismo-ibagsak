@@ -31,10 +31,10 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Assemble site
         run: |
-          mkdir -p _site
-          cp index.html _site/
-          touch _site/.nojekyll
-          cp -r assets data _site/
+             mkdir -p _site
+             cp index.html mx.css mx.js dash-shim.js _site/
+             touch _site/.nojekyll
+             cp -r data where-the-footage-points hospitals-in-the-frame what-gets-documented who-keeps-the-record documentation-outlook _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
