@@ -30,58 +30,61 @@
     <header class="p-head">
       <p class="p-series">Paper 4 of 5</p>
       <h1>Who keeps the record</h1>
-      <p class="p-deck">An archive does not collect itself. Somebody noticed the posts were disappearing, and stayed up copying them.</p>
-      <p class="p-by">Written from the Archive Genocide records &middot; about four minutes to read</p>
+      <p class="p-deck">The archive's source collections: size, platform, coverage and concentration.</p>
+      <p class="p-by">Source: Archive Genocide records API</p>
     </header>
     <hr class="p-hr thick">
-    <div class="p-abstract">
-      <span class="p-label">In short</span>
-      <p>The archive is not one feed. It is dozens of separate rescues of Telegram channels, TikTok accounts and a Discord server, each copied out before it could vanish. Most of those rescues have now stopped. That matters, because when a big one stops, the record thins whether or not anything changed on the ground.</p>
-    </div>
-    <hr class="p-hr">
-    <ol class="p-points">
-      <li>The archive is made of <b class="mx-n" data-draw="nColl" data-source="platform_split" data-field="collections" data-row="0">—</b> separate collections.</li>
-      <li>Telegram channels alone account for <b class="mx-n" data-draw="tg" data-source="platform_split" data-field="telegram_share" data-row="0">—</b> of everything.</li>
-      <li>Only <b class="mx-n" data-draw="act" data-source="active" data-field="active">—</b> of them are still growing today.</li>
-    </ol>
+
+    <span class="p-label">Summary</span>
+    <ul class="p-bul">
+      <li><b class="mx-n" data-draw="nColl" data-source="platform_split" data-field="collections" data-row="0">—</b> separate collections, each copied from one channel or account.</li>
+      <li>Telegram collections: <b class="mx-n" data-draw="tg" data-source="platform_split" data-field="telegram_share" data-row="0">—</b> of all records.</li>
+      <li>Largest single collection: <b class="mx-n" data-draw="top" data-source="top_coll" data-field="share">—</b> of all records.</li>
+      <li>Still growing: <b class="mx-n" data-draw="act" data-source="active" data-field="active">—</b> of <b class="mx-n" data-draw="actT" data-source="active" data-field="total">—</b> collections.</li>
+    </ul>
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">1.</span>Many rescues, not one feed</h2>
-      <p>Gaza's journalists and local channels posted first, and fastest, on Telegram. Later, ordinary people posted on TikTok. When channels were banned or accounts fell silent, volunteers copied what was left. Each copy became a collection of its own, with its own beginning and its own end.</p>
-    </section>
-
-    <hr class="p-hr">
-
-    <section class="mx-ch">
-      <h2><span class="no">2.</span>A city of rescues</h2>
-      <p>In this figure every row is one collection and every tower is one month of it. The back row gathers the smaller collections together. A row that suddenly stops is a channel that went quiet, was banned, or whose rescue only covered a fixed stretch of time.</p>
+      <h2><span class="no">1.</span>Records by collection and month</h2>
+      <ul class="p-bul">
+        <li>One row per collection (six largest), with all others combined in the back row; one tower per month.</li>
+        <li>A row that ends marks a channel that went quiet, was banned, or whose rescue covered a fixed period.</li>
+      </ul>
       <figure class="p-fig">
         <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="city" data-source="city"></div></div>
-        <figcaption><b>Figure 1.</b> Posts per month for the six largest collections, with all others in the back row. <span class="p-ctl">Drag to turn it. Point at a tower for its collection and month.</span></figcaption>
+        <figcaption><b>Figure 1.</b> Monthly records for the six largest collections and all others. <span class="p-ctl">Drag to rotate. Point at a tower for details.</span></figcaption>
       </figure>
-      <p>The largest single collection holds <b class="mx-n" data-draw="top" data-source="top_coll" data-field="share">—</b> of the whole archive. When its row ends, a large part of the record ends with it.</p>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">3.</span>Why it matters</h2>
-      <p>Of the <b class="mx-n" data-draw="actT" data-source="active" data-field="total">—</b> collections, most have stopped growing.<span class="p-fn"><a href="#n1">[1]</a></span> So before you read anything into a quiet month in the other papers, ask the plain question first: did less happen, or did a channel go dark?</p>
-      <p class="p-quote">The honest answer is often both.</p>
+      <h2><span class="no">2.</span>All collections</h2>
+      <figure class="p-fig">
+        <div class="p-frame"><pre class="p-pre" data-draw="collTable" data-source="coll_table" aria-label="Every collection with its size and coverage"></pre></div>
+        <figcaption><b>Table 1.</b> Every collection: records, share of the archive, first and last posting date, and whether it is still growing (live).<span class="p-fn"><a href="#n1">[1]</a></span></figcaption>
+      </figure>
     </section>
+    <hr class="p-hr">
 
+    <section class="mx-ch">
+      <h2><span class="no">3.</span>Implications</h2>
+      <ul class="p-bul">
+        <li>A fall in monthly volume can reflect a collection ending rather than fewer events.</li>
+        <li>Months that rest on one collection inherit that channel's focus and gaps.</li>
+        <li>Single-source dependency by month is in <a href="../the-numbers/">The numbers</a>, section E.</li>
+      </ul>
+    </section>
     <div class="p-box">
-      <span class="p-label">What this can't tell you</span>
+      <span class="p-label">Limits</span>
       <ul>
-        <li>Platforms are read from each collection's name, so a mixed collection counts under one platform.</li>
-        <li>Dates are posting dates, as preserved from each source. They are not always the date something happened.</li>
-        <li>Records withdrawn from the archive since they were saved appear nowhere in these pages.</li>
+        <li>Platform is read from each collection's name.</li>
+        <li>Dates are posting dates as preserved from each source.</li>
+        <li>Withdrawn records are excluded.</li>
       </ul>
     </div>
     <div class="p-notes">
       <span class="p-label">Notes</span>
-      <ol><li id="n1">A collection counts as still growing if its newest post is within 60 days of the newest post anywhere in the archive.</li></ol>
+      <ol><li id="n1">Still growing: newest record within 60 days of the newest record in the archive.</li></ol>
     </div>
     <hr class="p-hr">
     <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../what-gets-documented/">3. What gets documented</a>. Next: <a href="../documentation-outlook/">5. Documentation outlook</a>. <a href="#top">Back to top</a></p>
@@ -206,6 +209,33 @@
       });
     },
     unmount(el, m) { if (m.view) m.view.destroy(); },
+  });
+</script>
+
+<script>
+  dash.calc('coll_table', {
+    inputs: ['archives', 'coll_windows'],
+    fn: (archives, coll_windows) => {
+      const T = archives.reduce((s, a) => s + Number(a.clips), 0);
+      const lasts = coll_windows.map((r) => Date.parse(r.last)).filter((t) => isFinite(t));
+      const newest = Math.max(...lasts);
+      const w = {};
+      for (const r of coll_windows) w[r.collection] = r;
+      return archives.map((a) => {
+        const r = w[a.name] || {};
+        const last = Date.parse(r.last);
+        return { collection: a.name, records: Number(a.clips), share: Number(a.clips) / T, first: r.first || '', last: r.last || '', growing: isFinite(last) && newest - last <= 60 * 86400000 };
+      }).sort((x, y) => y.records - x.records);
+    },
+    title: 'Collections',
+    description: 'Every collection: records, share of the archive, first and last posting date, and whether still growing.',
+  });
+  dash.draw('collTable', (el) => {
+    const g = dash.data('coll_table');
+    if (g.status !== 'ok') { el.textContent = ''; return; }
+    const short = (s) => { s = String(s); return s.length > 33 ? s.slice(0, 32) + '~' : s; };
+    el.textContent = [MX.pad('collection', 34) + MX.lpad('records', 8) + MX.lpad('share', 7) + '  ' + MX.pad('first', 11) + MX.pad('last', 11) + 'live', '-'.repeat(77)]
+      .concat(g.data.map((r) => MX.pad(short(r.collection), 34) + MX.lpad(MX.fmt.n(r.records), 8) + MX.lpad(MX.fmt.pct(r.share), 7) + '  ' + MX.pad(r.first || '-', 11) + MX.pad(r.last || '-', 11) + (r.growing ? 'yes' : 'no'))).join('\n');
   });
 </script>
 

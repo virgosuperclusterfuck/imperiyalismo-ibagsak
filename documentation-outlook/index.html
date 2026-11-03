@@ -30,51 +30,60 @@
     <header class="p-head">
       <p class="p-series">Paper 5 of 5</p>
       <h1>Documentation outlook</h1>
-      <p class="p-deck">Can the past year tell us what the record will look like next? A little. Here is the plainest possible guess, and everything it leaves out.</p>
-      <p class="p-by">Written from the Archive Genocide records &middot; about three minutes to read</p>
+      <p class="p-deck">A straight-line projection of archive intake over the next six months.</p>
+      <p class="p-by">Source: Archive Genocide records API</p>
     </header>
     <hr class="p-hr thick">
 
     <div class="p-box">
-      <span class="p-label">Read this first</span>
-      <p>This page guesses how many posts the archive will take in. That number depends on which channels people are saving, on platform bans and on news cycles as much as on events in Gaza. It predicts nothing about the war, the people in it, or when it ends.</p>
+      <span class="p-label">Scope</span>
+      <ul>
+        <li>Projects archiving volume only: records posted and saved.</li>
+        <li>Does not predict events, casualties, or the course of the war.</li>
+      </ul>
     </div>
 
+    <span class="p-label">Summary</span>
+    <ul class="p-bul">
+      <li>Projected intake: about <b class="mx-n" data-draw="proj" data-source="vol_forecast_summary" data-field="proj_avg">—</b> records a month over the next six months.</li>
+      <li>Past twelve months: about <b class="mx-n" data-draw="trail" data-source="vol_forecast_summary" data-field="trail_avg">—</b> records a month.</li>
+      <li>The uncertainty range is wide; see the shaded bands in Figure 1.</li>
+    </ul>
+    <hr class="p-hr">
+
     <section class="mx-ch">
-      <h2><span class="no">1.</span>If the last year simply continues</h2>
-      <p>Lay a ruler along the past twelve months and extend the line. The archive would take in about <b class="mx-n" data-draw="proj" data-source="vol_forecast_summary" data-field="proj_avg">—</b> posts a month over the next six months, against about <b class="mx-n" data-draw="trail" data-source="vol_forecast_summary" data-field="trail_avg">—</b> a month this past year.<span class="p-fn"><a href="#n1">[1]</a></span></p>
+      <h2><span class="no">1.</span>Monthly intake and projection</h2>
       <figure class="p-fig">
         <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="future" data-source="vol_forecast"></div></div>
-        <figcaption><b>Figure 1.</b> Posts saved per month (black outlines), and the guess for the next six months (red outlines), each with a pale red band for how far off it could reasonably be. <span class="p-ctl">Drag to turn it. Point at a month for its number.</span></figcaption>
+        <figcaption><b>Figure 1.</b> Records saved per month (black) and the six-month projection (red), with a pale red band for the plausible range. <span class="p-ctl">Drag to rotate. Point at a month for its value.</span></figcaption>
       </figure>
-      <p>The bands are wide on purpose. A straight line is the humblest model there is, and it should look humble.</p>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">2.</span>Four words, six months on</h2>
-      <p>The same ruler, laid along the share of posts that carry four words. Read the range, not the arrow.</p>
+      <h2><span class="no">2.</span>Projected word shares</h2>
       <figure class="p-fig">
-        <div class="p-frame"><pre class="p-pre" data-draw="words" data-source="theme_forecast" aria-label="Six-month guess for four caption words"></pre></div>
-        <figcaption><b>Table 1.</b> Each word's share of posts now (the last three months) and the straight-line guess six months out, with its range.</figcaption>
+        <div class="p-frame"><pre class="p-pre" data-draw="words" data-source="theme_forecast" aria-label="Projected word shares"></pre></div>
+        <figcaption><b>Table 1.</b> Current share (last three months) and projected share in six months, with range.</figcaption>
       </figure>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">3.</span>What a ruler can't see</h2>
-      <p>A ceasefire. A new channel saved, or an old one banned. A siege. Any one of them would bend these lines more than the trend ever could.</p>
-      <p class="p-quote">The record's future is not written in its past. It depends on what happens next, and on whether anyone is still there to film it.</p>
+      <h2><span class="no">3.</span>Not modelled</h2>
+      <ul class="p-bul">
+        <li>Ceasefires or escalations.</li>
+        <li>Channels newly archived, banned or going silent.</li>
+        <li>Sieges or displacement affecting who can film.</li>
+        <li>Any of these would move intake more than the trend.</li>
+      </ul>
     </section>
-
     <div class="p-notes">
-      <span class="p-label">Notes</span>
-      <ol><li id="n1">Method: a least-squares straight line through the last twelve complete months, carried six months forward. The range is the line plus or minus 1.96 times the spread of the past year's misses. The current month is left out because it is still in progress.</li></ol>
+      <span class="p-label">Method</span>
+      <ol><li>Least-squares line through the last twelve complete months, extended six months. Range: line &plusmn; 1.96 &times; the standard deviation of the past year's residuals. The current month is excluded.</li></ol>
     </div>
     <hr class="p-hr">
-    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../who-keeps-the-record/">4. Who keeps the record</a>. Appendix: <a href="../the-numbers/">The numbers behind the record</a>. Start again: <a href="../">What was kept</a>. <a href="#top">Back to top</a></p>
+    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../who-keeps-the-record/">4. Who keeps the record</a>. Next: <a href="../the-numbers/">Appendix: the numbers</a>. <a href="#top">Back to top</a></p>
   </div>
 </div>
 

@@ -30,126 +30,133 @@
     <header class="p-head">
       <p class="p-series">Appendix</p>
       <h1>The numbers behind the record</h1>
-      <p class="p-deck">The five papers tell the story. This appendix shows the arithmetic: how the archive moves day by day, where its weight sits on the map, which words travel together, and how much of it rests on a few hands.</p>
-      <p class="p-by">Computed from the Archive Genocide records &middot; every figure here is worked out live from the data</p>
+      <p class="p-deck">Statistics on posting rhythm, geography, words, sources and data quality.</p>
+      <p class="p-by">Source: Archive Genocide records API</p>
     </header>
     <hr class="p-hr thick">
 
-    <div class="p-abstract">
-      <span class="p-label">Key highlights</span>
-      <ol class="p-points">
-        <li>The record arrives in bursts. The busiest tenth of days carries <b class="mx-n" data-draw="hTop10" data-source="rhythm" data-field="top10_share">—</b> of every post. The single busiest day, <b class="mx-n" data-draw="hMaxD" data-source="rhythm" data-field="max_day">—</b>, with <b class="mx-n" data-draw="hMaxN" data-source="rhythm" data-field="max_n">—</b> posts, turns out to be mostly one batch from two collections.</li>
-        <li>The archive's centre of gravity swung <b class="mx-n" data-draw="hSwing" data-source="centroid_summary" data-field="swing_km">—</b> km north and south over the war: furthest south in <b class="mx-n" data-draw="hSouth" data-source="centroid_summary" data-field="south_month">—</b>, furthest north in <b class="mx-n" data-draw="hNorth" data-source="centroid_summary" data-field="north_month">—</b>.</li>
-        <li>Video is taking over. It was <b class="mx-n" data-draw="hV23" data-source="media_year" data-where="year=2024" data-field="video_share">—</b> of posts in 2024 and <b class="mx-n" data-draw="hV25" data-source="media_year" data-where="year=2025" data-field="video_share">—</b> in 2025.</li>
-        <li>"Aid" and "famine" move almost in lockstep: their monthly shares correlate at <b class="mx-n" data-draw="hAF" data-source="theme_corr" data-where="pair=aid%20%2B%20famine" data-field="r">—</b>.</li>
-        <li>In a typical month, one collection supplies <b class="mx-n" data-draw="hDep" data-source="collection_stats" data-field="dep_median">—</b> of the record. The whole archive behaves like just <b class="mx-n" data-draw="hEff" data-source="collection_stats" data-field="eff_n">—</b> equal-sized sources.</li>
-      </ol>
-    </div>
-
+    <span class="p-label">Key highlights</span>
+    <ul class="p-bul">
+      <li>The busiest 10% of days carry <b class="mx-n" data-draw="hTop10" data-source="rhythm" data-field="top10_share">—</b> of all records.</li>
+      <li>Busiest day: <b class="mx-n" data-draw="hMaxD" data-source="rhythm" data-field="max_day">—</b> (<b class="mx-n" data-draw="hMaxN" data-source="rhythm" data-field="max_n">—</b> records), mostly one batch from two collections.<span class="p-fn"><a href="#n4">[4]</a></span></li>
+      <li>Centre of gravity moved <b class="mx-n" data-draw="hSwing" data-source="centroid_summary" data-field="swing_km">—</b> km north&ndash;south: southernmost <b class="mx-n" data-draw="hSouth" data-source="centroid_summary" data-field="south_month">—</b>, northernmost <b class="mx-n" data-draw="hNorth" data-source="centroid_summary" data-field="north_month">—</b>.</li>
+      <li>Video share: <b class="mx-n" data-draw="hV23" data-source="media_year" data-field="video_share" data-where="year=2024">—</b> in 2024, <b class="mx-n" data-draw="hV25" data-source="media_year" data-field="video_share" data-where="year=2025">—</b> in 2025.</li>
+      <li>"Aid" and "famine" monthly shares correlate at <b class="mx-n" data-draw="hAF" data-source="theme_corr" data-field="r" data-where="pair=aid%20%2B%20famine">—</b>.</li>
+      <li>Median single-collection share of a month: <b class="mx-n" data-draw="hDep" data-source="collection_stats" data-field="dep_median">—</b>; effective number of sources: <b class="mx-n" data-draw="hEff" data-source="collection_stats" data-field="eff_n">—</b>.</li>
+    </ul>
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">A.</span>The rhythm of posting</h2>
-      <p>Counted day by day, the archive takes in a median of <b class="mx-n" data-draw="aMed" data-source="rhythm" data-field="median">—</b> posts a day, but the average is pulled up to <b class="mx-n" data-draw="aMean" data-source="rhythm" data-field="mean">—</b> by days when everything happens at once. Day-to-day swings are large: the coefficient of variation is <b class="mx-n" data-draw="aCv" data-source="rhythm" data-field="cv">—</b>.<span class="p-fn"><a href="#n1">[1]</a></span> On <b class="mx-n" data-draw="aZero" data-source="rhythm" data-field="zero_days">—</b> days, nothing at all was saved.</p>
+      <h2><span class="no">A.</span>Posting rhythm</h2>
+      <ul class="p-bul">
+        <li>Median records per day: <b class="mx-n" data-draw="aMed" data-source="rhythm" data-field="median">—</b>; mean: <b class="mx-n" data-draw="aMean" data-source="rhythm" data-field="mean">—</b>.</li>
+        <li>Coefficient of variation: <b class="mx-n" data-draw="aCv" data-source="rhythm" data-field="cv">—</b>.<span class="p-fn"><a href="#n1">[1]</a></span></li>
+        <li>Days with no records: <b class="mx-n" data-draw="aZero" data-source="rhythm" data-field="zero_days">—</b>.</li>
+        <li>Fridays and Saturdays (the weekend in Gaza) are the quietest days (Table A2).</li>
+      </ul>
       <figure class="p-fig">
         <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="calendar" data-source="daily"></div></div>
-        <figcaption><b>Figure A1.</b> Every day as a column: weeks run left to right, weekdays front to back, height is posts saved that day. The busiest day is red. <span class="p-ctl">Drag to turn it. Point at a column for its date.</span></figcaption>
+        <figcaption><b>Figure A1.</b> One column per day: weeks left to right, weekdays front to back, height = records. Busiest day in red. <span class="p-ctl">Drag to rotate. Point at a column for its date.</span></figcaption>
       </figure>
       <figure class="p-fig">
         <div class="p-frame"><pre class="p-pre" data-draw="busiest" data-source="busiest_days" aria-label="The ten busiest days"></pre></div>
-        <figcaption><b>Table A1.</b> The ten busiest days in the archive.</figcaption>
+        <figcaption><b>Table A1.</b> Ten busiest days.</figcaption>
       </figure>
-      <p>The busiest day stands apart from the rest. Almost all of its posts come from two collections gathered by the same group of volunteers, which suggests a batch re-posted at once rather than a day when far more happened.<span class="p-fn"><a href="#n4">[4]</a></span> A spike in this record can be an archiving event as easily as an event on the ground.</p>
       <figure class="p-fig">
-        <div class="p-frame"><pre class="p-pre" data-draw="weekday" data-source="weekday" aria-label="Average posts by day of the week"></pre></div>
-        <figcaption><b>Table A2.</b> Average posts per day of the week. Fridays and Saturdays, the weekend in Gaza, are the quietest days.</figcaption>
+        <div class="p-frame"><pre class="p-pre" data-draw="weekday" data-source="weekday" aria-label="Average records by weekday"></pre></div>
+        <figcaption><b>Table A2.</b> Average records per day of the week.</figcaption>
       </figure>
       <figure class="p-fig">
         <div class="p-frame"><pre class="p-pre" data-draw="moves" data-source="moves" aria-label="Largest month-to-month changes"></pre></div>
-        <figcaption><b>Table A3.</b> The largest month-to-month rises and falls in posts saved.</figcaption>
+        <figcaption><b>Table A3.</b> Largest month-to-month rises and falls.</figcaption>
       </figure>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">B.</span>What kind of record</h2>
-      <p>Year by year, the record has shifted from photographs toward video, while the share that can be mapped has fallen, partly because the newest posts have not yet been through the slow work of geolocation.</p>
+      <h2><span class="no">B.</span>Media type and mapping by year</h2>
+      <ul class="p-bul">
+        <li>Video share rises from 2024 to 2025.</li>
+        <li>The mapped share falls in 2026, partly because recent records have not yet been geolocated.</li>
+      </ul>
       <figure class="p-fig">
-        <div class="p-frame"><pre class="p-pre" data-draw="mediaTable" data-source="media_year" aria-label="Posts, video share and mapped share by year"></pre></div>
-        <figcaption><b>Table B1.</b> Posts per year, with the share that are video and the share placed on a map. Partial years are marked.</figcaption>
+        <div class="p-frame"><pre class="p-pre" data-draw="mediaTable" data-source="media_year" aria-label="Records, video share and mapped share by year"></pre></div>
+        <figcaption><b>Table B1.</b> Records per year, video share, mapped share. Partial years marked.</figcaption>
       </figure>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">C.</span>Where the weight sits</h2>
-      <p>Take the average latitude of each month's mapped posts and you get the archive's centre of gravity. Its swing south in early 2024, toward Rafah, and its jump north in late 2024 trace the same displacement as paper 1, reduced to one line.</p>
+      <h2><span class="no">C.</span>Geography</h2>
+      <ul class="p-bul">
+        <li>Centre of gravity: average latitude of each month's mapped records, as km north of the southernmost record.</li>
+        <li>Ten busiest ~1 km squares: <b class="mx-n" data-draw="cTop10" data-source="spatial" data-field="top10_share">—</b> of mapped records. Gini across squares: <b class="mx-n" data-draw="cGini" data-source="spatial" data-field="gini">—</b>.<span class="p-fn"><a href="#n2">[2]</a></span></li>
+      </ul>
       <figure class="p-fig">
         <div class="p-frame"><div class="mx-2d dash-skeleton" style="min-height: 210px" data-draw="centroidChart" data-source="centroid"></div></div>
-        <figcaption><b>Figure C1.</b> Average distance north of the strip's southern edge, in kilometres, of each month's mapped posts. Months with fewer than 50 mapped posts are left out. <span class="p-ctl">Point at the line for a month.</span></figcaption>
+        <figcaption><b>Figure C1.</b> Monthly centre of gravity, km north of the strip's southern edge (months with at least 50 mapped records). <span class="p-ctl">Point at the line for a month.</span></figcaption>
       </figure>
-      <p>The map is also lopsided. Divide the strip into squares about a kilometre across: the ten busiest squares hold <b class="mx-n" data-draw="cTop10" data-source="spatial" data-field="top10_share">—</b> of all mapped posts, and the Gini coefficient across squares is <b class="mx-n" data-draw="cGini" data-source="spatial" data-field="gini">—</b>.<span class="p-fn"><a href="#n2">[2]</a></span></p>
       <figure class="p-fig">
-        <div class="p-frame"><pre class="p-pre" data-draw="precTable" data-source="precision" aria-label="How precisely mapped posts are placed"></pre></div>
-        <figcaption><b>Table C1.</b> All mapped posts by how precisely they are placed.</figcaption>
+        <div class="p-frame"><pre class="p-pre" data-draw="precTable" data-source="precision" aria-label="Mapping precision"></pre></div>
+        <figcaption><b>Table C1.</b> Mapped records by precision.</figcaption>
       </figure>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">D.</span>Words that travel together</h2>
-      <p>Some words rise and fall together month by month. Correlating the monthly share of every pair of the twelve caption words shows which subjects arrive as a package.</p>
+      <h2><span class="no">D.</span>Word correlations</h2>
+      <ul class="p-bul">
+        <li>Pearson correlation between monthly shares of each pair of the twelve caption words.</li>
+        <li>Clusters: aid&ndash;famine; school, airstrike, ambulance, camp and drone.</li>
+      </ul>
       <figure class="p-fig">
         <div class="p-frame"><pre class="p-pre" data-draw="corrTable" data-source="theme_corr" aria-label="Most and least correlated word pairs"></pre></div>
-        <figcaption><b>Table D1.</b> The most and least correlated pairs of words, by Pearson correlation of their monthly shares (1 means they move exactly together, 0 means no relation).</figcaption>
+        <figcaption><b>Table D1.</b> Most and least correlated pairs (1 = move together; 0 = no relation).</figcaption>
       </figure>
-      <p>Aid and famine are the tightest pair. School, airstrike, ambulance, camp and drone form a second cluster, the vocabulary of bombardment of the places people sheltered.</p>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">E.</span>How much rests on a few hands</h2>
-      <p>The three largest collections hold <b class="mx-n" data-draw="eTop3" data-source="collection_stats" data-field="top3_share">—</b> of the archive. By the Herfindahl index the archive is as concentrated as <b class="mx-n" data-draw="eEff" data-source="collection_stats" data-field="eff_n">—</b> equal sources.<span class="p-fn"><a href="#n3">[3]</a></span> A typical collection's window spans <b class="mx-n" data-draw="eWin" data-source="collection_stats" data-field="window_median">—</b> days.</p>
-      <p>Month by month the dependence is sharper. In <b class="mx-n" data-draw="eOver" data-source="collection_stats" data-field="dep_over50">—</b> months, a single collection supplied more than half of everything saved.</p>
+      <h2><span class="no">E.</span>Source concentration</h2>
+      <ul class="p-bul">
+        <li>Three largest collections: <b class="mx-n" data-draw="eTop3" data-source="collection_stats" data-field="top3_share">—</b> of records.</li>
+        <li>Effective number of sources (inverse Herfindahl): <b class="mx-n" data-draw="eEff" data-source="collection_stats" data-field="eff_n">—</b>.<span class="p-fn"><a href="#n3">[3]</a></span></li>
+        <li>Median collection coverage window: <b class="mx-n" data-draw="eWin" data-source="collection_stats" data-field="window_median">—</b> days.</li>
+        <li>Months where one collection supplied over half of records: <b class="mx-n" data-draw="eOver" data-source="collection_stats" data-field="dep_over50">—</b>.</li>
+      </ul>
       <figure class="p-fig">
         <div class="p-frame"><div class="mx-2d dash-skeleton" style="min-height: 210px" data-draw="depChart" data-source="dependency"></div></div>
-        <figcaption><b>Figure E1.</b> Share of each month's posts that came from its single largest collection. Higher means that month rests on one source. <span class="p-ctl">Point at the line for a month and its collection.</span></figcaption>
+        <figcaption><b>Figure E1.</b> Share of each month's records from its largest collection. <span class="p-ctl">Point at the line for a month and collection.</span></figcaption>
       </figure>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">F.</span>The quality of the record</h2>
+      <h2><span class="no">F.</span>Data quality</h2>
       <figure class="p-fig">
         <div class="p-frame"><pre class="p-pre" data-draw="quality" data-source="quality" aria-label="Data quality measures"></pre></div>
-        <figcaption><b>Table F1.</b> Measures of completeness and review. Review status is the archive's own internal state, not a judgement on whether something happened.</figcaption>
+        <figcaption><b>Table F1.</b> Completeness, withdrawals, mapping and review status. Review status is the archive's internal state, not a judgement on events.</figcaption>
       </figure>
     </section>
-
     <div class="p-box">
-      <span class="p-label">What this can't tell you</span>
+      <span class="p-label">Limits</span>
       <ul>
-        <li>Every number here describes the archive: what was posted and saved. None of it is a count of events, injuries or deaths.</li>
-        <li>Rhythms and concentrations partly reflect how the archive was built, channel by channel.</li>
-        <li>Correlation between words says they rise together, not that one causes the other.</li>
+        <li>All figures describe the archive (records posted and saved), not events, injuries or deaths.</li>
+        <li>Rhythms and concentration partly reflect how the archive was assembled.</li>
+        <li>Correlation between words does not imply causation.</li>
       </ul>
     </div>
     <div class="p-notes">
       <span class="p-label">Notes</span>
       <ol>
-        <li id="n1">Coefficient of variation: the standard deviation of daily posts divided by their mean. Days are counted from the first day with any post to the last complete day.</li>
-        <li id="n2">Squares are about 1 km on a side (0.009&deg; of latitude by 0.0105&deg; of longitude). Gini runs from 0, every square equal, to 1, everything in one square.</li>
-        <li id="n3">Herfindahl index: the sum of each collection's squared share of the archive. Its inverse is the number of equal-sized collections that would give the same concentration. Single-source dependency uses the twelve largest collections, which cover most of every month.</li>
-        <li id="n4">Checked against the archive's per-collection counts for that day: two Evidence Task collections account for nearly all of its posts.</li>
+        <li id="n1">Coefficient of variation: standard deviation of daily records divided by the mean, first posting day to last complete day.</li>
+        <li id="n2">Squares: 0.009&deg; latitude &times; 0.0105&deg; longitude (about 1 km). Gini: 0 = all squares equal; 1 = all records in one square.</li>
+        <li id="n3">Herfindahl index: sum of squared collection shares; its inverse is the equivalent number of equal-sized collections. Monthly dependency uses the twelve largest collections.</li>
+        <li id="n4">Checked against per-collection counts for that day: two Evidence Task collections account for about 94% of its records.</li>
       </ol>
     </div>
     <hr class="p-hr">
-    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Back to <a href="../">What was kept</a>. <a href="#top">Back to top</a></p>
+    <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../documentation-outlook/">5. Documentation outlook</a>. Next: <a href="../the-map-as-it-filled/">Appendix: the map as it filled</a>. <a href="#top">Back to top</a></p>
   </div>
 </div>
 

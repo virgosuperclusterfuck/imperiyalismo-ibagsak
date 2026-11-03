@@ -30,67 +30,70 @@
     <header class="p-head">
       <p class="p-series">Paper 2 of 5</p>
       <h1>Hospitals in the frame</h1>
-      <p class="p-deck">A hospital is where you run when everything else has failed. In this archive, it is also where the cameras keep going back.</p>
-      <p class="p-by">Written from the Archive Genocide records &middot; about five minutes to read</p>
+      <p class="p-deck">Mentions of hospitals in captions, by month and by named facility.</p>
+      <p class="p-by">Source: Archive Genocide records API</p>
     </header>
     <hr class="p-hr thick">
-    <div class="p-abstract">
-      <span class="p-label">In short</span>
-      <p>People filmed the wounded arriving, the corridors with no power, the families waiting outside. Count how often a hospital is mentioned and you get a pulse that jumps with every siege. Map where those posts were filmed and nine hospitals stand out by name.</p>
-    </div>
-    <hr class="p-hr">
-    <ol class="p-points">
-      <li>About one post in every <b class="mx-n" data-draw="oneIn" data-source="share_summary" data-field="one_in">—</b> mentions a hospital.</li>
-      <li>In <b class="mx-n" data-draw="peakM" data-source="share_summary" data-field="peak_month">—</b>, it was one in every <b class="mx-n" data-draw="peakIn" data-source="share_summary" data-field="peak_one_in">—</b>.</li>
-      <li>The hospital named most often is <b class="mx-n" data-draw="topName" data-source="towers" data-field="facility" data-row="0">—</b>.</li>
-    </ol>
+
+    <span class="p-label">Summary</span>
+    <ul class="p-bul">
+      <li>About 1 in every <b class="mx-n" data-draw="oneIn" data-source="share_summary" data-field="one_in">—</b> records mentions a hospital.</li>
+      <li>Peak month: <b class="mx-n" data-draw="peakM" data-source="share_summary" data-field="peak_month">—</b>, when 1 in <b class="mx-n" data-draw="peakIn" data-source="share_summary" data-field="peak_one_in">—</b> records did.</li>
+      <li>Most-named facility: <b class="mx-n" data-draw="topName" data-source="towers" data-field="facility" data-row="0">—</b>.</li>
+      <li><b class="mx-n" data-draw="exact" data-source="prec_summary" data-field="exact_share">—</b> of mapped hospital records are geolocated to an exact site.</li>
+    </ul>
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">1.</span>A pulse</h2>
-      <p>Here is the share of each month's posts that mention a hospital. Read it like a heartbeat. The quiet stretches are not peace; they are months when other things took over the captions.</p>
+      <h2><span class="no">1.</span>Monthly share</h2>
+      <ul class="p-bul">
+        <li>Share of each month's records whose caption mentions a hospital, across the whole archive.</li>
+        <li>Peak marked in red.</li>
+      </ul>
       <figure class="p-fig">
         <div class="p-frame"><div class="mx-2d dash-skeleton" style="min-height: 200px" data-draw="scope" data-source="share_rows"></div></div>
-        <figcaption><b>Figure 1.</b> Share of each month's posts whose caption mentions a hospital, October 2023 to now. <span class="p-ctl">Point at the line for a month.</span></figcaption>
+        <figcaption><b>Figure 1.</b> Hospital mentions as a share of each month's records. <span class="p-ctl">Point at the line for a month.</span></figcaption>
       </figure>
-      <p>Every spike has a name. The tallest is the end of 2024, when the hospitals of the north were under siege.</p>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">2.</span>Nine names</h2>
-      <p>Some hospitals are named again and again. In this figure each one stands where its footage was filmed, and the taller it is, the more posts name it.<span class="p-fn"><a href="#n1">[1]</a></span></p>
+      <h2><span class="no">2.</span>Named facilities</h2>
+      <figure class="p-fig">
+        <div class="p-frame"><pre class="p-pre" data-draw="facTable" data-source="towers" aria-label="Records naming each hospital"></pre></div>
+        <figcaption><b>Table 1.</b> Mapped records naming each hospital, and the month with the most.</figcaption>
+      </figure>
       <figure class="p-fig">
         <div class="p-frame"><div class="mx-3d dash-skeleton" data-draw="towers3d" data-source="towers hospital"></div></div>
-        <figcaption><b>Figure 2.</b> Nine named hospitals, standing on a floor of every hospital post that carries a location. The tallest is drawn in red. <span class="p-ctl">Drag to turn it. Point at a tower for its name and busiest month.</span></figcaption>
+        <figcaption><b>Figure 2.</b> Each tower stands at the average location of records naming that hospital; height is the number of records. Floor: all mapped hospital records. <span class="p-ctl">Drag to rotate. Point at a tower for details.</span></figcaption>
       </figure>
-      <p>Al-Shifa in Gaza City, raided in November 2023 and again in March 2024. Nasser in Khan Younis, besieged in February 2024. Kamal Adwan in the north, the last working hospital there, stormed in December 2024. Each tower is a siege, counted in the posts of the people who were there.</p>
+      <span class="p-h3">Context from public reporting</span>
+      <ul class="p-bul">
+        <li>al-Shifa (Gaza City): raided November 2023 and March 2024.</li>
+        <li>Nasser (Khan Younis): besieged February 2024.</li>
+        <li>Kamal Adwan (north): the last functioning hospital in the north; stormed December 2024.</li>
+      </ul>
     </section>
-
     <hr class="p-hr">
 
     <section class="mx-ch">
-      <h2><span class="no">3.</span>How sure is the map?</h2>
-      <p>Of the hospital posts that can be placed at all, only <b class="mx-n" data-draw="exact" data-source="prec_summary" data-field="exact_share">—</b> are pinned to the exact building. The rest are placed by the town or camp the caption names.</p>
+      <h2><span class="no">3.</span>Location precision</h2>
       <figure class="p-fig">
-        <div class="p-frame"><pre class="p-pre" data-draw="precision" data-source="prec_dist" aria-label="How precisely hospital posts are placed"></pre></div>
-        <figcaption><b>Table 1.</b> Hospital posts with a location, by how precisely they are placed.</figcaption>
+        <div class="p-frame"><pre class="p-pre" data-draw="precision" data-source="prec_dist" aria-label="Location precision of hospital records"></pre></div>
+        <figcaption><b>Table 2.</b> Mapped hospital records by location precision.</figcaption>
       </figure>
-      <p>So trust a tower's height more than its exact spot. The count of people who named a hospital is the steadier fact.</p>
-    </section>
-
-    <div class="p-box">
-      <span class="p-label">What this can't tell you</span>
-      <ul>
-        <li>A mention is not an attack. A caption can name a hospital because someone was taken there, or born there.</li>
-        <li>Names are matched as text in translated captions, so some spellings slip through.</li>
-        <li>The pulse counts the whole archive; the towers and the table use only posts with a location.</li>
+      <ul class="p-bul">
+        <li>Tower heights (record counts) are more reliable than tower positions.</li>
       </ul>
-    </div>
-    <div class="p-notes">
-      <span class="p-label">Notes</span>
-      <ol><li id="n1">A tower stands at the average position of the posts that name it. Where two hospitals sit close together, the towers are nudged apart so both can be seen.</li></ol>
+    </section>
+    <div class="p-box">
+      <span class="p-label">Limits</span>
+      <ul>
+        <li>A mention is not an attack; captions name hospitals for many reasons (injury, birth, shelter).</li>
+        <li>Names are matched as text in translated captions; some spellings are missed.</li>
+        <li>Figure 1 uses the whole archive; Figure 2 and the tables use only mapped records.</li>
+        <li>Where two hospitals are close together, towers are offset so both are visible.</li>
+      </ul>
     </div>
     <hr class="p-hr">
     <p class="p-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Previous: <a href="../where-the-footage-points/">1. Where the footage points</a>. Next: <a href="../what-gets-documented/">3. What gets documented</a>. <a href="#top">Back to top</a></p>
@@ -278,6 +281,15 @@
       });
     },
     unmount(el, m) { if (m.view) m.view.destroy(); },
+  });
+</script>
+
+<script>
+  dash.draw('facTable', (el) => {
+    const g = dash.data('towers');
+    if (g.status !== 'ok') { el.textContent = ''; return; }
+    el.textContent = [MX.pad('hospital', 20) + MX.lpad('records', 8) + '   busiest month', '-'.repeat(46)]
+      .concat(g.data.map((r) => MX.pad(r.facility, 20) + MX.lpad(MX.fmt.n(r.n), 8) + '   ' + MX.fmt.month(r.peak_month))).join('\n');
   });
 </script>
 
