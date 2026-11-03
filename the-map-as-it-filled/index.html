@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gaza Archive 3D Timelapse</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: full-bleed WebGL scene, one floating control panel (docks to bottom sheet on phones).
+   Committed single dark theme: a night scene under luminous data. */
+:root{
+  --bg:#0d1219; --panel:rgba(15,21,29,.92); --panel-edge:rgba(255,255,255,.09);
+  --fg:#e7ecf3; --fg-muted:#94a1b2; --fg-faint:#5c6a7c;
+  --amber:#c47718; --amber-hi:#ffc46e; --cyan:#13a0ba; --cyan-hi:#4fd8eb;
+  --font-ui:'Archivo',system-ui,sans-serif; --font-data:'IBM Plex Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-ui);overflow:hidden}
+#app{position:relative;height:100%;width:100%}
+#scene{position:absolute;inset:0}
+#scene canvas{outline:none}
+#panel{
+  position:absolute;top:max(14px,env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));
+  width:324px;max-width:calc(100% - 32px);max-height:calc(100% - 28px);
+  background:var(--panel);border:1px solid var(--panel-edge);border-radius:10px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:flex;flex-direction:column;gap:12px;padding:14px 16px;
+  overflow-y:auto;box-sizing:border-box;z-index:5;
+}
+h1{font-size:15px;font-weight:600;margin:0;letter-spacing:.01em}
+.sub{font-size:11.5px;color:var(--fg-muted);margin:2px 0 0;line-height:1.45}
+.readout{display:flex;gap:14px;align-items:baseline;font-family:var(--font-data)}
+.readout .date{font-size:17px;font-weight:500;color:var(--amber-hi);font-variant-numeric:tabular-nums;min-width:11ch}
+.readout .count{font-size:12px;color:var(--fg-muted);font-variant-numeric:tabular-nums}
+.readout .count b{color:var(--fg);font-weight:500}
+#timeline{position:relative;height:66px}
+#hist{position:absolute;inset:0;width:100%;height:100%}
+#playhead{position:absolute;top:0;bottom:14px;width:1.5px;background:var(--amber-hi);pointer-events:none;opacity:.9}
+#scrub{position:absolute;left:-6px;right:-6px;bottom:-4px;width:calc(100% + 12px);margin:0;-webkit-appearance:none;appearance:none;background:transparent;height:22px;cursor:pointer}
+#scrub::-webkit-slider-runnable-track{height:3px;background:rgba(255,255,255,.14);border-radius:2px}
+#scrub::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--amber-hi);margin-top:-5.5px;border:2px solid #0d1219}
+#scrub::-moz-range-track{height:3px;background:rgba(255,255,255,.14);border-radius:2px}
+#scrub::-moz-range-thumb{width:11px;height:11px;border-radius:50%;background:var(--amber-hi);border:2px solid #0d1219}
+#scrub:focus-visible{outline:2px solid var(--cyan-hi);outline-offset:2px;border-radius:4px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+button,select{font-family:var(--font-ui);font-size:12.5px;color:var(--fg);background:rgba(255,255,255,.06);
+  border:1px solid var(--panel-edge);border-radius:7px;padding:6px 11px;cursor:pointer}
+button:hover,select:hover{background:rgba(255,255,255,.11)}
+button:focus-visible,select:focus-visible,input[type=checkbox]:focus-visible,input[type=radio]:focus-visible{outline:2px solid var(--cyan-hi);outline-offset:1px}
+button.primary{background:var(--amber);border-color:transparent;color:#140d02;font-weight:600;min-width:74px}
+button.primary:hover{background:#d8851e}
+fieldset{border:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+legend{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-faint);padding:0;margin-bottom:5px;font-weight:600}
+label.opt{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--fg);cursor:pointer}
+label.opt input{accent-color:var(--amber);margin:0}
+label.opt .hint{color:var(--fg-faint);font-size:11px}
+.swatch{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}
+.legend{display:flex;flex-direction:column;gap:6px;font-size:11.5px;color:var(--fg-muted)}
+.ramp{display:flex;height:8px;border-radius:3px;overflow:hidden}
+.ramp i{flex:1}
+.legend .lab{display:flex;justify-content:space-between;font-size:10px;color:var(--fg-faint);font-family:var(--font-data)}
+.note{font-size:10.5px;color:var(--fg-faint);line-height:1.55;margin:0;border-top:1px solid var(--panel-edge);padding-top:9px}
+.note a{color:var(--fg-muted)}
+#hint{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));
+  font-size:11px;color:var(--fg-muted);background:rgba(13,18,25,.72);border:1px solid var(--panel-edge);
+  border-radius:7px;padding:5px 10px;z-index:4;pointer-events:none}
+@media (max-width:640px){
+  #panel{top:auto;bottom:max(10px,env(safe-area-inset-bottom,0px));left:max(10px,env(safe-area-inset-left,0px));
+    right:max(10px,env(safe-area-inset-right,0px));width:auto;max-height:52%}
+  #hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){ #playhead{transition:none} }
+</style>
+
+</head>
+<body>
+<div id="app">
+  <div id="scene" role="application" aria-label="3D map of Gaza showing archived records over time"></div>
+  <div id="hint">drag to pan · ctrl/right-drag to rotate &amp; tilt · scroll to zoom</div>
+  <div id="panel">
+    <div>
+      <h1>Gaza Archive 3D Timelapse</h1>
+      <p class="sub">33,797 dated, geolocated records from the Archive Genocide API, Oct 2023 → Oct 2026. Columns rise where documentation accumulates.</p>
+    </div>
+    <div class="readout">
+      <span class="date" id="dateLabel">—</span>
+      <span class="count"><b id="countLabel">0</b> records shown</span>
+    </div>
+    <div id="timeline">
+      <svg id="hist" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <div id="playhead"></div>
+      <input type="range" id="scrub" min="0" max="1118" step="1" value="0" aria-label="Timeline position">
+    </div>
+    <div class="row">
+      <button class="primary" id="playBtn">Play</button>
+      <select id="speed" aria-label="Playback speed">
+        <option value="45">1× speed</option>
+        <option value="90" selected>2× speed</option>
+        <option value="180">4× speed</option>
+      </select>
+      <select id="mode" aria-label="Time window">
+        <option value="cum" selected>Cumulative</option>
+        <option value="win">30-day window</option>
+      </select>
+    </div>
+    <fieldset>
+      <legend>Records</legend>
+      <label class="opt"><input type="radio" name="scope" value="all" checked>
+        <span class="swatch" style="background:var(--amber-hi)"></span> All geolocated <span class="hint">(33,797)</span></label>
+      <label class="opt"><input type="radio" name="scope" value="hosp">
+        <span class="swatch" style="background:var(--cyan-hi)"></span> Hospital slice only <span class="hint">(7,095 dated)</span></label>
+    </fieldset>
+    <fieldset>
+      <legend>Layers</legend>
+      <label class="opt"><input type="checkbox" id="lyrHex" checked> 3D density columns</label>
+      <label class="opt"><input type="checkbox" id="lyrPts" checked> Individual records <span class="hint">hospital ones in cyan</span></label>
+    </fieldset>
+    <div class="row">
+      <button id="view3d">3D view</button>
+      <button id="viewTop">Top-down</button>
+    </div>
+    <div class="legend">
+      <div class="ramp" id="rampBox"></div>
+      <div class="lab"><span>fewer records within 350 m</span><span>more</span></div>
+    </div>
+    <p class="note" id="noteText">
+      Data: <a href="https://archivegenocide.com/api-docs/" target="_blank" rel="noopener">Archive Genocide API</a>,
+      build of 2 Nov 2026. Withdrawn records removed; 196 undated geolocated records are not shown.
+      Coordinates carry source-stated precision; the outline of Gaza is approximate and for orientation only.
+      <a href="../">← all archive pages</a>
+    </p>
+  </div>
+</div>
+
+<script src="https://unpkg.com/deck.gl@8.9.36/dist.min.js"></script>
+<script src="geo3d_data.js"></script>
+<script>
+(function(){
+  'use strict';
+  var G = window.GEO3D;
+  function b64(s){ var bin=atob(s), a=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) a[i]=bin.charCodeAt(i); return a.buffer; }
+  var days = new Uint16Array(b64(G.days));
+  var qlat = new Uint16Array(b64(G.lat));
+  var qlon = new Uint16Array(b64(G.lon));
+  var flags = new Uint8Array(b64(G.flags));
+  var N = G.n, B = G.bounds;
+  var EPOCH = new Date(G.epoch + 'T00:00:00Z');
+
+  // dated records only (sorted by day; undated=65535 sit at the end)
+  var ND = N; while (ND > 0 && days[ND-1] === 65535) ND--;
+  var MAXDAY = days[ND-1];
+
+  // decoded positions + per-record fields, as plain indexed arrays
+  var lon = new Float64Array(ND), lat = new Float64Array(ND);
+  var isHosp = new Uint8Array(ND);
+  for (var i=0;i<ND;i++){
+    lat[i] = B.lat0 + qlat[i]/65535*(B.lat1-B.lat0);
+    lon[i] = B.lon0 + qlon[i]/65535*(B.lon1-B.lon0);
+    isHosp[i] = flags[i] & 2 ? 1 : 0;
+  }
+  // index arrays: all dated, and the hospital subset (both stay day-sorted)
+  var allIdx = new Array(ND), hospIdx = [];
+  for (i=0;i<ND;i++){ allIdx[i]=i; if (isHosp[i]) hospIdx.push(i); }
+  var hospDays = new Uint16Array(hospIdx.length);
+  for (i=0;i<hospIdx.length;i++) hospDays[i] = days[hospIdx[i]];
+
+  function lowerBound(arr, n, v){ var lo=0, hi=n; while(lo<hi){ var m=(lo+hi)>>1; if(arr[m]<v) lo=m+1; else hi=m; } return lo; }
+
+  // monthly histogram (counts per calendar month, all + hospital)
+  var monthStarts = [], d0 = new Date(EPOCH);
+  while (true){ var off=Math.round((d0-EPOCH)/864e5); if (off>MAXDAY) break; monthStarts.push(off); d0=new Date(Date.UTC(d0.getUTCFullYear(),d0.getUTCMonth()+1,1)); }
+  var NM = monthStarts.length;
+  function monthCounts(dayArr, n){
+    var c = new Array(NM).fill(0), m = 0;
+    for (var k=0;k<n;k++){ var dd=dayArr[k]; while(m+1<NM && dd>=monthStarts[m+1]) m++;
+      if (dd < monthStarts[m]) { m=0; while(m+1<NM && dd>=monthStarts[m+1]) m++; } c[m]++; }
+    return c;
+  }
+  var mcAll = monthCounts(days, ND), mcHosp = monthCounts(hospDays, hospDays.length);
+
+  // ---- colors (validated: #c47718 / #13a0ba on #10151d) ----
+  var AMBER=[196,119,24], AMBER_HI=[255,196,110], CYAN=[79,216,235];
+  var rampAll=[[47,32,11],[79,51,13],[115,71,16],[155,94,19],[196,119,24],[236,158,64],[255,196,110]];
+  var rampHosp=[[10,34,40],[12,53,63],[14,73,88],[16,94,113],[18,133,158],[42,180,207],[79,216,235]];
+
+  // ---- Gaza outline (approximate, for orientation) ----
+  var OUTLINE={type:'Feature',geometry:{type:'Polygon',coordinates:[[
+    [34.214,31.322],[34.246,31.355],[34.270,31.388],[34.308,31.427],[34.350,31.470],
+    [34.388,31.505],[34.428,31.541],[34.465,31.572],[34.489,31.596],[34.512,31.588],
+    [34.545,31.563],[34.568,31.542],[34.556,31.500],[34.524,31.462],[34.497,31.432],
+    [34.478,31.404],[34.451,31.372],[34.434,31.342],[34.402,31.312],[34.372,31.288],
+    [34.358,31.260],[34.330,31.242],[34.296,31.222],[34.267,31.217],[34.245,31.265],
+    [34.227,31.299],[34.214,31.322]
+  ]]}};
+  var CITIES=[
+    {name:'Gaza City', p:[34.4668,31.5017]},
+    {name:'Jabalia', p:[34.4786,31.5272]},
+    {name:'Deir al-Balah', p:[34.3515,31.4180]},
+    {name:'Khan Younis', p:[34.3063,31.3462]},
+    {name:'Rafah', p:[34.2435,31.2968]}
+  ];
+
+  // ---- state ----
+  var state = { t: MAXDAY, mode:'cum', scope:'all', hex:true, pts:true, playing:false, speed:90 };
+
+  var VIEW3D = {longitude:34.396, latitude:31.405, zoom:9.8, pitch:55, bearing:-32, maxPitch:72};
+  var VIEWTOP = {longitude:34.396, latitude:31.405, zoom:9.6, pitch:0, bearing:0, maxPitch:72};
+
+  var dg = new deck.DeckGL({
+    container: 'scene',
+    initialViewState: VIEW3D,
+    controller: {touchRotate:true, maxPitch:72},
+    useDevicePixels: Math.min(window.devicePixelRatio||1, 2),
+    getTooltip: function(info){
+      var o = info.object;
+      if (o == null) return null;
+      var style = {backgroundColor:'rgba(15,21,29,.95)', color:'#e7ecf3', fontSize:'11.5px',
+                   fontFamily:'IBM Plex Mono,monospace', border:'1px solid rgba(255,255,255,.12)',
+                   borderRadius:'6px', padding:'6px 9px', maxWidth:'220px'};
+      if (typeof o === 'object' && o.points){
+        var n = o.points.length, h = 0;
+        for (var k=0;k<n;k++) h += isHosp[o.points[k].source != null ? o.points[k].source : o.points[k]] || 0;
+        return {html:'<b>'+n.toLocaleString()+'</b> record'+(n===1?'':'s')+' here'+(h?'<br>'+h.toLocaleString()+' hospital-related':''), style:style};
+      }
+      if (typeof o !== 'number') return null;
+      var idx = o; // points layer carries the record index
+      var dt = new Date(EPOCH.getTime() + days[idx]*864e5);
+      return {html: (flags[idx]&1?'video':'photo')+' · '+dt.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})
+              +(isHosp[idx]?'<br>hospital-related':''), style:style};
+    }
+  });
+
+  function currentIndices(){
+    var isH = state.scope==='hosp';
+    var idx = isH ? hospIdx : allIdx, darr = isH ? hospDays : days, n = idx.length;
+    var hi = lowerBound(darr, n, state.t+1);
+    var lo = state.mode==='win' ? lowerBound(darr, n, state.t-29) : 0;
+    return idx.slice(lo, hi);
+  }
+
+  var countLabel = document.getElementById('countLabel'), dateLabel = document.getElementById('dateLabel');
+  var playhead = document.getElementById('playhead'), scrub = document.getElementById('scrub');
+  scrub.max = String(MAXDAY);
+  scrub.value = String(state.t);
+
+  function render(){
+    var sel = currentIndices();
+    var ramp = state.scope==='hosp' ? rampHosp : rampAll;
+    var layers = [
+      new deck.GeoJsonLayer({
+        id:'outline', data:OUTLINE, stroked:true, filled:true,
+        getFillColor:[255,255,255,7], getLineColor:[148,161,178,90], getLineWidth:2,
+        lineWidthUnits:'pixels'
+      }),
+    ];
+    if (state.hex) layers.push(new deck.HexagonLayer({
+      id:'hex', data:sel,
+      getPosition:function(i){ return [lon[i], lat[i]]; },
+      radius:350, extruded:true, coverage:0.85,
+      elevationRange:[0,3800], elevationScale:1, upperPercentile:100,
+      colorRange:ramp, opacity:0.78, pickable:true,
+      material:{ambient:0.55, diffuse:0.5, shininess:28, specularColor:[60,70,85]}
+    }));
+    if (state.pts) layers.push(new deck.ScatterplotLayer({
+      id:'pts', data:sel,
+      getPosition:function(i){ return [lon[i], lat[i]]; },
+      getFillColor:function(i){ return state.scope==='hosp' ? CYAN : (isHosp[i] ? CYAN : AMBER_HI); },
+      radiusMinPixels:1.2, radiusMaxPixels:5, getRadius:16, opacity:0.32,
+      pickable:true, parameters:{depthTest:false}
+    }));
+    layers.push(new deck.TextLayer({
+      id:'cities', data:CITIES, getPosition:function(d){return d.p;}, getText:function(d){return d.name;},
+      getSize:11.5, getColor:[205,214,226,235], fontFamily:'Archivo, sans-serif', fontWeight:500,
+      getPixelOffset:[0,-6], billboard:true, characterSet:'auto', outlineWidth:2, outlineColor:[13,18,25,235],
+      fontSettings:{sdf:true}, parameters:{depthTest:false}
+    }));
+    dg.setProps({layers:layers});
+    countLabel.textContent = sel.length.toLocaleString();
+    var dt = new Date(EPOCH.getTime() + state.t*864e5);
+    dateLabel.textContent = dt.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'});
+    playhead.style.left = (state.t/MAXDAY*100)+'%';
+  }
+
+  // ---- timeline histogram ----
+  function drawHist(){
+    var svg = document.getElementById('hist');
+    var mc = state.scope==='hosp' ? mcHosp : mcAll;
+    var W=320, H=52, max=Math.max.apply(null, mcAll);
+    var fill = state.scope==='hosp' ? '#2ab4cf' : '#c47718';
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var bw = W/NM;
+    var html='';
+    for (var m=0;m<NM;m++){
+      var h = Math.max(1, mc[m]/max*(H-4));
+      html += '<rect x="'+(m*bw+0.5).toFixed(2)+'" y="'+(H-h).toFixed(2)+'" width="'+(bw-1).toFixed(2)+'" height="'+h.toFixed(2)+'" rx="1" fill="'+fill+'" opacity="0.85"/>';
+    }
+    svg.innerHTML = html;
+  }
+
+  // ---- playback ----
+  var playBtn = document.getElementById('playBtn'), lastTs=null, raf=null;
+  function tick(ts){
+    if (!state.playing) return;
+    if (lastTs!=null){
+      state.t = Math.min(MAXDAY, state.t + (ts-lastTs)/1000*state.speed);
+      scrub.value = String(Math.round(state.t));
+      render();
+      if (state.t >= MAXDAY){ setPlaying(false); return; }
+    }
+    lastTs = ts; raf = requestAnimationFrame(tick);
+  }
+  function setPlaying(p){
+    if (p && state.t >= MAXDAY) state.t = state.mode==='win' ? 0 : 6; // restart from the first records
+    state.playing = p; playBtn.textContent = p ? 'Pause' : 'Play';
+    lastTs = null;
+    if (p) raf = requestAnimationFrame(tick); else if (raf) cancelAnimationFrame(raf);
+    if (!p) render();
+  }
+  playBtn.addEventListener('click', function(){ setPlaying(!state.playing); });
+  scrub.addEventListener('input', function(){ state.t = +scrub.value; if(state.playing) setPlaying(false); render(); });
+  document.getElementById('speed').addEventListener('change', function(e){ state.speed = +e.target.value; });
+  document.getElementById('mode').addEventListener('change', function(e){ state.mode = e.target.value; render(); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name=scope]'), function(r){
+    r.addEventListener('change', function(){ state.scope = r.value; drawHist(); drawRamp(); render(); });
+  });
+  document.getElementById('lyrHex').addEventListener('change', function(e){ state.hex = e.target.checked; render(); });
+  document.getElementById('lyrPts').addEventListener('change', function(e){ state.pts = e.target.checked; render(); });
+  document.getElementById('view3d').addEventListener('click', function(){
+    dg.setProps({initialViewState: Object.assign({}, VIEW3D, {transitionDuration:900, transitionInterpolator:new deck.FlyToInterpolator()})});
+  });
+  document.getElementById('viewTop').addEventListener('click', function(){
+    dg.setProps({initialViewState: Object.assign({}, VIEWTOP, {transitionDuration:900, transitionInterpolator:new deck.FlyToInterpolator()})});
+  });
+
+  function drawRamp(){
+    var ramp = state.scope==='hosp' ? rampHosp : rampAll;
+    document.getElementById('rampBox').innerHTML = ramp.map(function(c){
+      return '<i style="background:rgb('+c[0]+','+c[1]+','+c[2]+')"></i>';
+    }).join('');
+  }
+
+  drawHist(); drawRamp(); render();
+})();
+</script>
+
+</body>
+</html>

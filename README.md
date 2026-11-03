@@ -2,7 +2,7 @@
 
 Six linked story pages built on the public [Archive Genocide](https://archivegenocide.com/) API
 (snapshot of 2 Nov 2026). Each page is plain HTML, CSS and JavaScript with its data as local CSV/JSON
-files; the only outside script is d3 v7 from cdnjs.
+files; the only outside scripts are d3 v7 from cdnjs and, on the timelapse page, deck.gl 8.9.36 from unpkg.
 
 | Folder | Page |
 |---|---|
@@ -12,6 +12,7 @@ files; the only outside script is d3 v7 from cdnjs.
 | `what-gets-documented/` | 3D ridgeline of twelve caption words |
 | `who-keeps-the-record/` | 3D city of the source collections |
 | `documentation-outlook/` | A plain six-month guess, with its limits |
+| `the-map-as-it-filled/` | 3D timelapse of all geolocated records, with a hospital layer |
 
 ## Publish on GitHub Pages
 1. Copy everything in this folder to the root of your repository (keep the folder structure).
