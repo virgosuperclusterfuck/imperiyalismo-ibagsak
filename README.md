@@ -15,14 +15,6 @@ files; the only outside scripts are d3 v7 from cdnjs and, on the timelapse page,
 | `the-map-as-it-filled/` | 3D timelapse of all geolocated records, with a hospital layer |
 | `what-the-record-shows/` | Takeaway: the narrative, its impacts, and who can use it |
 
-## Publish on GitHub Pages
-1. Copy everything in this folder to the root of your repository (keep the folder structure).
-2. On GitHub: **Settings → Pages → Build and deployment → Deploy from a branch**, pick your branch and `/ (root)`.
-3. Your site appears at `https://<username>.github.io/<repo>/`.
-
-Pages fetch their data files, so open them through a web server (GitHub Pages, or `python3 -m http.server`
-locally), not by double-clicking the HTML file.
-
 ## Data and credit
 Records: Archive Genocide (https://archivegenocide.com/). Captions come from the channels and journalists
 who posted the footage; a record documents what was posted and when, not a verified finding.
