@@ -1,0 +1,101 @@
+/* Layout: one plain 38rem column of Times on white, the way a careful person wrote for the web in 1997:
+   bracketed menus, grooved rules, numbered sections, [1] footnotes, Courier for figures and tables. */
+#dash-root { --dash-gutter: 0; }
+.mx {
+  --p-paper: #ffffff; --p-ink: #000000; --p-body: #1a1a1a; --p-mute: #666666; --p-hair: #c0c0c0;
+  --p-link: #0000ee; --p-visited: #551a8b; --p-red: #cc0000;
+  --p-serif: "Times New Roman", Times, "Liberation Serif", serif;
+  --p-mono: "Courier New", Courier, "Liberation Mono", monospace;
+  color-scheme: light;
+  background: var(--p-paper); color: var(--p-body);
+  font-family: var(--p-serif); font-size: 19px; line-height: 1.5;
+  padding-block: 22px 60px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: clip;
+}
+.mx-in { max-width: 38rem; margin-inline: auto; }
+.mx-wide { max-width: 60rem; margin-inline: auto; }
+
+/* menu */
+.p-menu { margin: 0; font-family: var(--p-mono); font-size: .78rem; line-height: 1.9; color: var(--p-mute); }
+.p-menu b { color: var(--p-ink); }
+
+/* rules: the old grooved <hr> */
+.p-hr { height: 0; margin: 26px 0; border: 0; border-top: 1px solid #8c8c8c; border-bottom: 1px solid #e8e8e8; }
+.p-hr.thick { border-top: 3px double var(--p-ink); border-bottom: 0; }
+
+/* title block */
+.p-head { padding-block: 34px 0; }
+.p-series { margin: 0 0 10px; font-family: var(--p-mono); font-size: .8rem; color: var(--p-red); }
+.mx h1 { margin: 0 0 14px; font-family: var(--p-serif); font-size: clamp(2.3rem, 7vw, 4rem); line-height: .98; font-weight: 700; letter-spacing: -.02em; color: var(--p-ink); text-wrap: balance; }
+.p-deck { margin: 0; font-size: 1.28rem; line-height: 1.38; font-style: italic; color: var(--p-ink); }
+.p-by { margin: 16px 0 0; font-family: var(--p-mono); font-size: .74rem; color: var(--p-mute); }
+
+/* abstract, points */
+.p-label { display: block; margin: 0 0 4px; font-family: var(--p-mono); font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--p-ink); }
+.p-abstract p { margin: 0; }
+.p-points { margin: 0; padding-left: 1.6rem; }
+.p-points li { margin-bottom: 8px; }
+.p-points li::marker { font-family: var(--p-mono); font-weight: 700; color: var(--p-red); }
+
+/* sections */
+.mx-ch { padding-block: 4px; }
+.mx-ch h2 { margin: 0 0 12px; font-family: var(--p-serif); font-size: 1.5rem; line-height: 1.15; font-weight: 700; color: var(--p-ink); text-wrap: balance; }
+.mx-ch h2 .no { font-family: var(--p-mono); font-size: .95rem; font-weight: 700; color: var(--p-red); margin-right: 10px; vertical-align: 2px; }
+.mx-ch p { margin: 0 0 14px; }
+.mx-n { font-weight: 700; color: var(--p-ink); font-variant-numeric: lining-nums tabular-nums; }
+.p-fn { font-family: var(--p-mono); font-size: .72em; vertical-align: 1px; }
+.p-fn a, .p-fn a:visited { color: var(--p-red); text-decoration: none; }
+.p-quote { margin: 18px 0; padding-left: 18px; border-left: 3px solid var(--p-ink); font-style: italic; font-size: 1.12rem; color: var(--p-ink); }
+
+/* figures and plain-text tables */
+.p-fig { margin: 22px 0 26px; }
+.p-frame { border: 1px solid var(--p-ink); background: var(--p-paper); }
+.p-fig figcaption { padding-top: 8px; font-size: .9rem; line-height: 1.45; color: var(--p-body); }
+.p-fig figcaption b { font-family: var(--p-mono); font-size: .82rem; color: var(--p-ink); }
+.p-ctl { display: block; margin-top: 2px; font-family: var(--p-mono); font-size: .7rem; color: var(--p-mute); }
+.mx-3d { position: relative; min-height: 280px; touch-action: pan-y; }
+.mx-3d canvas { display: block; cursor: grab; outline: none; }
+.mx-3d canvas:focus-visible { outline: 2px dotted var(--p-ink); outline-offset: -4px; }
+.mx-2d { position: relative; padding: 10px 10px 4px; }
+.mx-2d svg { display: block; overflow: visible; }
+.p-pre { margin: 0; padding: 12px 14px; overflow-x: auto; white-space: pre; font-family: var(--p-mono); font-size: .8rem; line-height: 1.55; color: var(--p-ink); font-variant-numeric: tabular-nums; }
+
+/* scroll study: text beside a pinned figure */
+.mx-story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; align-items: start; }
+.mx-story .mx-sticky { position: sticky; top: 14px; }
+.mx-story .mx-ch { min-height: 74vh; display: flex; flex-direction: column; justify-content: center; opacity: .35; transition: opacity .3s; }
+.mx-story .mx-ch.mx-on { opacity: 1; }
+.mx-when { margin: 0 0 6px; font-family: var(--p-mono); font-size: .76rem; color: var(--p-red); }
+@media (max-width: 760px) {
+  .mx { font-size: 17.5px; }
+  .mx-story { display: block; }
+  .mx-story .mx-sticky { position: sticky; top: 0; z-index: 4; background: var(--p-paper); padding-block: 6px; }
+  .mx-story .mx-sticky .p-fig { margin: 0; }
+  .mx-story .mx-ch { min-height: 62vh; }
+}
+
+/* limits, series, notes, footer */
+.p-box { margin: 26px 0; padding: 14px 18px; border: 2px solid var(--p-ink); }
+.p-box p { margin: 0 0 8px; font-size: .96rem; }
+.p-box p:last-child { margin-bottom: 0; }
+.p-box ul { margin: 0; padding-left: 1.2rem; font-size: .96rem; }
+.p-box li { margin-bottom: 6px; }
+.p-list { margin: 8px 0 0; padding-left: 0; list-style: none; }
+.p-list li { margin-bottom: 12px; }
+.p-list li p { margin: 1px 0 0; font-size: .92rem; color: var(--p-mute); }
+.p-list .here { font-weight: 700; color: var(--p-ink); }
+.p-notes ol { margin: 6px 0 0; padding-left: 1.5rem; font-size: .88rem; line-height: 1.5; }
+.p-notes li { margin-bottom: 6px; }
+.p-notes li::marker { font-family: var(--p-mono); color: var(--p-red); }
+.p-foot { margin: 0; font-family: var(--p-mono); font-size: .72rem; line-height: 1.7; color: var(--p-mute); }
+.mx a { color: var(--p-link); text-decoration: underline; }
+.mx a:visited { color: var(--p-visited); }
+.mx a:hover { color: var(--p-red); }
+.mx a:focus-visible { outline: 1px dotted var(--p-ink); outline-offset: 2px; }
+
+/* tooltip and states */
+.mx-tip { position: absolute; z-index: 9; pointer-events: none; padding: 4px 7px; white-space: nowrap; background: #ffffe1; border: 1px solid var(--p-ink); color: var(--p-ink); font-family: var(--p-mono); font-size: .74rem; line-height: 1.45; font-variant-numeric: tabular-nums; }
+.mx-tip div:first-child { font-weight: 700; }
+.mx-err { display: flex; align-items: center; justify-content: center; min-height: inherit; font-family: var(--p-mono); color: var(--p-red); font-size: .8rem; }
