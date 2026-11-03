@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where the Footage Points</title>
+<meta name="description" content="Three years of geolocated footage as a 3D column of time over the map of Gaza.">
+<meta name="theme-color" content="#020704">
+<style>
+  html, body { margin: 0; background: #020704; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
+  @keyframes sk { to { background-position: -200% 0; } }
+  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>window.DASH_DATASETS = {"geo_slim": {"url": "data/geo_slim.csv"}};</script>
+<script src="dash-shim.js"></script>
+</head>
+<body>
+<noscript><p>This page needs JavaScript to draw its charts.</p></noscript>
+<div id="dash-root">
+<meta name="dash-one-writer">
+<link rel="stylesheet" href="mx.css">
+<script src="mx.js"></script>
+
+<div class="mx">
+  <div class="mx-in">
+    <header class="mx-hero">
+      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
+      <div class="mx-boot">
+        <p class="mx-prompt">play --record footage --view spacetime</p>
+        <h1>Where the footage points</h1>
+        <p class="mx-lede">Every geolocated record is a point on the map. Stack the points by time — the oldest on the floor, the newest at the top — and three years of footage become a single column. Its shape is the story of where people were, and where they were forced to go. Scroll to move through it.<span class="mx-cursor" aria-hidden="true"></span></p>
+      </div>
+    </header>
+
+    <div class="mx-story">
+      <div>
+        <section class="mx-ch" data-period="2023-10:2023-12" data-yaw="0" data-pitch="1.3" data-auto="0">
+          <p class="mx-when">Oct &ndash; Dec 2023 &middot; seen from above</p>
+          <h2>It begins in the north</h2>
+          <p>Looking down, this is a map: north at the top. In the first weeks, Gaza City and the north hold <b class="mx-n" data-draw="c1" data-source="chapter_stats" data-field="q423_north">—</b> of the footage. Al-Shifa. Jabalia. Beit Hanoun.</p>
+          <p>The south shows up mostly as the place people are told to flee to.</p>
+        </section>
+        <section class="mx-ch" data-period="2024-01:2024-05" data-yaw="0.4" data-pitch="0.95" data-auto="0">
+          <p class="mx-when">Jan &ndash; May 2024</p>
+          <h2>The camera moves south</h2>
+          <p>As the fighting moves to Khan Younis and then Rafah, so do the people filming. Rafah, the strip's last edge, swollen with the displaced, climbs to <b class="mx-n" data-draw="c2" data-source="chapter_stats" data-field="h124_rafah">—</b> of the record.</p>
+          <p>In May 2024 alone it holds <b class="mx-n" data-draw="c2b" data-source="chapter_stats" data-field="rafah_may24">—</b> posts, as the assault on Rafah begins.</p>
+        </section>
+        <section class="mx-ch" data-period="2024-06:2024-09" data-yaw="0.85" data-pitch="0.62" data-auto="0">
+          <p class="mx-when">Jun &ndash; Sep 2024</p>
+          <h2>The crowded middle</h2>
+          <p>After Rafah, the record there thins to almost nothing. It bunches in the middle of the strip, where the displaced now are. Deir al-Balah and the central camps take <b class="mx-n" data-draw="c3" data-source="chapter_stats" data-field="q324_central">—</b> of the summer's footage.</p>
+        </section>
+        <section class="mx-ch" data-period="2024-10:2024-12" data-yaw="1.4" data-pitch="0.3" data-auto="0">
+          <p class="mx-when">Oct &ndash; Dec 2024 &middot; seen from the side</p>
+          <h2>North again</h2>
+          <p>Turn the column on its side and time runs upward. In October 2024 the north is besieged, and the record swings back: <b class="mx-n" data-draw="c4" data-source="chapter_stats" data-field="q424_north">—</b> of the quarter's footage points north.</p>
+          <p>October alone puts <b class="mx-n" data-draw="c4b" data-source="chapter_stats" data-field="oct24_north">—</b> posts there, the most crowded month and place anywhere in the archive.</p>
+        </section>
+        <section class="mx-ch" data-period="2025-01:2026-11" data-yaw="1.57" data-pitch="0.12" data-auto="0">
+          <p class="mx-when">2025 &ndash; 2026</p>
+          <h2>It stays north</h2>
+          <p>From then on, the north holds <b class="mx-n" data-draw="c5" data-source="chapter_stats" data-field="since_oct24_north">—</b> of everything filmed. Rafah, once a third of the picture, falls to <b class="mx-n" data-draw="c5b" data-source="chapter_stats" data-field="since_jul24_rafah">—</b>.</p>
+          <p>The geography of the record is the geography of where people still are.</p>
+        </section>
+        <section class="mx-ch" data-period="2023-10:2026-11" data-yaw="0.7" data-pitch="0.45" data-auto="0.2">
+          <p class="mx-when">All of it</p>
+          <h2>Read it honestly</h2>
+          <p>Here is all of it, turning. Only <b class="mx-n" data-draw="c6" data-source="chapter_stats" data-field="exact_share">—</b> of these points are verified to an exact building; the rest mark a town, a camp, a street.</p>
+          <p>A point is a post, not a casualty. Where the column thins, events may have thinned, or the people filming were gone.</p>
+        </section>
+      </div>
+      <div class="mx-sticky">
+        <div class="mx-win">
+          <div class="mx-win-bar"><span>C:\ARCHIVE\SPACETIME.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
+          <div class="mx-3d dash-skeleton" data-draw="cube" data-source="geo_slim"></div>
+          <div class="mx-hint"><span>Drag to turn &middot; hover a point</span><span data-draw="window">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-ring">
+      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
+      <nav aria-label="Archive stories">
+        <a href="../">&#9668; The archive</a>
+        <span class="here">[ Footage ]</span>
+        <a href="../hospitals-in-the-frame/">Hospitals</a>
+        <a href="../what-gets-documented/">Words</a>
+        <a href="../who-keeps-the-record/">Keepers</a>
+        <a href="../documentation-outlook/">Outlook</a>
+        <a href="../hospitals-in-the-frame/">Next &#9658;</a>
+      </nav>
+    </div>
+    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>, all <b data-draw="total" data-source="chapter_stats" data-field="total">—</b> geolocated records with a posting date. Points are the archive's map positions; approximate ones gather on town centres. North and south are split by latitude bands at Gaza City, Deir al-Balah, Khan Younis and Rafah. The geolocation work so far covers the Gaza Strip. A record documents what was posted and when, not a verified finding.</p>
+  </div>
+</div>
+
+<script>
+  dash.calc('chapter_stats', {
+    inputs: ['geo_slim'],
+    fn: (geo_slim) => {
+      const reg = (lat) => lat >= 31.46 ? 'N' : lat >= 31.37 ? 'C' : lat >= 31.31 ? 'K' : 'R';
+      const share = (a, b, r) => {
+        let n = 0, t = 0;
+        for (const row of geo_slim) {
+          const d = String(row.date).slice(0, 7);
+          if (d.length !== 7 || d < a || d > b) continue;
+          t += 1;
+          if (reg(Number(row.lat)) === r) n += 1;
+        }
+        return t > 0 ? n / t : 0;
+      };
+      const count = (a, b, r) => {
+        let n = 0;
+        for (const row of geo_slim) {
+          const d = String(row.date).slice(0, 7);
+          if (d.length === 7 && d >= a && d <= b && reg(Number(row.lat)) === r) n += 1;
+        }
+        return n;
+      };
+      const exact = geo_slim.filter((r) => String(r.exact).toLowerCase() === 'true').length;
+      return {
+        total: geo_slim.length,
+        exact_share: exact / geo_slim.length,
+        q423_north: share('2023-10', '2023-12', 'N'),
+        h124_rafah: share('2024-01', '2024-05', 'R'),
+        rafah_may24: count('2024-05', '2024-05', 'R'),
+        q324_central: share('2024-06', '2024-09', 'C'),
+        q424_north: share('2024-10', '2024-12', 'N'),
+        oct24_north: count('2024-10', '2024-10', 'N'),
+        since_oct24_north: share('2024-10', '2026-12', 'N'),
+        since_jul24_rafah: share('2024-07', '2026-12', 'R'),
+      };
+    },
+    title: 'Chapter statistics',
+    description: 'Regional shares and counts of geolocated records in each chapter\u2019s months, by latitude band.',
+  });
+</script>
+
+<script>
+  const st = (f, fmt) => MX.text('chapter_stats', (d) => d[f], fmt);
+  dash.draw('c1', st('q423_north', MX.fmt.pct0));
+  dash.draw('c2', st('h124_rafah', MX.fmt.pct0));
+  dash.draw('c2b', st('rafah_may24', MX.fmt.n));
+  dash.draw('c3', st('q324_central', MX.fmt.pct0));
+  dash.draw('c4', st('q424_north', MX.fmt.pct0));
+  dash.draw('c4b', st('oct24_north', MX.fmt.n));
+  dash.draw('c5', st('since_oct24_north', MX.fmt.pct0));
+  dash.draw('c5b', st('since_jul24_rafah', MX.fmt.pct0));
+  dash.draw('c6', st('exact_share', MX.fmt.pct));
+  dash.draw('total', st('total', MX.fmt.n));
+</script>
+
+<script>
+  window.mxCube = { period: '2023-10:2023-12', cam: [0, 1.3, 0], listeners: [] };
+  dash.draw('window', {
+    mount(el) {
+      const f = () => { const [a, b] = window.mxCube.period.split(':'); el.textContent = MX.fmt.month(a) + ' \u2192 ' + MX.fmt.month(b); };
+      window.mxCube.listeners.push(f);
+      return f;
+    },
+    update(el, f) { f(); },
+    unmount(el, f) { window.mxCube.listeners = window.mxCube.listeners.filter((x) => x !== f); },
+  });
+
+  dash.draw('cube', {
+    mount(el) {
+      const m = { view: null, data: null, io: null };
+      m.io = MX.chapters('.mx-story .mx-ch', (sec) => {
+        const S = window.mxCube;
+        S.period = sec.dataset.period;
+        S.cam = [Number(sec.dataset.yaw), Number(sec.dataset.pitch), Number(sec.dataset.auto)];
+        S.listeners.forEach((f) => f());
+        if (m.view) { m.view.setView(S.cam[0], S.cam[1], S.cam[2]); m.view.redraw(); }
+      });
+      return m;
+    },
+    update(el, m) {
+      const g = dash.data('geo_slim');
+      el.classList.toggle('dash-skeleton', g.status === 'loading');
+      if (g.status !== 'ok') { if (m.view) { m.view.destroy(); m.view = null; } m.data = null; el.replaceChildren(); if (g.status === 'error') MX.err(el); return; }
+      if (m.view && m.data === g.data) { m.view.resize(); return; }
+      if (m.view) m.view.destroy();
+      el.replaceChildren();
+      m.data = g.data;
+      const C = MX.C;
+      const T0 = Date.parse('2023-10-01'), T1 = Date.parse('2026-12-01');
+      const recs = g.data
+        .map((r) => ({ lat: Number(r.lat), lon: Number(r.lon), d: String(r.date).slice(0, 10), p: Number(r.precision_level) || 1 }))
+        .filter((r) => isFinite(r.lat) && isFinite(r.lon) && r.d.length === 10)
+        .sort((a, b) => a.d.localeCompare(b.d));
+      const latE = d3.extent(recs, (r) => r.lat), lonE = d3.extent(recs, (r) => r.lon);
+      const kx = Math.cos(((latE[0] + latE[1]) / 2) * Math.PI / 180);
+      const latM = (latE[0] + latE[1]) / 2, lonM = (lonE[0] + lonE[1]) / 2;
+      const sc = 2 / Math.max((lonE[1] - lonE[0]) * kx, latE[1] - latE[0]);
+      const YB = -0.9, YT = 0.9;
+      const n = recs.length;
+      const X = new Float32Array(n), Y = new Float32Array(n), Z = new Float32Array(n), SX = new Float32Array(n), SY = new Float32Array(n);
+      const months = new Array(n);
+      recs.forEach((r, i) => {
+        X[i] = (r.lon - lonM) * kx * sc;
+        Z[i] = (r.lat - latM) * sc;
+        Y[i] = YB + (YT - YB) * (Date.parse(r.d) - T0) / (T1 - T0);
+        months[i] = r.d.slice(0, 7);
+      });
+      const hx = ((lonE[1] - lonE[0]) * kx * sc) / 2 + 0.05, hz = ((latE[1] - latE[0]) * sc) / 2 + 0.05;
+      const yAt = (iso) => YB + (YT - YB) * (Date.parse(iso) - T0) / (T1 - T0);
+      const lo = (mo) => { let a = 0, b = n; while (a < b) { const c = (a + b) >> 1; if (months[c] < mo) a = c + 1; else b = c; } return a; };
+      const hi = (mo) => { let a = 0, b = n; while (a < b) { const c = (a + b) >> 1; if (months[c] <= mo) a = c + 1; else b = c; } return a; };
+      const PREC = { 1: 'town or city', 2: 'neighbourhood or camp', 3: 'named building', 4: 'exact site' };
+      let shown = [0, 0];
+      const S = window.mxCube;
+      m.view = MX.view3d(el, {
+        label: 'Space-time cube: geolocated records over the map of Gaza, with time rising upward',
+        yaw: S.cam[0], pitch: S.cam[1], auto: S.cam[2], dist: 4.6, scale: 1.08, cy: 0.52,
+        height: (w) => window.innerWidth <= 760 ? Math.max(260, Math.min(window.innerHeight * 0.46, w * 0.95)) : Math.max(340, Math.min(window.innerHeight * 0.78, w * 1.05)),
+        render(ctx, P) {
+          const [a, b] = S.period.split(':');
+          const i0 = lo(a), i1 = hi(b);
+          shown = [i0, i1];
+          // frame of the cube
+          ctx.strokeStyle = C.line; ctx.lineWidth = 1; ctx.beginPath();
+          for (const y of [YB, YT]) {
+            MX.seg(ctx, P, [-hx, y, -hz], [hx, y, -hz]); MX.seg(ctx, P, [hx, y, -hz], [hx, y, hz]);
+            MX.seg(ctx, P, [hx, y, hz], [-hx, y, hz]); MX.seg(ctx, P, [-hx, y, hz], [-hx, y, -hz]);
+          }
+          for (const [x, z] of [[-hx, -hz], [hx, -hz], [hx, hz], [-hx, hz]]) MX.seg(ctx, P, [x, YB, z], [x, YT, z]);
+          ctx.stroke();
+          for (const yr of ['2024', '2025', '2026']) {
+            const y = yAt(yr + '-01-01');
+            ctx.strokeStyle = 'rgba(42,122,67,.45)'; ctx.beginPath();
+            MX.seg(ctx, P, [-hx, y, hz], [hx, y, hz]); MX.seg(ctx, P, [hx, y, hz], [hx, y, -hz]);
+            ctx.stroke();
+            MX.label(ctx, P, hx + 0.06, y, hz, yr, C.dim, 'left', 10);
+          }
+          // the whole record, faint
+          ctx.globalAlpha = 0.11; ctx.fillStyle = C.mid;
+          for (let i = 0; i < n; i++) { const p = P(X[i], Y[i], Z[i]); ctx.fillRect(p[0], p[1], 1.4, 1.4); }
+          // the period's slab
+          const ya = yAt(a + '-01'), yb = Math.min(YT, yAt(b + '-28'));
+          ctx.globalAlpha = 0.7; ctx.strokeStyle = C.amber; ctx.lineWidth = 1; ctx.beginPath();
+          for (const y of [ya, yb]) {
+            MX.seg(ctx, P, [-hx, y, -hz], [hx, y, -hz]); MX.seg(ctx, P, [hx, y, -hz], [hx, y, hz]);
+            MX.seg(ctx, P, [hx, y, hz], [-hx, y, hz]); MX.seg(ctx, P, [-hx, y, hz], [-hx, y, -hz]);
+          }
+          ctx.stroke();
+          // its shadow on the floor, then its points in the column
+          ctx.globalAlpha = 0.45; ctx.fillStyle = C.bright;
+          for (let i = i0; i < i1; i++) { const p = P(X[i], YB, Z[i]); ctx.fillRect(p[0], p[1], 1.5, 1.5); }
+          ctx.globalAlpha = 0.85; ctx.fillStyle = C.hot;
+          for (let i = i0; i < i1; i++) { const p = P(X[i], Y[i], Z[i]); SX[i] = p[0]; SY[i] = p[1]; ctx.fillRect(p[0] - 0.4, p[1] - 0.4, 1.8, 1.8); }
+          ctx.globalAlpha = 1;
+          MX.label(ctx, P, 0, YB, hz + 0.16, 'NORTH', C.bright, 'center', 11);
+          MX.label(ctx, P, 0, YB, -hz - 0.16, 'SOUTH \u00B7 RAFAH', C.bright, 'center', 11);
+          MX.label(ctx, P, -hx, YT + 0.08, -hz, 'TIME \u2191', C.dim, 'center', 10);
+        },
+        pick(px, py) {
+          let best = -1, bd = 81;
+          for (let i = shown[0]; i < shown[1]; i++) { const dx = SX[i] - px, dy = SY[i] - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = i; } }
+          if (best < 0) return null;
+          const r = recs[best];
+          return [d3.utcFormat('%-d %b %Y')(new Date(r.d + 'T00:00:00Z')), 'Placed by ' + PREC[Math.min(4, Math.max(1, r.p))]];
+        },
+      });
+    },
+    unmount(el, m) { if (m.view) m.view.destroy(); if (m.io) m.io.disconnect(); },
+  });
+</script>
+
+</div>
+<script>dash.__start();</script>
+</body>
+</html>

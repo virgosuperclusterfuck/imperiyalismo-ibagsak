@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hospitals in the Frame</title>
+<meta name="description" content="Nine hospitals whose names recur in the archive, standing where their footage was filmed.">
+<meta name="theme-color" content="#020704">
+<style>
+  html, body { margin: 0; background: #020704; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
+  @keyframes sk { to { background-position: -200% 0; } }
+  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>window.DASH_DATASETS = {"hospital": {"url": "data/hospital_slim.csv"}, "hosp_share": {"url": "data/hosp_share.csv"}};</script>
+<script src="dash-shim.js"></script>
+</head>
+<body>
+<noscript><p>This page needs JavaScript to draw its charts.</p></noscript>
+<div id="dash-root">
+<meta name="dash-one-writer">
+<link rel="stylesheet" href="mx.css">
+<script src="mx.js"></script>
+
+<div class="mx">
+  <div class="mx-in">
+    <header class="mx-hero">
+      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
+      <div class="mx-boot">
+        <p class="mx-prompt">search --captions "hospital" --with-location</p>
+        <h1>Hospitals in the frame</h1>
+        <p class="mx-lede">Hospitals are where people run when everything else has failed. In this archive they are also where the cameras keep returning: to the wounded arriving, to the generators going quiet, to the sieges.<span class="mx-cursor" aria-hidden="true"></span></p>
+      </div>
+    </header>
+
+    <section class="mx-ch">
+      <h2>One post in every few</h2>
+      <p>Across three years, about one in every <b class="mx-n" data-draw="oneIn" data-source="share_summary" data-field="one_in">—</b> records mentions a hospital. In <b class="mx-n" data-draw="peakM" data-source="share_summary" data-field="peak_month">—</b>, it was one in <b class="mx-n" data-draw="peakIn" data-source="share_summary" data-field="peak_one_in">—</b>.</p>
+      <div class="mx-win">
+        <div class="mx-win-bar"><span>C:\ARCHIVE\PULSE.SCOPE</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
+        <div class="mx-2d dash-skeleton" style="min-height: 200px" data-draw="scope" data-source="share_rows"></div>
+        <div class="mx-hint"><span>Share of each month's posts that mention a hospital</span><span>Hover for a month</span></div>
+      </div>
+      <p>The line jumps when a hospital is under siege. Each spike has a name.</p>
+    </section>
+
+    <section class="mx-ch">
+      <h2>Nine names</h2>
+      <p>Nine hospitals are named again and again. Each tower stands where its footage was placed on the map, and its height is how often its name appears. <b class="mx-n" data-draw="topName" data-source="towers" data-field="facility" data-row="0">—</b> stands tallest.</p>
+      <div class="mx-win">
+        <div class="mx-win-bar"><span>C:\ARCHIVE\HOSPITALS.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
+        <div class="mx-3d dash-skeleton" data-draw="towers3d" data-source="towers hospital"></div>
+        <div class="mx-hint"><span>Drag to turn &middot; hover a tower</span><span>Floor: every hospital post with a location</span></div>
+      </div>
+      <p>Al-Shifa in Gaza City, raided in November 2023 and again in March 2024. Nasser in Khan Younis, besieged in February 2024. Kamal Adwan in the north, the last working hospital there, stormed in December 2024. Their towers are the sieges, counted in posts.</p>
+    </section>
+
+    <section class="mx-ch">
+      <h2>How sure is the map?</h2>
+      <p>Of the hospital posts that can be placed at all, only <b class="mx-n" data-draw="exact" data-source="prec_summary" data-field="exact_share">—</b> are pinned to the exact building. The rest are placed by the town or camp their caption names.</p>
+      <pre class="mx-ascii" data-draw="precision" data-source="prec_dist" aria-label="Records by how precisely they are placed"></pre>
+      <p>So a tower's position is close, not exact. Its height, the number of posts that name it, is the steadier fact.</p>
+    </section>
+
+    <div class="mx-ring">
+      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
+      <nav aria-label="Archive stories">
+        <a href="../where-the-footage-points/">&#9668; Prev</a>
+        <a href="../">The archive</a>
+        <a href="../where-the-footage-points/">Footage</a>
+        <span class="here">[ Hospitals ]</span>
+        <a href="../what-gets-documented/">Words</a>
+        <a href="../who-keeps-the-record/">Keepers</a>
+        <a href="../documentation-outlook/">Outlook</a>
+        <a href="../what-gets-documented/">Next &#9658;</a>
+      </nav>
+    </div>
+    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. The pulse line searches every caption in the archive; the towers and precision use only the hospital posts that carry a location. Hospital names are matched as text in translated captions, so some spellings are missed. A record documents what was posted and when, not a verified finding.</p>
+  </div>
+</div>
+
+<script>
+  dash.calc('share_rows', {
+    inputs: ['hosp_share'],
+    fn: (hosp_share) => hosp_share.map((r) => ({ month: r.month, hospital: Number(r.hospital), total: Number(r.total), share: Number(r.total) > 0 ? Number(r.hospital) / Number(r.total) : 0 })),
+    title: 'Hospital share per month',
+    description: 'Hospital-mention records divided by all records, per posting month.',
+  });
+  dash.calc('share_summary', {
+    inputs: ['hosp_share'],
+    fn: (hosp_share) => {
+      let hs = 0, ts = 0, peak = null;
+      for (const r of hosp_share) {
+        const h = Number(r.hospital), t = Number(r.total);
+        hs += h; ts += t;
+        const s = t > 0 ? h / t : 0;
+        if (!peak || s > peak.s) peak = { m: r.month, s: s };
+      }
+      return { one_in: Math.round(ts / hs), peak_month: peak.m, peak_one_in: Math.round(1 / peak.s) };
+    },
+    title: 'Hospital share summary',
+    description: 'How many records per hospital mention, overall and in the peak month.',
+  });
+  dash.calc('towers', {
+    inputs: ['hospital'],
+    fn: (hospital) => {
+      const FACS = [
+        ['al-Shifa', 'shifa'], ['Nasser', '\\bnasser\\b'], ['Kamal Adwan', 'kamal\\s*adwan'],
+        ['al-Aqsa Martyrs', 'aqsa\\s*(martyrs|hospital)'], ['al-Ahli (Baptist)', 'ahli|baptist'],
+        ['al-Awda', 'awda'], ['Indonesian', 'indonesian\\s*hospital'],
+        ['European Gaza', 'european\\s*(gaza\\s*)?hospital'], ['Rantisi', 'rantisi'],
+      ];
+      const out = [];
+      for (const [name, pat] of FACS) {
+        const re = new RegExp(pat, 'i');
+        let n = 0, la = 0, lo = 0;
+        const byM = {};
+        for (const r of hospital) {
+          if (!re.test(String(r.caption))) continue;
+          n += 1; la += Number(r.lat); lo += Number(r.lon);
+          const mo = String(r.date).slice(0, 7);
+          if (mo.length === 7) byM[mo] = (byM[mo] || 0) + 1;
+        }
+        if (!n) continue;
+        const peak = Object.keys(byM).sort((a, b) => byM[b] - byM[a])[0] || '';
+        out.push({ facility: name, n: n, lat: la / n, lon: lo / n, peak_month: peak });
+      }
+      return out.sort((a, b) => b.n - a.n);
+    },
+    title: 'Named hospitals',
+    description: 'For nine hospitals: posts naming each, the average map position of those posts, and their busiest month.',
+  });
+  dash.calc('prec_dist', {
+    inputs: ['hospital'],
+    fn: (hospital) => {
+      const labels = { 1: 'Town or city named', 2: 'Neighbourhood or camp', 3: 'Building named, unverified', 4: 'Exact site, verified' };
+      const m = {};
+      for (const r of hospital) { const p = Math.min(Math.max(Number(r.precision_level) || 1, 1), 4); m[p] = (m[p] || 0) + 1; }
+      return [4, 3, 2, 1].map((p) => ({ level: p, label: labels[p], n: m[p] || 0 }));
+    },
+    title: 'Location precision',
+    description: 'Hospital posts with a location, by how precisely they are placed (4 or more grouped as exact).',
+  });
+  dash.calc('prec_summary', {
+    inputs: ['hospital'],
+    fn: (hospital) => ({ exact_share: hospital.filter((r) => String(r.exact).toLowerCase() === 'true').length / hospital.length }),
+    title: 'Exact-site share',
+    description: 'Share of hospital posts with a location that are pinned to an exact site.',
+  });
+</script>
+
+<script>
+  dash.draw('oneIn', MX.text('share_summary', (d) => d.one_in, MX.fmt.n));
+  dash.draw('peakIn', MX.text('share_summary', (d) => d.peak_one_in, MX.fmt.n));
+  dash.draw('peakM', MX.text('share_summary', (d) => d.peak_month, MX.fmt.month));
+  dash.draw('topName', MX.text('towers', (d) => d[0] && d[0].facility));
+  dash.draw('exact', MX.text('prec_summary', (d) => d.exact_share, MX.fmt.pct));
+  dash.draw('precision', (el) => {
+    const g = dash.data('prec_dist');
+    if (g.status !== 'ok') { el.textContent = ''; return; }
+    const tot = d3.sum(g.data, (r) => r.n) || 1;
+    el.textContent = g.data.map((r) => MX.pad(r.label.toUpperCase(), 28) + MX.bar(r.n / tot, 20) + ' ' + MX.lpad(MX.fmt.pct0(r.n / tot), 4)).join('\n');
+  });
+</script>
+
+<script>
+  dash.draw('scope', (el) => {
+    const g = dash.data('share_rows');
+    el.classList.toggle('dash-skeleton', g.status === 'loading');
+    el.replaceChildren();
+    if (g.status !== 'ok') { if (g.status === 'error') MX.err(el); return; }
+    const rows = g.data;
+    const C = MX.C;
+    const W = Math.max(el.clientWidth - 16, 260), H = 200, mt = 14, mb = 26, ml = 40, mr = 8;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleLinear([0, rows.length - 1], [ml, W - mr]);
+    const yMax = d3.max(rows, (r) => r.share) || 0.01;
+    const y = d3.scaleLinear([0, yMax * 1.1], [H - mb, mt]);
+    const gr = svg.append('g');
+    for (let i = 0; i <= 8; i++) gr.append('line').attr('x1', ml + (W - ml - mr) * i / 8).attr('x2', ml + (W - ml - mr) * i / 8).attr('y1', mt).attr('y2', H - mb).attr('stroke', C.line);
+    for (const t of y.ticks(3)) {
+      gr.append('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y(t)).attr('y2', y(t)).attr('stroke', C.line);
+      gr.append('text').attr('x', ml - 6).attr('y', y(t) + 3).attr('text-anchor', 'end').attr('font-size', 10).attr('fill', C.dim).attr('font-family', 'Courier New, monospace').text(MX.fmt.pct0(t));
+    }
+    const area = d3.area((r, i) => x(i), y(0), (r) => y(r.share));
+    svg.append('path').attr('d', area(rows)).attr('fill', C.bright).attr('opacity', 0.08);
+    const line = d3.line((r, i) => x(i), (r) => y(r.share));
+    svg.append('path').attr('d', line(rows)).attr('fill', 'none').attr('stroke', C.bright).attr('stroke-width', 4).attr('opacity', 0.18).attr('stroke-linejoin', 'round');
+    svg.append('path').attr('d', line(rows)).attr('fill', 'none').attr('stroke', C.bright).attr('stroke-width', 1.6).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+    rows.forEach((r, i) => {
+      if (r.month.slice(5) === '01') svg.append('text').attr('x', x(i)).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 10).attr('fill', C.dim).attr('font-family', 'Courier New, monospace').text(r.month.slice(0, 4));
+    });
+    const dot = svg.append('circle').attr('r', 3.5).attr('fill', C.hot).attr('opacity', 0);
+    const tip = MX.tip(el);
+    svg.on('pointermove', (ev) => {
+      const [px] = d3.pointer(ev, svg.node());
+      const i = Math.max(0, Math.min(rows.length - 1, Math.round(x.invert(px))));
+      const r = rows[i];
+      dot.attr('cx', x(i)).attr('cy', y(r.share)).attr('opacity', 1);
+      const k = el.clientWidth / W;
+      tip.show([MX.MONTH(r.month), MX.fmt.n(r.hospital) + ' hospital posts', MX.fmt.pct(r.share) + ' of the month'], x(i) * k, y(r.share) * k);
+    });
+    svg.on('pointerleave', () => { tip.hide(); dot.attr('opacity', 0); });
+  });
+</script>
+
+<script>
+  dash.draw('towers3d', {
+    mount() { return { view: null, key: null }; },
+    update(el, m) {
+      const gt = dash.data('towers'), gh = dash.data('hospital');
+      const loading = gt.status === 'loading' || gh.status === 'loading';
+      el.classList.toggle('dash-skeleton', loading);
+      if (gt.status !== 'ok' || gh.status !== 'ok') { if (m.view) { m.view.destroy(); m.view = null; } m.key = null; el.replaceChildren(); if (gt.status === 'error' || gh.status === 'error') MX.err(el); return; }
+      if (m.view && m.key === gt.data) { m.view.resize(); return; }
+      if (m.view) m.view.destroy();
+      el.replaceChildren();
+      m.key = gt.data;
+      const C = MX.C;
+      const pts = gh.data.map((r) => [Number(r.lat), Number(r.lon)]).filter((p) => isFinite(p[0]) && isFinite(p[1]));
+      const latE = d3.extent(pts, (p) => p[0]), lonE = d3.extent(pts, (p) => p[1]);
+      const kx = Math.cos(((latE[0] + latE[1]) / 2) * Math.PI / 180);
+      const latM = (latE[0] + latE[1]) / 2, lonM = (lonE[0] + lonE[1]) / 2;
+      const sc = 2.2 / Math.max((lonE[1] - lonE[0]) * kx, latE[1] - latE[0]);
+      const toX = (lon) => (lon - lonM) * kx * sc, toZ = (lat) => (lat - latM) * sc;
+      const floor = pts.map((p) => [toX(p[1]), toZ(p[0])]);
+      const max = d3.max(gt.data, (t) => t.n) || 1;
+      const T = gt.data.map((t) => ({ ...t, x: toX(t.lon), z: toZ(t.lat), h: 0.15 + 1.25 * t.n / max }));
+      for (let it = 0; it < 60; it++) for (let i = 0; i < T.length; i++) for (let j = i + 1; j < T.length; j++) {
+        const dx = T[j].x - T[i].x, dz = T[j].z - T[i].z, d = Math.hypot(dx, dz) || 0.001, min = 0.2;
+        if (d < min) { const k = (min - d) / 2 / d; T[i].x -= dx * k; T[i].z -= dz * k; T[j].x += dx * k; T[j].z += dz * k; }
+      }
+      const fw = 0.055;
+      m.view = MX.view3d(el, {
+        label: 'Towers for nine named hospitals, standing on a map of hospital footage',
+        yaw: 0.55, pitch: 0.72, sway: 0.6, dist: 4.4, scale: 1.0, cy: 0.62,
+        height: (w) => Math.max(300, Math.min(500, w * 0.62)),
+        render(ctx, P, st) {
+          MX.grid(ctx, P, -1.3, 1.3, -1.3, 1.3, 13, C.line);
+          ctx.globalAlpha = 0.32; ctx.fillStyle = C.mid;
+          for (const f of floor) { const p = P(f[0], 0, f[1]); ctx.fillRect(p[0], p[1], 1.5, 1.5); }
+          ctx.globalAlpha = 1;
+          const order = T.map((t) => ({ t, d: P(t.x, t.h / 2, t.z)[2] })).sort((a, b) => b.d - a.d);
+          for (const { t } of order) {
+            const hot = st.hover === t || t === T[0];
+            t.v = MX.box(ctx, P, t.x - fw, t.x + fw, 0, t.h, t.z - fw, t.z + fw, {
+              side: hot ? 'rgba(236,255,241,.3)' : 'rgba(49,194,94,.22)',
+              top: hot ? C.hot : C.bright,
+              edge: hot ? C.hot : 'rgba(67,255,120,.85)',
+            });
+            const p = MX.label(ctx, P, t.x, t.h + 0.09, t.z, t.facility.toUpperCase(), hot ? C.hot : C.bright, 'center', 10);
+            t.lx = p[0]; t.ly = p[1];
+          }
+        },
+        pick(px, py, st) {
+          let best = null, bd = 22;
+          for (const t of T) {
+            if (!t.v) continue;
+            const top = t.v[6], base = t.v[0];
+            const inCol = Math.abs(px - (top[0] + base[0]) / 2) < 12 && py > Math.min(top[1], base[1]) - 6 && py < Math.max(top[1], base[1]) + 6;
+            const d = inCol ? 0 : Math.min(Math.hypot(px - t.lx, py - t.ly), Math.hypot(px - top[0], py - top[1]));
+            if (d < bd) { bd = d; best = t; }
+          }
+          if (st.hover !== best) { st.hover = best; if (m.view) m.view.redraw(); }
+          return best ? [best.facility, MX.fmt.n(best.n) + ' posts name it', 'Busiest: ' + MX.fmt.month(best.peak_month)] : null;
+        },
+      });
+    },
+    unmount(el, m) { if (m.view) m.view.destroy(); },
+  });
+</script>
+
+</div>
+<script>dash.__start();</script>
+</body>
+</html>

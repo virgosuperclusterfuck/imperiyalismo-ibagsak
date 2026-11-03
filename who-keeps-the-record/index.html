@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Who Keeps the Record</title>
+<meta name="description" content="The channels and volunteers behind the archive, and why that shapes what you see.">
+<meta name="theme-color" content="#020704">
+<style>
+  html, body { margin: 0; background: #020704; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
+  @keyframes sk { to { background-position: -200% 0; } }
+  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>window.DASH_DATASETS = {"archives": {"url": "data/archives.csv"}, "coll_windows": {"url": "data/coll_windows.csv"}, "coll_monthly": {"url": "data/coll_monthly.csv"}, "monthly": {"url": "data/monthly.csv"}};</script>
+<script src="dash-shim.js"></script>
+</head>
+<body>
+<noscript><p>This page needs JavaScript to draw its charts.</p></noscript>
+<div id="dash-root">
+<meta name="dash-one-writer">
+<link rel="stylesheet" href="mx.css">
+<script src="mx.js"></script>
+
+<div class="mx">
+  <div class="mx-in">
+    <header class="mx-hero">
+      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
+      <div class="mx-boot">
+        <p class="mx-prompt">ls --collections --sort size</p>
+        <h1>Who keeps the record</h1>
+        <p class="mx-lede">An archive like this does not collect itself. Every record here was rescued, channel by channel, by people who noticed that posts were vanishing and decided to keep them.<span class="mx-cursor" aria-hidden="true"></span></p>
+      </div>
+    </header>
+
+    <section class="mx-ch">
+      <h2>Not one feed but many rescues</h2>
+      <p>The archive is made of <b class="mx-n" data-draw="nColl" data-source="platform_split" data-field="collections" data-row="0">—</b> separate collections: Telegram channels, TikTok accounts, a Discord server, each copied out and preserved on its own before it could disappear.</p>
+      <p>Telegram alone carries <b class="mx-n" data-draw="tg" data-source="platform_split" data-field="telegram_share" data-row="0">—</b> of everything. It was where Gaza's journalists and local channels posted first, and fastest.</p>
+    </section>
+
+    <section class="mx-ch">
+      <h2>A city of rescues</h2>
+      <p>Here every row is one collection, and every tower one month of it. The back row gathers all the smaller collections together. A row that suddenly stops is a channel that went quiet, was banned, or whose rescue covered a fixed window of time.</p>
+      <div class="mx-win">
+        <div class="mx-win-bar"><span>C:\ARCHIVE\COLLECTIONS.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
+        <div class="mx-3d dash-skeleton" data-draw="city" data-source="city"></div>
+        <div class="mx-hint"><span>Drag to turn &middot; hover a tower</span><span>Six largest collections &middot; all others at the back</span></div>
+      </div>
+      <p>The largest single collection holds <b class="mx-n" data-draw="top" data-source="top_coll" data-field="share">—</b> of the whole archive. When its row ends, a big part of the record ends with it.</p>
+    </section>
+
+    <section class="mx-ch">
+      <h2>Why it matters</h2>
+      <p>Today only <b class="mx-n" data-draw="act" data-source="active" data-field="active">—</b> of the <b class="mx-n" data-draw="actT" data-source="active" data-field="total">—</b> collections are still growing.</p>
+      <p>So when the record thins, ask first: did events thin, or did a channel go dark? Every chart in this archive carries that question, and the honest answer is often both.</p>
+      <div class="mx-warn"><strong>!! NOTICE !!</strong> Some records have been withdrawn from the archive since they were saved. Withdrawn records do not appear anywhere in these pages.</div>
+    </section>
+
+    <div class="mx-ring">
+      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
+      <nav aria-label="Archive stories">
+        <a href="../what-gets-documented/">&#9668; Prev</a>
+        <a href="../">The archive</a>
+        <a href="../where-the-footage-points/">Footage</a>
+        <a href="../hospitals-in-the-frame/">Hospitals</a>
+        <a href="../what-gets-documented/">Words</a>
+        <span class="here">[ Keepers ]</span>
+        <a href="../documentation-outlook/">Outlook</a>
+        <a href="../documentation-outlook/">Next &#9658;</a>
+      </nav>
+    </div>
+    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Platforms are read from each collection's name. A collection counts as still growing when its newest record is within 60 days of the newest record in the archive. Dates are posting dates as preserved from each source. A record documents what was posted and when, not a verified finding.</p>
+  </div>
+</div>
+
+<script>
+  dash.calc('platform_split', {
+    inputs: ['archives'],
+    fn: (archives) => {
+      let total = 0, tg = 0;
+      for (const a of archives) { const c = Number(a.clips); total += c; if (String(a.name).toLowerCase().includes('telegram')) tg += c; }
+      return [{ collections: archives.length, telegram_share: tg / total }];
+    },
+    title: 'Records by platform',
+    description: 'How many collections there are, and the share of records from collections named as Telegram.',
+  });
+  dash.calc('top_coll', {
+    inputs: ['archives'],
+    fn: (archives) => {
+      let total = 0, best = null;
+      for (const a of archives) { const c = Number(a.clips); total += c; if (!best || c > best.clips) best = { name: a.name, clips: c }; }
+      return { name: best.name, share: best.clips / total };
+    },
+    title: 'Largest collection',
+    description: 'The collection with the most records and its share of the archive.',
+  });
+  dash.calc('active', {
+    inputs: ['coll_windows'],
+    fn: (coll_windows) => {
+      const lasts = coll_windows.map((r) => Date.parse(r.last)).filter((t) => isFinite(t));
+      const newest = Math.max(...lasts);
+      return { active: lasts.filter((t) => newest - t <= 60 * 86400000).length, total: coll_windows.length };
+    },
+    title: 'Collections still growing',
+    description: 'Collections whose newest record is within 60 days of the newest record anywhere in the archive.',
+  });
+  dash.calc('city', {
+    inputs: ['coll_monthly', 'monthly'],
+    fn: (coll_monthly, monthly) => {
+      const sums = {};
+      for (const r of coll_monthly) sums[r.collection] = (sums[r.collection] || 0) + Number(r.n);
+      const top = Object.keys(sums).sort((a, b) => sums[b] - sums[a]).slice(0, 6);
+      const out = [];
+      for (const m of monthly) {
+        let covered = 0;
+        for (const r of coll_monthly) {
+          if (r.month !== m.month || !top.includes(r.collection)) continue;
+          covered += Number(r.n);
+          out.push({ collection: r.collection, rank: top.indexOf(r.collection), month: m.month, n: Number(r.n) });
+        }
+        out.push({ collection: 'All other collections', rank: 6, month: m.month, n: Math.max(0, Number(m.total) - covered) });
+      }
+      return out;
+    },
+    title: 'Records by collection and month',
+    description: 'Monthly records for the six largest collections, with everything else that month grouped together.',
+  });
+</script>
+
+<script>
+  dash.draw('nColl', MX.text('platform_split', (d) => d[0].collections, MX.fmt.n));
+  dash.draw('tg', MX.text('platform_split', (d) => d[0].telegram_share, MX.fmt.pct0));
+  dash.draw('top', MX.text('top_coll', (d) => d.share, MX.fmt.pct0));
+  dash.draw('act', MX.text('active', (d) => d.active, MX.fmt.n));
+  dash.draw('actT', MX.text('active', (d) => d.total, MX.fmt.n));
+</script>
+
+<script>
+  dash.draw('city', {
+    mount() { return { view: null, key: null }; },
+    update(el, m) {
+      const g = dash.data('city');
+      el.classList.toggle('dash-skeleton', g.status === 'loading');
+      if (g.status !== 'ok') { if (m.view) { m.view.destroy(); m.view = null; } m.key = null; el.replaceChildren(); if (g.status === 'error') MX.err(el); return; }
+      if (m.view && m.key === g.data) { m.view.resize(); return; }
+      if (m.view) m.view.destroy();
+      el.replaceChildren();
+      m.key = g.data;
+      const C = MX.C;
+      const months = Array.from(new Set(g.data.map((r) => r.month))).sort();
+      const names = [];
+      for (const r of g.data) names[r.rank] = r.collection;
+      const max = d3.max(g.data, (r) => r.n) || 1;
+      const X0 = -1.7, X1 = 1.7, step = (X1 - X0) / months.length, bw = step * 0.34;
+      const Zf = -0.9, Zb = 0.9, zstep = (Zb - Zf) / Math.max(1, names.length - 1), bd = Math.min(bw * 1.4, zstep * 0.32);
+      const bars = g.data.filter((r) => r.n > 0).map((r) => ({ ...r, x: X0 + step * (months.indexOf(r.month) + 0.5), z: Zf + zstep * r.rank, h: 1.15 * r.n / max }));
+      const short = (s) => { s = String(s); const m = s.match(/^(.*?)\s*\((.*)\)\s*$/); let t = m ? m[1] + ' \u00B7 ' + m[2].split(',')[0] : s; t = t.trim(); return t.length > 30 ? t.slice(0, 29) + '\u2026' : t; };
+      m.view = MX.view3d(el, {
+        label: 'Three-dimensional city of monthly records for each collection',
+        yaw: -0.38, pitch: 0.55, sway: 0.4, dist: 4.8, scale: 0.92, cy: 0.6,
+        height: (w) => Math.max(300, Math.min(500, w * 0.6)),
+        render(ctx, P, st) {
+          MX.grid(ctx, P, X0, X1, Zf - 0.15, Zb + 0.15, 14, C.line);
+          const order = bars.map((b) => ({ b, d: P(b.x, b.h / 2, b.z)[2] })).sort((a, c) => c.d - a.d);
+          for (const { b } of order) {
+            const other = b.rank === 6, hot = st.hover === b;
+            b.v = MX.box(ctx, P, b.x - bw / 2, b.x + bw / 2, 0, b.h, b.z - bd / 2, b.z + bd / 2, {
+              side: hot ? 'rgba(236,255,241,.35)' : other ? 'rgba(42,122,67,.14)' : 'rgba(49,194,94,.2)',
+              top: hot ? C.hot : other ? 'rgba(42,122,67,.6)' : 'rgba(67,255,120,.7)',
+              edge: hot ? C.hot : other ? 'rgba(42,122,67,.55)' : 'rgba(67,255,120,.6)',
+            });
+          }
+          names.forEach((nm, i) => {
+            const p = P(X1 + 0.08, 0, Zf + zstep * i);
+            const s = short(nm).toUpperCase();
+            ctx.font = '9px "Courier New", ui-monospace, monospace';
+            const w = ctx.measureText(s).width;
+            ctx.fillStyle = i === 6 ? C.dim : C.mid; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+            ctx.fillText(s, Math.min(p[0], st.w - w - 4), p[1]);
+          });
+          for (const yr of ['2024', '2025', '2026']) {
+            const j = months.indexOf(yr + '-01');
+            if (j >= 0) MX.label(ctx, P, X0 + step * (j + 0.5), 0, Zf - 0.3, yr, C.dim, 'center', 10);
+          }
+        },
+        pick(px, py, st) {
+          let best = null, bdist = 14;
+          for (const b of bars) {
+            if (!b.v) continue;
+            const tx = (b.v[4][0] + b.v[6][0]) / 2, ty = (b.v[4][1] + b.v[6][1]) / 2;
+            const bx = (b.v[0][0] + b.v[2][0]) / 2, by = (b.v[0][1] + b.v[2][1]) / 2;
+            const t = Math.max(0, Math.min(1, ((px - bx) * (tx - bx) + (py - by) * (ty - by)) / (((tx - bx) ** 2 + (ty - by) ** 2) || 1)));
+            const d = Math.hypot(px - (bx + t * (tx - bx)), py - (by + t * (ty - by)));
+            if (d < bdist) { bdist = d; best = b; }
+          }
+          if (st.hover !== best) { st.hover = best; if (m.view) m.view.redraw(); }
+          return best ? [short(best.collection), MX.fmt.month(best.month), MX.fmt.n(best.n) + ' records'] : null;
+        },
+      });
+    },
+    unmount(el, m) { if (m.view) m.view.destroy(); },
+  });
+</script>
+
+</div>
+<script>dash.__start();</script>
+</body>
+</html>

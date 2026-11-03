@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What Gets Documented</title>
+<meta name="description" content="How the words in captions changed: children, aid, famine.">
+<meta name="theme-color" content="#020704">
+<style>
+  html, body { margin: 0; background: #020704; }
+  .dash-skeleton { min-height: 220px; background: linear-gradient(90deg, #051109 0%, #0a2212 50%, #051109 100%); background-size: 200% 100%; }
+  @media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: sk 1.6s linear infinite; } }
+  @keyframes sk { to { background-position: -200% 0; } }
+  noscript p { color: #bff5cc; font-family: "Courier New", monospace; padding: 24px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>window.DASH_DATASETS = {"kw_monthly": {"url": "data/kw_monthly.csv"}, "monthly": {"url": "data/monthly.csv"}};</script>
+<script src="dash-shim.js"></script>
+</head>
+<body>
+<noscript><p>This page needs JavaScript to draw its charts.</p></noscript>
+<div id="dash-root">
+<meta name="dash-one-writer">
+<link rel="stylesheet" href="mx.css">
+<script src="mx.js"></script>
+
+<div class="mx">
+  <div class="mx-in">
+    <header class="mx-hero">
+      <canvas class="mx-rain" data-draw="rain" aria-hidden="true"></canvas>
+      <div class="mx-boot">
+        <p class="mx-prompt">grep --captions --by-month children aid famine ...</p>
+        <h1>What gets documented</h1>
+        <p class="mx-lede">The words people write under their footage are a record of attention: each month, what felt most necessary to say. Twelve of those words, laid out as a landscape, show how the subject of the record shifted across three years. Scroll, and the ridges light up one story at a time.<span class="mx-cursor" aria-hidden="true"></span></p>
+      </div>
+    </header>
+
+    <div class="mx-story">
+      <div>
+        <section class="mx-ch" data-focus="">
+          <p class="mx-when">How to read it</p>
+          <h2>A landscape of words</h2>
+          <p>Each ridge is one word. Time runs left to right, from October 2023 to now. The height of a ridge is how much of that month's footage carried the word in its caption.</p>
+          <p>A tall peak means a month when that word was everywhere.</p>
+        </section>
+        <section class="mx-ch" data-focus="children">
+          <p class="mx-when">Children</p>
+          <h2>The word that never falls flat</h2>
+          <p>No word in the archive is as constant. At its height, in <b class="mx-n" data-draw="chM" data-source="kw_peaks" data-where="keyword=children" data-field="peak_month">—</b>, <b class="mx-n" data-draw="chS" data-source="kw_peaks" data-where="keyword=children" data-field="peak_share">—</b> of everything posted mentioned children.</p>
+          <p>It is the tallest ridge in the landscape, and it never drops to the floor.</p>
+        </section>
+        <section class="mx-ch" data-focus="aid,famine">
+          <p class="mx-when">Aid &amp; famine</p>
+          <h2>Two words rise together</h2>
+          <p>In the first year, "aid" and "famine" barely appear. Then they climb side by side, and peak in the same month, <b class="mx-n" data-draw="fM" data-source="kw_peaks" data-where="keyword=famine" data-field="peak_month">—</b>: the month a famine was formally confirmed in Gaza City.</p>
+          <p>That month, <b class="mx-n" data-draw="aS" data-source="kw_peaks" data-where="keyword=aid" data-field="peak_share">—</b> of posts spoke of aid and <b class="mx-n" data-draw="fS" data-source="kw_peaks" data-where="keyword=famine" data-field="peak_share">—</b> of famine.</p>
+        </section>
+        <section class="mx-ch" data-focus="journalist">
+          <p class="mx-when">Journalists</p>
+          <h2>When the filmers become the story</h2>
+          <p>Many of the people behind these cameras were journalists. The word itself peaks in <b class="mx-n" data-draw="jM" data-source="kw_peaks" data-where="keyword=journalist" data-field="peak_month">—</b>, at <b class="mx-n" data-draw="jS" data-source="kw_peaks" data-where="keyword=journalist" data-field="peak_share">—</b> of all posts: a month when their own names filled the captions.</p>
+        </section>
+        <section class="mx-ch" data-focus="hospital,ambulance">
+          <p class="mx-when">Hospitals &amp; ambulances</p>
+          <h2>The same month, twice</h2>
+          <p>"Hospital" and "ambulance" crest together in <b class="mx-n" data-draw="hM" data-source="kw_peaks" data-where="keyword=hospital" data-field="peak_month">—</b>, the end of the siege of Kamal Adwan, when <b class="mx-n" data-draw="hS" data-source="kw_peaks" data-where="keyword=hospital" data-field="peak_share">—</b> of all posts named a hospital.</p>
+        </section>
+        <section class="mx-ch" data-focus="*">
+          <p class="mx-when">A caution</p>
+          <h2>What a word search can't see</h2>
+          <p>This is plain text search on translated captions. "Hunger" is not counted as "famine"; a child named in a caption is not counted as "children". The ridges show where attention went, not how much happened.</p>
+        </section>
+      </div>
+      <div class="mx-sticky">
+        <div class="mx-win">
+          <div class="mx-win-bar"><span>C:\ARCHIVE\ATTENTION.3D</span><span aria-hidden="true">_ &#9633; &#215;</span></div>
+          <div class="mx-3d dash-skeleton" data-draw="ridges" data-source="kw_share"></div>
+          <div class="mx-hint"><span>Drag to tilt &middot; hover a ridge</span><span>Height = share of the month's posts</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-ring">
+      <p class="mx-ring-t">&lt;&lt; The archive ring &gt;&gt;</p>
+      <nav aria-label="Archive stories">
+        <a href="../hospitals-in-the-frame/">&#9668; Prev</a>
+        <a href="../">The archive</a>
+        <a href="../where-the-footage-points/">Footage</a>
+        <a href="../hospitals-in-the-frame/">Hospitals</a>
+        <span class="here">[ Words ]</span>
+        <a href="../who-keeps-the-record/">Keepers</a>
+        <a href="../documentation-outlook/">Outlook</a>
+        <a href="../who-keeps-the-record/">Next &#9658;</a>
+      </nav>
+    </div>
+    <p class="mx-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide</a>. Each month's share is the records whose caption contains the word, divided by all records posted that month; one record can carry several words. Months are shaped partly by which channels were being saved at the time. A record documents what was posted and when, not a verified finding.</p>
+  </div>
+</div>
+
+<script>
+  dash.calc('kw_share', {
+    inputs: ['kw_monthly', 'monthly'],
+    fn: (kw_monthly, monthly) => {
+      const tot = {};
+      for (const r of monthly) tot[r.month] = Number(r.total);
+      return kw_monthly.map((r) => ({ keyword: r.keyword, month: r.month, n: Number(r.n), share: tot[r.month] > 0 ? Number(r.n) / tot[r.month] : 0 }));
+    },
+    title: 'Word share per month',
+    description: 'Records mentioning each word divided by all records that month.',
+  });
+  dash.calc('kw_peaks', {
+    inputs: ['kw_share'],
+    fn: (kw_share) => {
+      const best = {};
+      for (const r of kw_share) if (!best[r.keyword] || r.share > best[r.keyword].peak_share) best[r.keyword] = { keyword: r.keyword, peak_month: r.month, peak_share: r.share };
+      return Object.values(best);
+    },
+    title: 'Peak month per word',
+    description: 'The month each word reached its highest share of posts, and that share.',
+  });
+</script>
+
+<script>
+  const pk = (kw, f, fmt) => MX.text('kw_peaks', (rows) => { const r = rows.find((x) => x.keyword === kw); return r ? r[f] : null; }, fmt);
+  dash.draw('chM', pk('children', 'peak_month', MX.fmt.month));
+  dash.draw('chS', pk('children', 'peak_share', MX.fmt.pct));
+  dash.draw('fM', pk('famine', 'peak_month', MX.fmt.month));
+  dash.draw('fS', pk('famine', 'peak_share', MX.fmt.pct));
+  dash.draw('aS', pk('aid', 'peak_share', MX.fmt.pct));
+  dash.draw('jM', pk('journalist', 'peak_month', MX.fmt.month));
+  dash.draw('jS', pk('journalist', 'peak_share', MX.fmt.pct));
+  dash.draw('hM', pk('hospital', 'peak_month', MX.fmt.month));
+  dash.draw('hS', pk('hospital', 'peak_share', MX.fmt.pct));
+</script>
+
+<script>
+  window.mxFocus = { set: [], cb: null };
+  dash.draw('ridges', {
+    mount() {
+      const m = { view: null, key: null };
+      m.io = MX.chapters('.mx-story .mx-ch', (sec) => {
+        const f = sec.dataset.focus || '';
+        window.mxFocus.set = f === '*' ? ['*'] : f ? f.split(',') : [];
+        if (m.view) m.view.redraw();
+      });
+      return m;
+    },
+    update(el, m) {
+      const g = dash.data('kw_share');
+      el.classList.toggle('dash-skeleton', g.status === 'loading');
+      if (g.status !== 'ok') { if (m.view) { m.view.destroy(); m.view = null; } m.key = null; el.replaceChildren(); if (g.status === 'error') MX.err(el); return; }
+      if (m.view && m.key === g.data) { m.view.resize(); return; }
+      if (m.view) m.view.destroy();
+      el.replaceChildren();
+      m.key = g.data;
+      const C = MX.C;
+      const months = Array.from(new Set(g.data.map((r) => r.month))).sort();
+      const byKw = d3.group(g.data, (r) => r.keyword);
+      const kws = Array.from(byKw.keys()).sort((a, b) => d3.sum(byKw.get(b), (r) => r.n) - d3.sum(byKw.get(a), (r) => r.n));
+      const yMax = d3.max(g.data, (r) => r.share) || 0.01;
+      const NX = months.length, X0 = -1.2, X1 = 1.2, Zb = 1.0, Zf = -1.0;
+      const ridges = kws.map((kw, i) => {
+        const vals = new Map(byKw.get(kw).map((r) => [r.month, r]));
+        const z = Zb + (Zf - Zb) * i / Math.max(1, kws.length - 1);
+        return { kw, z, pts: months.map((mo, j) => ({ month: mo, x: X0 + (X1 - X0) * j / (NX - 1), y: 1.05 * ((vals.get(mo) || {}).share || 0) / yMax, r: vals.get(mo) })) };
+      });
+      const focused = (kw) => { const f = window.mxFocus.set; return f[0] === '*' ? false : f.includes(kw); };
+      m.view = MX.view3d(el, {
+        label: 'Ridgeline landscape of twelve caption words over time',
+        yaw: 0, pitch: 0.7, sway: 0.25, dist: 6, scale: 1.55, cy: 0.6, minPitch: 0.1, maxPitch: 1.2,
+        height: (w) => window.innerWidth <= 760 ? Math.max(250, Math.min(window.innerHeight * 0.44, w * 0.8)) : Math.max(340, Math.min(window.innerHeight * 0.75, w * 0.95)),
+        render(ctx, P, st) {
+          const any = window.mxFocus.set.length > 0 && window.mxFocus.set[0] !== '*';
+          const order = ridges.map((r) => ({ r, d: P(0, 0, r.z)[2] })).sort((a, b) => b.d - a.d);
+          for (const { r } of order) {
+            const on = focused(r.kw) || st.hover === r.kw;
+            const sp = r.pts.map((p) => P(p.x, p.y, r.z));
+            r.sp = sp;
+            const b0 = P(X1, 0, r.z), b1 = P(X0, 0, r.z);
+            ctx.beginPath();
+            ctx.moveTo(sp[0][0], sp[0][1]);
+            for (let i = 1; i < sp.length; i++) ctx.lineTo(sp[i][0], sp[i][1]);
+            ctx.lineTo(b0[0], b0[1]); ctx.lineTo(b1[0], b1[1]); ctx.closePath();
+            ctx.fillStyle = on ? 'rgba(10,40,20,.96)' : 'rgba(2,7,4,.94)';
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(sp[0][0], sp[0][1]);
+            for (let i = 1; i < sp.length; i++) ctx.lineTo(sp[i][0], sp[i][1]);
+            ctx.strokeStyle = on ? C.hot : any ? 'rgba(42,122,67,.75)' : C.bright;
+            ctx.lineWidth = on ? 2 : 1.2;
+            ctx.stroke();
+            const lp = P(X0 - 0.06, 0.02, r.z);
+            ctx.font = (on ? 'bold 11px' : '10px') + ' "Courier New", ui-monospace, monospace';
+            ctx.fillStyle = on ? C.hot : any ? C.dim : C.mid;
+            ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+            const lw = ctx.measureText(r.kw.toUpperCase()).width;
+            ctx.fillText(r.kw.toUpperCase(), Math.max(lw + 3, lp[0]), lp[1]);
+            ctx.textAlign = 'left';
+          }
+          for (const yr of ['2024', '2025', '2026']) {
+            const j = months.indexOf(yr + '-01');
+            if (j >= 0) MX.label(ctx, P, X0 + (X1 - X0) * j / (NX - 1), 0, Zf - 0.2, yr, C.mid, 'center', 10);
+          }
+        },
+        pick(px, py, st) {
+          let best = null, bd = 196;
+          for (const r of ridges) {
+            if (!r.sp) continue;
+            for (let i = 0; i < r.sp.length; i++) { const dx = r.sp[i][0] - px, dy = r.sp[i][1] - py, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = { r, p: r.pts[i] }; } }
+          }
+          const kw = best ? best.r.kw : null;
+          if (st.hover !== kw) { st.hover = kw; if (m.view) m.view.redraw(); }
+          if (!best) return null;
+          const rr = best.p.r || { n: 0, share: 0 };
+          return ['"' + best.r.kw + '" \u00B7 ' + MX.fmt.month(best.p.month), MX.fmt.n(rr.n) + ' posts', MX.fmt.pct(rr.share) + ' of the month'];
+        },
+      });
+    },
+    unmount(el, m) { if (m.view) m.view.destroy(); if (m.io) m.io.disconnect(); },
+  });
+</script>
+
+</div>
+<script>dash.__start();</script>
+</body>
+</html>
