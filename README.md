@@ -13,6 +13,7 @@ files; the only outside scripts are d3 v7 from cdnjs and, on the timelapse page,
 | `who-keeps-the-record/` | 3D city of the source collections |
 | `documentation-outlook/` | A plain six-month guess, with its limits |
 | `the-map-as-it-filled/` | 3D timelapse of all geolocated records, with a hospital layer |
+| `what-the-record-shows/` | Takeaway: the narrative, its impacts, and who can use it |
 
 ## Publish on GitHub Pages
 1. Copy everything in this folder to the root of your repository (keep the folder structure).

@@ -34,7 +34,7 @@ jobs:
              mkdir -p _site
              cp index.html mx.css mx.js dash-shim.js _site/
              touch _site/.nojekyll
-             cp -r data where-the-footage-points hospitals-in-the-frame what-gets-documented who-keeps-the-record documentation-outlook the-numbers the-map-as-it-filled _site/
+             cp -r data where-the-footage-points hospitals-in-the-frame what-gets-documented who-keeps-the-record documentation-outlook the-numbers the-map-as-it-filled what-the-record-shows _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
