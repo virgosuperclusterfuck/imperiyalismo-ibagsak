@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this dashboard, please cite it, and credit the underlying data to Archive Genocide (archivegenocide.com)."
+title: "Gaza Documentation Archive — dashboard"
+type: software
+authors:
+  - alias: virgosuperclusterfuck
+repository-code: "https://github.com/virgosuperclusterfuck/imperiyalismo-ibagsak"
+url: "https://virgosuperclusterfuck.github.io/imperiyalismo-ibagsak/"
+license: MIT
+date-released: "2026-11-02"
+keywords:
+  - Gaza
+  - West Bank
+  - documentation
+  - open data
+  - dashboard
+  - d3
+references:
+  - type: database
+    title: "Archive Genocide"
+    url: "https://archivegenocide.com/"
+    authors:
+      - name: "Archive Genocide"

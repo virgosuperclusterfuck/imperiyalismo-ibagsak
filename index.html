@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gaza Documentation Archive</title>
+  <meta name="description" content="A dashboard of the Archive Genocide records: footage and photos posted from Gaza and the West Bank since October 2023, by month, source collection, caption theme and map location.">
+  <meta property="og:title" content="Gaza Documentation Archive — dashboard">
+  <meta property="og:description" content="Records posted from Gaza and the West Bank since October 2023, by month, source, caption theme and location. Data: Archive Genocide.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://virgosuperclusterfuck.github.io/imperiyalismo-ibagsak/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563a8'/%3E%3Crect x='7' y='16' width='4' height='9' rx='1' fill='white'/%3E%3Crect x='14' y='10' width='4' height='15' rx='1' fill='white'/%3E%3Crect x='21' y='6' width='4' height='19' rx='1' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#dash-root">Skip to dashboard</a>
+
+  <header class="topbar">
+    <span>Data snapshot · Archive Genocide</span>
+    <nav aria-label="Site">
+      <a href="https://github.com/virgosuperclusterfuck/imperiyalismo-ibagsak#readme">About</a>
+      <a href="https://github.com/virgosuperclusterfuck/imperiyalismo-ibagsak">GitHub</a>
+      <button id="theme-toggle" class="theme-btn" type="button" aria-label="Switch theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="dash-root">
+    <div class="ag-page">
+      <div class="ag-head">
+        <h1>Gaza &amp; West Bank documentation records</h1>
+        <p>The archive holds <b data-draw="hClips">—</b> records
+          from <b data-draw="hColl">—</b> source collections,
+          of which <b data-draw="hGeo">—</b> are placed on a map.
+          A record documents what was posted and when — footage with its caption, source and time — not a verified finding.</p>
+      </div>
+
+      <section class="ag-tiles" aria-label="Headline figures">
+        <div class="ag-card ag-tile">
+          <p class="ag-kicker">Records in the archive</p>
+          <div class="ag-num" data-draw="tClips">—</div>
+          <div class="ag-sub">videos and photos, Oct 2023 onward</div>
+        </div>
+        <div class="ag-card ag-tile">
+          <p class="ag-kicker">Geolocated</p>
+          <div class="ag-num" data-draw="tGeo">—</div>
+          <div class="ag-sub"><b data-draw="tGeoShare">—</b> of all records</div>
+        </div>
+        <div class="ag-card ag-tile">
+          <p class="ag-kicker">Videos</p>
+          <div class="ag-num" data-draw="tVideo">—</div>
+          <div class="ag-sub"><b data-draw="tVideoShare">—</b> of records with a posting date</div>
+        </div>
+        <div class="ag-card ag-tile">
+          <p class="ag-kicker">Withdrawn</p>
+          <div class="ag-num" data-draw="tWithdrawn">—</div>
+          <div class="ag-sub">removed from the archive on request</div>
+        </div>
+      </section>
+
+      <section class="ag-card" aria-labelledby="h-monthly">
+        <h2 id="h-monthly">Records posted per month</h2>
+        <p class="ag-note">Bars count all records by posting month; the line counts those with a map location. Posting time, not necessarily event time.</p>
+        <div class="ag-chart dash-skeleton" style="min-height: 300px" data-draw="monthlyChart" role="img" aria-label="Bar chart of records posted per month, with a line for geolocated records"></div>
+      </section>
+
+      <div class="ag-grid2">
+        <section class="ag-card" aria-labelledby="h-arch">
+          <h2 id="h-arch">Largest source collections</h2>
+          <p class="ag-note">Top 12 of the collections the records came from, by record count.</p>
+          <div class="ag-bars dash-skeleton" style="min-height: 300px" data-draw="archBars"></div>
+        </section>
+        <section class="ag-card" aria-labelledby="h-kw">
+          <h2 id="h-kw">Caption themes</h2>
+          <p class="ag-note">Records whose caption mentions each term (captions are translated to English, so terms match across languages). One record can match several terms.</p>
+          <div class="ag-bars dash-skeleton" style="min-height: 300px" data-draw="kwBars"></div>
+        </section>
+      </div>
+
+      <section class="ag-card" aria-labelledby="h-focus">
+        <h2 id="h-focus">Focus: geolocated records mentioning hospitals</h2>
+        <p class="ag-note">A fixed slice of <b data-draw="fCount">—</b> records whose captions mention "hospital" and that carry a map location; <b data-draw="fExact">—</b> of them are geolocated to an exact site. The full slice is downloadable below.</p>
+        <div class="ag-grid2">
+          <div>
+            <h2>Per month</h2>
+            <div class="ag-chart dash-skeleton" style="min-height: 220px" data-draw="hospMonthly" role="img" aria-label="Bar chart of hospital-slice records per month"></div>
+          </div>
+          <div>
+            <h2>Location precision</h2>
+            <p class="ag-note">How precisely each record is placed on the map.</p>
+            <div class="ag-bars dash-skeleton" style="min-height: 180px" data-draw="precBars"></div>
+          </div>
+        </div>
+        <h2 style="margin-top: var(--cds-gap-md)">Plotted by coordinates</h2>
+        <p class="ag-note">Each dot is one record at its archive map position. Accent dots are exact sites; muted dots carry only town, neighbourhood or named-building precision.</p>
+        <div class="ag-chart dash-skeleton" style="min-height: 320px" data-draw="geoScatter" role="img" aria-label="Scatter plot of hospital-slice records by latitude and longitude"></div>
+      </section>
+
+      <section class="ag-card" aria-labelledby="h-table">
+        <h2 id="h-table">Records in the hospital slice</h2>
+        <p class="ag-note">Newest first. Captions are the posters' own words, translated to English.</p>
+        <div class="ag-tablebar">
+          <input id="ag-search" class="ag-search" type="search" aria-label="Search captions and sources" placeholder="Search captions, sources…">
+          <span id="ag-count" class="ag-count" aria-live="polite"></span>
+        </div>
+        <div class="ag-tablebox">
+          <table class="ag-table">
+            <thead>
+              <tr>
+                <th scope="col">Posted</th>
+                <th scope="col">Type</th>
+                <th scope="col">Caption</th>
+                <th scope="col">Source collection</th>
+                <th scope="col">Precision</th>
+                <th scope="col">Review status</th>
+              </tr>
+            </thead>
+            <tbody data-draw="hospRows"></tbody>
+          </table>
+        </div>
+        <button id="ag-more" class="ag-more" type="button" hidden>Show more</button>
+      </section>
+
+      <section class="ag-card" aria-labelledby="h-data">
+        <h2 id="h-data">Download the data</h2>
+        <p class="ag-note">The exact files this page draws from. Column definitions are in <a href="https://github.com/virgosuperclusterfuck/imperiyalismo-ibagsak/blob/main/DATA.md">DATA.md</a>.</p>
+        <ul class="ag-downloads">
+          <li><a href="data/overview.json" download>overview.json</a></li>
+          <li><a href="data/monthly.csv" download>monthly.csv</a></li>
+          <li><a href="data/archives.csv" download>archives.csv</a></li>
+          <li><a href="data/keywords.csv" download>keywords.csv</a></li>
+          <li><a href="data/hospital.csv" download>hospital.csv</a></li>
+        </ul>
+      </section>
+
+      <p class="ag-foot">Data: <a href="https://archivegenocide.com/">Archive Genocide (archivegenocide.com)</a>, a public read-only archive of posted footage from Gaza and the West Bank. Footage belongs to its filmers and captions to their authors; a record documents what was posted and when, not a finding. Review status is the archive's internal review state. Withdrawn records are excluded. Snapshot taken <b data-draw="fBuilt">—</b>; the archive itself updates continuously.</p>
+    </div>
+  </main>
+
+  <script src="assets/vendor/d3.min.js"></script>
+  <script src="assets/js/runtime.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
